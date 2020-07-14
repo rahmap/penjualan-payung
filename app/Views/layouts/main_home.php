@@ -47,9 +47,9 @@
   <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="#">
+    <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="<?= route_to('home') ?>">
         <i class="fa d-inline fa-lg fa-circle"></i>
-        <b> BRAND</b>
+        <b> <?= APP_NAME ?></b>
       </a>
       <ul class="navbar-nav mx-auto">
         <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
@@ -57,9 +57,14 @@
         <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
       </ul>
       <ul class="navbar-nav">
-        <li class="nav-item"> <a class="nav-link" href="#">Log in</a> </li>
-        <li class="nav-item"> <a class="nav-link text-primary" href="#">Register</a> </li>
-        <li class="nav-item"> <a class="nav-link text-primary" href="#">Logout</a> </li>
+      <?php if(session()->has('user_id')){ ?>
+        <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('dashboard-member') ?>">Dashboard</a> </li>
+        <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('logout') ?>">Logout</a> </li>
+      <?php } else { ?>
+        <li class="nav-item"> <a class="nav-link" href="<?= route_to('login') ?>">Log in</a> </li>
+        <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('register') ?>">Register</a> </li>
+      <?php } ?>
+        
       </ul>
     </div>
   </div>

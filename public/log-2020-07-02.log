@@ -1,0 +1,24 @@
+CRITICAL - 2020-07-02 01:01:05 --> No connection could be made because the target machine actively refused it.
+
+#0 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Database\BaseConnection.php(377): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Database\BaseConnection.php(643): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1819): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Model.php(482): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\xampp\htdocs\kusumasyariah\app\Controllers\Auth.php(28): CodeIgniter\Model->first()
+#5 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Auth->login()
+#6 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#7 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\kusumasyariah\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-02 01:01:05 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\kusumasyariah\app\Views\errors\html\error_exception.php:100
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 100, Array)
+#1 C:\xampp\htdocs\kusumasyariah\app\Views\errors\html\error_exception.php(100): print_r(Object(App\Controllers\Auth), true)
+#2 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Debug\Exceptions.php(298): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\kusumasyariah\vendor\codeigniter4\framework\system\Debug\Exceptions.php(171): CodeIgniter\Debug\Exceptions->render(Object(mysqli_sql_exception), 500)
+#4 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(mysqli_sql_exception))
+#5 {main}
+  thrown
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
