@@ -78,3 +78,4 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('APP_NAME')        || define('APP_NAME', 'Junada Payung');
 defined('CREATOR')        || define('CREATOR', 'Rian');
+defined('CREATOR_LINK')        || define('CREATOR_LINK', 'https://github.com/rahmap');

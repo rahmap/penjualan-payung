@@ -58,7 +58,11 @@
       </ul>
       <ul class="navbar-nav">
       <?php if(session()->has('user_id')){ ?>
+        <?php if(session()->role == 'ADMIN'): ?>
+        <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('dashboard-admin') ?>">Dashboard</a> </li>
+        <?php else: ?>
         <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('dashboard-member') ?>">Dashboard</a> </li>
+        <?php endif; ?>
         <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('logout') ?>">Logout</a> </li>
       <?php } else { ?>
         <li class="nav-item"> <a class="nav-link" href="<?= route_to('login') ?>">Log in</a> </li>

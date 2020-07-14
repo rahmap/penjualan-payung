@@ -1,0 +1,179 @@
+CRITICAL - 2020-07-15 00:57:33 --> Use of undefined constant CREATOR_NAME - assumed 'CREATOR_NAME' (this will throw an Error in a future version of PHP)
+#0 C:\xampp\htdocs\payung\app\Views\layouts\main_dashboard.php(203): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefine...', 'C:\\xampp\\htdocs...', 203, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(247): CodeIgniter\View\View->render('layouts/main_da...', Array, true)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#4 C:\xampp\htdocs\payung\app\Controllers\Admin.php(14): view('dashboard/admin...', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->index()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-15 01:27:17 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Model.php(937): CodeIgniter\Database\BaseBuilder->delete()
+#1 C:\xampp\htdocs\payung\app\Controllers\Admin.php(34): CodeIgniter\Model->delete('pelanggan')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->hapus_pelanggan('pelanggan')
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+CRITICAL - 2020-07-15 01:41:31 --> Class 'Faker\Factory' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\Seeder.php(165): require_once()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Database\Seed.php(124): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\CommandRunner.php(137): CodeIgniter\Commands\Database\Seed->run(Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\CommandRunner.php(110): CodeIgniter\CLI\CommandRunner->runCommand('db:seed', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\CommandRunner.php(86): CodeIgniter\CLI\CommandRunner->index(Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(906): CodeIgniter\CLI\CommandRunner->_remap('index', 'db:seed', 'UsersSeeder')
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(CodeIgniter\CLI\CommandRunner))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\Console.php(86): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\spark(57): CodeIgniter\CLI\Console->run()
+#10 {main}
+CRITICAL - 2020-07-15 01:43:40 --> Class 'Faker\Factory' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\Seeder.php(172): App\Database\Seeds\UsersSeeder->run()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Database\Seed.php(124): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\CommandRunner.php(137): CodeIgniter\Commands\Database\Seed->run(Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\CommandRunner.php(110): CodeIgniter\CLI\CommandRunner->runCommand('db:seed', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\CommandRunner.php(86): CodeIgniter\CLI\CommandRunner->index(Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(906): CodeIgniter\CLI\CommandRunner->_remap('index', 'db:seed', 'UsersSeeder')
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(CodeIgniter\CLI\CommandRunner))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CLI\Console.php(86): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\spark(57): CodeIgniter\CLI\Console->run()
+#10 {main}
+CRITICAL - 2020-07-15 01:51:14 --> Call to undefined method CodeIgniter\HTTP\RedirectResponse::base_url()
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->hapus_pelanggan('9')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 02:04:21 --> Class 'App\Controllers\Supplier_Model' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 02:04:31 --> Class 'App\Controllers\Supplier_Model' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 02:04:36 --> Undefined variable: users
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\pelanggan\data_pelanggan.php(46): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 46, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(41): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->supplier()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-15 02:48:10 --> Too few arguments to function App\Controllers\Admin::tambah_supplier(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->tambah_supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 02:48:23 --> Undefined variable: id
+#0 C:\xampp\htdocs\payung\app\Controllers\Admin.php(66): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 66, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->tambah_supplier()
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2020-07-15 03:01:49 --> Column 'nama_supplier' cannot be null
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(330): mysqli->query('INSERT INTO `su...')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `su...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `su...')
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(2206): CodeIgniter\Database\BaseConnection->query('INSERT INTO `su...', Array, false)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Model.php(722): CodeIgniter\Database\BaseBuilder->insert()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Model.php(550): CodeIgniter\Model->insert(Array, false)
+#6 C:\xampp\htdocs\payung\app\Controllers\Admin.php(53): CodeIgniter\Model->save(Array)
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->supplier()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2020-07-15 03:05:42 --> Call to a member function first() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_supplier('32')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 03:06:01 --> Invalid file: dashboard/admin/supplier/edit_supplier.php
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(224): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard/admin...')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Admin.php(86): view('dashboard/admin...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_supplier('32')
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-15 03:06:36 --> Too few arguments to function App\Controllers\Admin::edit_supplier(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 03:07:53 --> Too few arguments to function App\Controllers\Admin::edit_supplier(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 03:08:02 --> Too few arguments to function App\Controllers\Admin::edit_supplier(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 03:08:30 --> Too few arguments to function App\Controllers\Admin::edit_supplier(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_supplier()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 03:30:00 --> Class 'App\Controllers\Produk_Model' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->produk()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-15 03:31:37 --> Invalid file: dashboard/admin/peoduk/data_produk.php
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(224): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('dashboard/admin...')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Admin.php(108): view('dashboard/admin...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->produk()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-15 03:32:15 --> Undefined variable: products
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\produk\data_produk.php(70): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 70, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(108): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->produk()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}

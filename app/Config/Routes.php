@@ -33,8 +33,36 @@ $routes->setAutoRoute(true);
 
 $routes->get('/', 'Home::index', ['as' => 'root']);
 $routes->get('/home', 'Home::index', ['as' => 'home']);
+$routes->get('about', 'Home::about', ['as' => 'about']);
+$routes->get('contact', 'Home::contact', ['as' => 'contact']);
 $routes->get('/pembayaran', 'Home::pembayaran', ['as' => 'payment']);
 $routes->get('/produk/(:any)', 'Home::detail/$1', ['as' => 'detail_produk']);
+
+/**
+ * --------------------------------------------------------------------
+ * Route Member
+ * --------------------------------------------------------------------
+ */
+$routes->group('dashboard', ['filter' => 'middleware_member'], function($routes)
+{
+	$routes->get('/', 'Member::index', ['as' => 'dashboard-member']);
+});
+//----------------------------------------------------------------------
+
+
+/**
+ * --------------------------------------------------------------------
+ * Route Admin
+ * --------------------------------------------------------------------
+ */
+$routes->group('admin', ['filter' => 'middleware_admin'], function($routes)
+{
+	$routes->get('/', 'Admin::index', ['as' => 'dashboard-admin']);
+});
+//----------------------------------------------------------------------
+
+
+$routes->get('admin/login', 'Auth::admin_login', ['as' => 'admin_login']);
 
 $routes->group('auth', function($routes)
 {
@@ -46,7 +74,7 @@ $routes->group('auth', function($routes)
 	$routes->get('logout', 'Auth::logout', ['as' => 'logout']);
 });
 
-$routes->get('admin/login', 'Auth::admin_login', ['as' => 'admin_login']);
+
 
 /**
  * --------------------------------------------------------------------
