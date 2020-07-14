@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container"> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar12" style="">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar12"> <a class="navbar-brand d-none d-md-block" href="#">
+          <i class="fa d-inline fa-lg fa-circle"></i>
+          <b> BRAND</b>
+        </a>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"> <a class="nav-link" href="#">Log in</a> </li>
+          <li class="nav-item"> <a class="nav-link text-primary" href="#">Register</a> </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Detail Pesanan</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center"> Payung Pantai <span class="badge badge-primary badge-pill" contenteditable="true">2</span> </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center"> Payung Golf <span class="badge badge-primary badge-pill">2</span> </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center"> Payung Hujan Biasa <span class="badge badge-primary badge-pill">1</span> </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <form class="">
+            <div class="form-group"> <label>Alamat Pengiriman</label> <input type="email" class="form-control" placeholder="Jalan Nusa Indah . . ."> </div>
+            <div class="form-group mb-0"> <label>Pengiriman</label> </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">Dalam Kota (DIY) </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="optradio">Luar Kota </label>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="form-group"> <label>Total Bayar</label> <input type="password" class="form-control" placeholder="Rp. 200.000" readonly=""> </div>
+        </div>
+        <div class="col-md-4">
+          <form class="">
+            <div class="form-group">
+              <label for="sel1">Metode Pembayaran :</label>
+              <select class="form-control" id="sel1">
+                <option>Bank BRI</option>
+                <option>Uang Cash</option>
+              </select>
+            </div>
+          </form>
+          <div class="row">
+            <div class="col-md-12 d-flex justify-content-center"><button type="submit" class="btn btn-primary">Pesan Sekarang</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h4 class=""><b>Informasi</b>&nbsp;<span class="badge badge-pill badge-warning">!</span></h4>
+          <p class="">Nomer Rekening BRI : <b>0943-2787-6456-3454 </b><br>Jika Metode Pembayaran Uang Cash, maka pembayaran dilakukan langsung ke Toko.<br>Pengiriman Luar Kota Yogyakarta mendapatkan biaya Flat sebesar Rp. 100.000, jika dalam Kota Yogyakarta akan gratis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" style=""></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>
+</body>
+
+</html>

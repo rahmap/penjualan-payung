@@ -47,7 +47,7 @@ namespace CodeIgniter\Config;
  * automatically populate the child class' properties with values
  * from the environment.
  *
- * These can be set within the .env file.
+ * These can be set within the ..env file.
  */
 class BaseConfig
 {

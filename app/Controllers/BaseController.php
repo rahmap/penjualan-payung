@@ -27,7 +27,7 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = [];
-
+  protected $image;
 	/**
 	 * Constructor.
 	 */
@@ -41,6 +41,9 @@ class BaseController extends Controller
 		//--------------------------------------------------------------------
 		// E.g.:
 		// $this->session = \Config\Services::session();
+    $this->image = \Config\Services::image();
+    // $this->pager = \Config\Services::pager();
+    helper(['form', 'url', 'session', 'filesystem', 'pager', 'tools', 'database']);
 	}
 
 }
