@@ -36,7 +36,7 @@ $routes->get('/home', 'Home::index', ['as' => 'home']);
 $routes->get('about', 'Home::about', ['as' => 'about']);
 $routes->get('contact', 'Home::contact', ['as' => 'contact']);
 $routes->get('/pembayaran', 'Home::pembayaran', ['as' => 'payment']);
-$routes->get('/produk/(:any)', 'Home::detail/$1', ['as' => 'detail_produk']);
+$routes->get('/detail/(:any)', 'Home::detail/$1', ['as' => 'detail_produk']);
 
 /**
  * --------------------------------------------------------------------

@@ -31,29 +31,29 @@
 
                 <h4 class="header-title">Tambahkan Produk</h4>
                 <p class="card-title-desc">Menambahkan data Produk ke Toko.</p>
-                <form action="" method="POST">
+                <form action="<?= base_url('admin/tambah_produk') ?>" method="POST" enctype="multipart/form-data">
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Nama Payung</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                        <input class="form-control" type="text" name="nama" >
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Harga Payung</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="number" value="Artisanal kale" id="example-text-input">
+                        <input class="form-control" type="number" name="harga" >
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Gambar Payung</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="file" value="" id="example-text-input">
+                        <input class="form-control" type="file" name="gambar" >
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Keterangan Payung</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" type="text" value="Artisanal kale" id="example-text-input"> </textarea>
+                        <textarea class="form-control" type="text" name="keterangan" > </textarea>
                     </div>
                 </div>
                 <div class="form-group d-flex justify-content-center">
@@ -72,15 +72,15 @@
 
               <h4 class="header-title">Pilih Supplier Toko</h4>
               <p class="card-title-desc">Mengatur supplier pada Poko.</p>
-              <form action="" method="POST">
+              <form action="<?= base_url('admin/update_supplier_produk') ?>" method="POST">
               <div class="form-group row">
 
                   <label class="col-md-2 col-form-label">Pilih</label>
                   <div class="col-md-10">
-                      <select class="form-control">
-                          <option>Select</option>
-                          <option>Large select</option>
-                          <option>Small select</option>
+                      <select class="form-control" name="supplier">
+                        <?php foreach($suppliers as $sup): ?>
+                          <option value="<?= $sup['supplier_id'] ?>" <?= ($selected[0]['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?>>Stok : <?= $sup['stok'].' - '.$sup['nama_supplier'] ?></option>
+                        <?php endforeach; ?>
                       </select>
                   </div>
                 
@@ -110,6 +110,7 @@
                       <th>Nama</th>
                       <th>Harga</th>
                       <th>Foto</th>
+                      <th class="text-center">Stok</th>
                       <th>Keterangan</th>
                       <th class="text-center">Aksi</th>
                   </tr>
@@ -120,7 +121,8 @@
                       <td><?= $produk['product_id'] ?></td>
                       <td><?= $produk['nama_produk'] ?></td>
                       <td><?= $produk['harga_produk'] ?></td>
-                      <td><?= $produk['gambar_produk'] ?></td>
+                      <td><a target="_blank" href="<?= base_url('produk/'.$produk['gambar_produk']) ?>"><?= $produk['gambar_produk'] ?></a></td>
+                      <td class="text-center"><?= $produk['stok'] ?></td>
                       <td><?= $produk['keterangan_produk'] ?></td>
                       <td class="text-center">
                         <div class="button-items">

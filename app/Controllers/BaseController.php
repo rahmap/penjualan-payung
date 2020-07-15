@@ -43,7 +43,7 @@ class BaseController extends Controller
 		// $this->session = \Config\Services::session();
     $this->image = \Config\Services::image();
     // $this->pager = \Config\Services::pager();
-    helper(['form', 'url', 'session', 'filesystem', 'pager', 'tools', 'database']);
+    helper(['form', 'url', 'session', 'filesystem', 'pager', 'tools']);
 	}
 
 }

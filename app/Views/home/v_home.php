@@ -18,102 +18,24 @@
 <div class="py-4 bg-light">
 	<div class="container">
 		<div class="row">
+		<?php foreach($products as $pro): ?>
 			<div class="col-md-4 p-3">
 				<div class="card box-shadow">
-					<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
+					<a href="<?= base_url('detail/'.strtolower(str_replace(' ','-',$pro['nama_produk']))) ?>">
+						<img class="card-img-top" src="<?= base_url('produk/'.$pro['gambar_produk']) ?>">
+					</a>
 					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						<p class="lead"><b><?= $pro['nama_produk'] ?></b></p>
+						<p class="card-text"><?= $pro['keterangan_produk'] ?></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div> <small class="text-muted">9 mins</small>
+								<a href="<?= base_url('detail/'.strtolower(str_replace(' ','-',$pro['nama_produk']))) ?>"><button type="button" class="btn btn-sm btn-outline-secondary">Detail</button></a>
+							</div> <h6 class="heading"><b>Rp <?= number_format($pro['harga_produk'], 0, ',', '.') ?></b></h6>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4 p-3">
-				<div class="card box-shadow">
-					<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div> <small class="text-muted">9 mins</small>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 p-3">
-				<div class="card box-shadow">
-					<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div> <small class="text-muted">9 mins</small>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 p-3">
-				<div class="card box-shadow">
-					<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div> <small class="text-muted">9 mins</small>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 p-3">
-				<div class="card box-shadow">
-					<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div> <small class="text-muted">9 mins</small>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 p-3">
-				<div class="card box-shadow">
-					<img class="card-img-top" src="https://pingendo.com/assets/photos/wireframe/photo-1.jpg">
-					<div class="card-body">
-						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-							</div> <small class="text-muted">9 mins</small>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="pagination">
-					<li class="page-item"> <a class="page-link" href="#"> <span>«</span></a> </li>
-					<li class="page-item active"> <a class="page-link" href="#">1</a> </li>
-					<li class="page-item"> <a class="page-link" href="#">2</a> </li>
-					<li class="page-item"> <a class="page-link" href="#">3</a> </li>
-					<li class="page-item"> <a class="page-link" href="#">4</a> </li>
-					<li class="page-item"> <a class="page-link" href="#"> <span>»</span></a> </li>
-				</ul>
-			</div>
+		<?php endforeach; ?>
 		</div>
 	</div>
 </div>
@@ -123,3 +45,6 @@
 	</div>
 </footer>
 <?= $this->endSection() ?>
+<script>
+    $('.pagination').removeClass('pagination').addClass('page-numbers');
+</script>

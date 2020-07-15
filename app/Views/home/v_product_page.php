@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="py-2">Payung Pantai</h2>
+          <h2 class="py-2"><b><?= $produk['nama_produk'] ?></b></h2>
         </div>
       </div>
       <div class="row">
@@ -17,15 +17,20 @@
         <div class="col-md-6" style="">
           <div class="row">
             <div class="col-md-12">
-              <p class="">Paragraph. Then, my friend, when darkness overspreads my eyes, and heaven and earth seem to dwell in my soul and absorb its power, like the form of a beloved mistress, then I often think with longing.</p>
+              <p class=""><?= $produk['keterangan_produk'] ?>.</p>
             </div>
           </div>
-          <h1>Rp 90.000<br></h1>
-          <h6 class="">Stok : 10</h6>
-          <form class="form-inline py-3">
+          <h1>Rp <?= number_format($produk['harga_produk'], 0, ',', '.') ?></h1><br>
+          <h6 class="">Stok : <?= $produk['stok'] ?></h6>
+          <form class="form-inline py-3" action="<?= base_url('home/tambah_keranjang') ?>" method="POST">
             <div class="form-group">
-              <input type="email" class="form-control mr-3" id="inputmailinline" placeholder="Jumlah"> </div>
-            <button type="submit" class="btn btn-primary ">Tambah Ke Keranjang</button>
+              <input type="number" required max="<?= $produk['stok'] ?>" class="form-control mr-3" name="jumlah" placeholder="Jumlah"> 
+              <input type="number" required  value="<?= $produk['product_id'] ?>" class="form-control mr-3" hidden name="id_payung"> 
+              <input type="number" required value="<?= $produk['harga_produk'] ?>"  class="form-control mr-3" hidden name="harga_payung"> 
+              <input type="text" required value="<?= $produk['nama_produk'] ?>" class="form-control mr-3" hidden name="nama_payung"> 
+              <input type="text" required value="<?= ucwords(str_replace('-',' ',$produk['nama_produk'])) ?>" class="form-control mr-3" hidden name="slug_payung"> 
+            </div>
+              <button type="submit" name="submit" class="btn btn-primary ">Tambah Ke Keranjang</button>
           </form>
         </div>
       </div>

@@ -88,7 +88,7 @@
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
                             <a class="dropdown-item" href="#"><i
-                                    class="mdi mdi mdi-settings-outline font-size-16 align-middle mr-1"></i> Settings</a>
+                                    class="mdi mdi mdi-settings-outline font-size-16 align-middle mr-1"></i> Pengaturan</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?= route_to('logout') ?>"><i
                                     class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
@@ -120,6 +120,17 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-google-pages"></i>
+                                <span>Data Pesanan</span>
+                            </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="<?= base_url('admin/tambah_pesanan') ?>">Tambah Pesanan</a></li>
+                                    <li><a href="<?= base_url('admin/pesanan') ?>">List Pesanan</a></li>
+                                </ul>
+                            </li>
+                        <li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-google-pages"></i>

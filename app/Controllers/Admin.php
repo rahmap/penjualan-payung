@@ -92,20 +92,131 @@ class Admin extends BaseController
 	public function produk()
 	{
 		$this->PRODUK_MODEL = new Produk_Model();
+		$this->SUPPLIER_MODEL = new Supplier_Model();
 		$data = [
 			'title' => 'Data Produk',
-			'products' => $this->PRODUK_MODEL->findAll()
+			'products' => $this->PRODUK_MODEL->join('suppliers','suppliers.supplier_id=products.fk_supplier')->findAll(),
+			'suppliers' => $this->SUPPLIER_MODEL->findAll(),
+			'selected' => $this->PRODUK_MODEL->whereNotIn('fk_supplier', [0])->findAll()
 		];
+		
 		if($this->request->getPost()){
 			$data = [
 				'nama_supplier' => $this->request->getVar('nama'),
 				'stok' => $this->request->getVar('stok')
 			];
 			$this->PRODUK_MODEL->save($data);
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menambahkan data peoduk.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menambahkan data produk.', 'success'));
 			return redirect()->to(base_url('admin/produk'));
 		} else {
 			return view('dashboard/admin/produk/data_produk', $data);
 		}
 	}
+	
+	public function tambah_produk()
+	{
+		$this->PRODUK_MODEL = new Produk_Model();
+		// $sup = $this->PRODUK_MODEL->where('fk_supplier', '!= NULL')->find();
+		$gambar =  $this->request->getFile('gambar');
+		try {
+			helper('text');
+			$file = $gambar->getRandomName();
+			$image = \Config\Services::image()
+							->withFile($gambar)
+							->resize(1142, 856)
+							->save('produk/'.$file);
+		}
+		catch (\Exception $e)
+		{
+			session()->setFlashdata('message', sweetAlert('Upss! Gambar gagal diupload!',$e->getMessage(), 'error'));
+			return redirect()->to(\base_url('admin/produk'));
+		}
+		$data = [
+			'nama_produk' => $this->request->getVar('nama'),
+			'harga_produk' => $this->request->getVar('harga'),
+			'gambar_produk' => $file,
+			'keterangan_produk' => $this->request->getVar('keterangan')
+		];
+		if($this->PRODUK_MODEL->save($data)){
+			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menambahkan data produk!', 'success'));
+		} else {
+			session()->setFlashdata('message', sweetAlert('Upss!','Gagal menambahkan data produk!', 'error'));
+		}
+		return redirect()->to(\base_url('admin/produk'));
+
+	}
+
+	public function update_supplier_produk()
+	{
+		$this->PRODUK_MODEL = new Produk_Model();
+		$this->PRODUK_MODEL->set(['fk_supplier' => $this->request->getVar('supplier')])->update();
+		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate supplier produk.', 'success'));
+		return redirect()->to(base_url('admin/produk'));
+	}
+
+	public function hapus_produk($id)
+	{
+		$this->PRODUK_MODEL = new Produk_Model();
+		$this->PRODUK_MODEL->where('product_id', $id)->delete();
+		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data produk.', 'success'));
+		return redirect()->to(base_url('admin/produk'));
+	}
+
+	public function edit_produk($id)
+	{
+		$this->PRODUK_MODEL = new Produk_Model();
+		$data = [
+			'title' => 'Update Produk',
+			'produk' => $this->PRODUK_MODEL->find($id)
+		];
+		if($this->request->getPost()){
+			$file = '';
+			$old = $this->PRODUK_MODEL->find($id);
+			if($this->request->getFile('gambar') == null OR $this->request->getFile('gambar') == ''){
+				$file = $old['gambar_produk'];
+			} else {
+				$gambar =  $this->request->getFile('gambar');
+				try {
+					helper('text');
+					$file = $gambar->getRandomName();
+					$image = \Config\Services::image()
+					->withFile($gambar)
+					->resize(1142, 856)
+					->save('produk/'.$file);
+
+					unlink('produk/'.$old['gambar_produk']);
+				}
+				catch (\Exception $e)
+				{
+					session()->setFlashdata('message', sweetAlert('Upss! Gambar gagal diupload!',$e->getMessage(), 'error'));
+					return redirect()->to(\base_url('admin/edit_produk/'.$id));
+				}
+			}
+			$update = [
+				'nama_produk' => $this->request->getVar('nama'),
+				'harga_produk' => $this->request->getVar('harga'),
+				'gambar_produk' => $file,
+				'keterangan_produk' => $this->request->getVar('keterangan')
+			];
+			$this->PRODUK_MODEL->update($id, $update);
+			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data produk.', 'success'));
+			return redirect()->to(base_url('admin/edit_produk/'.$id));
+		} else {
+			return view('dashboard/admin/produk/edit_produk', $data);
+		}
+	}
+
+	public function tambah_pesanan()
+	{
+		$data = [
+			'title' => 'Tambah Pesanan',
+			// 'produk' => $this->PRODUK_MODEL->find($id)
+		];
+		if($this->request->getPost()){
+
+		} else {
+			return view('dashboard/admin/pesanan/tambah_pesanan', $data);
+		}
+	}
+
 }
