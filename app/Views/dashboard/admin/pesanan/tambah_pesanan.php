@@ -45,10 +45,16 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Nomer Telefon</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" name="phone">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-md-2 col-form-label">Metode Pembayaran</label>
                     <div class="col-md-10">
                         <select class="form-control" name="bayar" readonly>
-                            <option value="cash" selected>Bayar Cash</option>
+                            <option value="CASH" selected>Bayar Cash</option>
                         </select>
                     </div>
                 </div>
@@ -117,7 +123,7 @@
 
 <?= $this->section('outJS') ?>
   <!-- Required datatable js -->
-  <script src="<?= base_url('apaxy/libs/datatables.net/js/jquery.dataTables.min.js') ?>""></script>
+  <script src="<?= base_url('apaxy/libs/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('apaxy/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
   <!-- Responsive examples -->
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>

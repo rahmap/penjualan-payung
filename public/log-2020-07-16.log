@@ -22,3 +22,246 @@ CRITICAL - 2020-07-16 00:01:41 --> Trying to access array offset on value of typ
 #4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
 #5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
 #6 {main}
+CRITICAL - 2020-07-16 00:26:00 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\payung\app\Views\home\v_product_page.php(12): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 12, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_product_...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Home.php(37): view('home/v_product_...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->detail('Rahma%20X')
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-16 00:35:42 --> Undefined index: quantity
+#0 C:\xampp\htdocs\payung\app\ThirdParty\WFcart\Wildanfuady\WFcart\WFcart.php(46): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 46, Array)
+#1 C:\xampp\htdocs\payung\app\Controllers\Home.php(62): Wildanfuady\WFcart\WFcart->update()
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+CRITICAL - 2020-07-16 00:38:30 --> Undefined index: quantity
+#0 C:\xampp\htdocs\payung\app\ThirdParty\WFcart\Wildanfuady\WFcart\WFcart.php(46): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 46, Array)
+#1 C:\xampp\htdocs\payung\app\Controllers\Home.php(62): Wildanfuady\WFcart\WFcart->update()
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+CRITICAL - 2020-07-16 00:44:55 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(42): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:46:22 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(42): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:47:22 --> Class 'App\Controllers\Config\Services' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-16 00:47:32 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(42): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:48:18 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(42): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:48:48 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(42): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:51:25 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(42): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:54:53 --> Class 'App\Controllers\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-16 00:54:59 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(43): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 00:55:46 --> Class 'App\Controllers\CodeIgniterCart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-16 00:55:57 --> Class 'JasonN\Cart\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(123): CodeIgniterCart\Config\Services::cart(false)
+#1 C:\xampp\htdocs\payung\vendor\jason-napolitano\codeigniter4-cart-module\src\Config\Services.php(33): CodeIgniter\Config\BaseService::getSharedInstance('cart')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(294): CodeIgniterCart\Config\Services::cart()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Config\BaseService.php(202): CodeIgniter\Config\BaseService::discoverServices('cart', Array)
+#4 C:\xampp\htdocs\payung\app\Controllers\Home.php(43): CodeIgniter\Config\BaseService::__callStatic('cart', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-16 01:04:40 --> Class 'App\Libraries\Cart' not found
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->tambah_keranjang()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-16 01:38:52 --> Undefined property: App\Libraries\Cart::$contents
+#0 C:\xampp\htdocs\payung\app\Controllers\Home.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 75, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2020-07-16 02:17:47 --> Trying to get property 'totals' of non-object
+#0 C:\xampp\htdocs\payung\app\Views\home\v_pembayaran.php(43): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 43, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-16 02:17:52 --> Call to a member function total() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-16 02:18:21 --> Call to a member function totals() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-16 02:18:59 --> Call to a member function total() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-16 02:19:50 --> Call to a member function contents() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-16 02:20:03 --> Trying to get property 'total' of non-object
+#0 C:\xampp\htdocs\payung\app\Views\home\v_pembayaran.php(43): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get p...', 'C:\\xampp\\htdocs...', 43, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-16 02:20:08 --> Call to a member function total() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+CRITICAL - 2020-07-16 02:20:22 --> Call to a member function total() on array
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('home/v_pembayar...', Array, true)
+#2 C:\xampp\htdocs\payung\app\Controllers\Home.php(83): view('home/v_pembayar...', Array)
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Home->pembayaran()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#8 {main}

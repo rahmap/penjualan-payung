@@ -132,10 +132,12 @@ class Auth extends BaseController
 
 	public function logout()
 	{
+		$cart = new \App\Libraries\Cart();
 		if(!session()->has('user_id')){
       return redirect()->route('login');
     } else {
-      session()->remove(['user_id','user_email', 'user_name', 'role']); //session destroy
+			$cart->destroy();
+      session()->remove(['user_id','user_email', 'user_name', 'role', 'cart']); //session destroy
       session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil keluar, Terimakasih.', 'info'));
       return redirect()->route('login');
     }

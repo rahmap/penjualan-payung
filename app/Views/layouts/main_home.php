@@ -63,6 +63,7 @@
         <?php else: ?>
         <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('dashboard-member') ?>">Dashboard</a> </li>
         <?php endif; ?>
+        <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('payment') ?>">Checkout</a> </li>
         <li class="nav-item"> <a class="nav-link text-primary" href="<?= route_to('logout') ?>">Logout</a> </li>
       <?php } else { ?>
         <li class="nav-item"> <a class="nav-link" href="<?= route_to('login') ?>">Log in</a> </li>
