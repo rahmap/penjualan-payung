@@ -4,6 +4,8 @@ use App\Models\Dashboard_Model;
 use App\Models\User_Model;
 use App\Models\Supplier_Model;
 use App\Models\Produk_Model;
+use App\Models\Pemesanan_Model;
+use App\Models\Product_Pemesanan_Model;
 
 class Admin extends BaseController
 {
@@ -11,6 +13,8 @@ class Admin extends BaseController
 	protected $USER_MODEL;
 	protected $SUPPLIER_MODEL;
 	protected $PRODUK_MODEL;
+	protected $PEMESANAN_MODEL;
+	protected $PRODUCT_ORDER;
 
 	public function index()
 	{
@@ -208,14 +212,99 @@ class Admin extends BaseController
 
 	public function tambah_pesanan()
 	{
+		$cart = new \App\Libraries\Cart();
 		$data = [
 			'title' => 'Tambah Pesanan',
-			// 'produk' => $this->PRODUK_MODEL->find($id)
+			'cart' => $cart->contents(),
+			'cart_total_bayar' => $cart->total()
 		];
 		if($this->request->getPost()){
-
+			$this->PEMESANAN_MODEL = new Pemesanan_Model();
+			$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
+			helper('text');
+			$dataBeli = [
+				'waktu_pesanan' => time(),
+				'bukti_pembayaran' => NULL,
+				'alamat' => $this->request->getVar('alamat'),
+				'harga_total' => $cart->total(),
+				'ongkir' => $this->request->getVar('ongkir'),
+				'metode_pembayaran' => $this->request->getVar('bayar'),
+				'no_hp' => $this->request->getVar('phone'),
+				'informasi_pesanan' => 'Sedang Dikirim',
+				'status_pemesanan' => 'success',
+				'order_unique_id' => 'TRX-'.random_string('alnum'),
+				'fk_user' => null,
+				'fk_admin' => session()->user_id
+			];
+			$this->PEMESANAN_MODEL->save($dataBeli);
+			$insertID = $this->PEMESANAN_MODEL->getIDInsert();
+			foreach($cart->contents() as $item) {
+				$data = [
+					'fk_product' => $item['id'],
+					'fk_pemesanan' => $insertID,
+					'jumlah_pesan_produk' => $item['qty'],
+					'harga_produk_pemesanan' => $item['price'],
+					'nama_produk_pemesanan' => $item['name']
+				];
+				$this->PRODUCT_ORDER->save($data);
+			}
+			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil melakukan pemesanan produk.', 'success'));
+			$cart->destroy();
+			return redirect()->to(base_url('admin/tambah_pesanan'));
 		} else {
 			return view('dashboard/admin/pesanan/tambah_pesanan', $data);
+		}
+	}
+
+	public function pesanan()
+	{
+		
+		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+		$order = $this->PEMESANAN_MODEL->findAll();
+		// $order = $this->PEMESANAN_MODEL
+		// 				->join('orders_products','orders_products.fk_pemesanan=pemesanan.order_id')->findAll();
+		$data = [
+			'title' => 'Data Pesanan',
+			'pesanan' => $order
+		];
+		return view('dashboard/admin/pesanan/data_pesanan', $data);
+	}
+
+	public function hapus_pesanan($id)
+	{
+		
+		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+		$order = $this->PEMESANAN_MODEL->where('order_unique_id', $id)->delete();
+		// $order = $this->PEMESANAN_MODEL
+		// 				->join('orders_products','orders_products.fk_pemesanan=pemesanan.order_id')->findAll();
+		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data pesanan.', 'success'));
+		return redirect()->to(base_url('admin/pesanan'));
+	}
+
+	public function edit_pesanan($id)
+	{
+		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+		$orderID = $this->PEMESANAN_MODEL->where('order_unique_id', $id)->first();
+		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
+		$order = $this->PRODUCT_ORDER
+				->where('fk_pemesanan', $orderID['order_id'])->find();
+		$data = [
+			'title' => 'Edit Pesanan',
+			'produk' => $orderID,
+			'pesanan' => $order
+		];
+		// dd($data);
+		if($this->request->getPost()){
+			$data = [
+				'status_pemesanan' => $this->request->getVar('status'),
+				'informasi_pesanan' => $this->request->getVar('informasi'),
+				'fk_admin' => session()->user_id
+			];
+			$this->PEMESANAN_MODEL->where('order_unique_id', $id)->set($data)->update();
+			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data pesanan.', 'success'));
+			return redirect()->to(base_url('admin/edit_pesanan/'.$id));
+		} else {
+			return view('dashboard/admin/pesanan/edit_pesanan', $data);
 		}
 	}
 

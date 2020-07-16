@@ -38,10 +38,13 @@
                   <thead>
                   <tr>
                       <th>ID</th>
-                      <th>Nama</th>
-                      <th>Harga</th>
-                      <th>Foto</th>
-                      <th class="text-center">Stok</th>
+                      <th>Waktu</th>
+                      <th>Alamat</th>
+                      <th>Total Bayar</th>
+                      <th class="text-center">Ongkir</th>
+                      <th>Metode Pembayaran</th>
+                      <th>Nomer HP</th>
+                      <th>Status</th>
                       <th>Keterangan</th>
                       <th class="text-center">Aksi</th>
                   </tr>
@@ -49,18 +52,21 @@
                   <tbody>
                   <?php foreach($pesanan as $pes): ?>
                   <tr>
-                      <td><?= $pes['product_id'] ?></td>
-                      <td><?= $pes['nama_produk'] ?></td>
-                      <td><?= $pes['harga_produk'] ?></td>
-                      <td><a target="_blank" href="<?= base_url('produk/'.$pes['gambar_produk']) ?>"><?= $pes['gambar_produk'] ?></a></td>
-                      <td class="text-center"><?= $pes['stok'] ?></td>
-                      <td><?= $pes['keterangan_produk'] ?></td>
+                      <td><?= $pes['order_unique_id'] ?></td>
+                      <td><?= date('d/m/y H:i', (int) $pes['waktu_pesanan']) ?></td>
+                      <td><?= $pes['alamat'] ?></td>
+                      <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
+                      <td><?= $pes['ongkir'] ?></td>
+                      <td><?= $pes['metode_pembayaran'] ?></td>
+                      <td><?= $pes['no_hp'] ?></td>
+                      <td><?= $pes['status_pemesanan'] ?></td>
+                      <td><?= $pes['informasi_pesanan'] ?></td>
                       <td class="text-center">
                         <div class="button-items">
-                          <a class="btn btn-danger" href="<?= base_url('admin/hapus_produk/'.$pes['product_id']) ?>" 
+                          <a class="btn btn-danger" href="<?= base_url('admin/hapus_pesanan/'.$pes['order_unique_id']) ?>" 
                             onclick="return confirm('Yakin ingin menghapus pesanan ini ?');"
                             role="button">Hapus</a>
-                          <a class="btn btn-primary" href="<?= base_url('admin/edit_produk/'.$pes['product_id']) ?>"
+                          <a class="btn btn-primary" href="<?= base_url('admin/edit_pesanan/'.$pes['order_unique_id']) ?>"
                             role="button">Edit</a>
                         </div>
                       </td>

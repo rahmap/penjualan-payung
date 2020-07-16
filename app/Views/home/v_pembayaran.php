@@ -17,7 +17,8 @@
         <div class="col-md-4">
           <ul class="list-group">
             <?php foreach($cart as $c): ?>
-            <li class="list-group-item d-flex justify-content-between align-items-center"> <?= $c['name'] ?> <small><i>Rp <?= number_format($c['price'], 0, ',', '.') ?></i></small> <span class="badge badge-primary badge-pill" contenteditable="true"><?= $c['qty'] ?></span> </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center"> <?= $c['name'] ?> <small><i>Rp <?= number_format($c['price'], 0, ',', '.') ?></i></small> <span class="badge badge-primary badge-pill" contenteditable="true"><?= $c['qty'] ?></span>
+             <a href="<?= base_url('home/hapus_item/'.$c['rowid']) ?>"><b>Hapus</b></a></li>
             <?php endforeach; ?>
           </ul>
         </div>

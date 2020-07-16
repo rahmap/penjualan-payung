@@ -113,7 +113,7 @@
                         <li class="menu-title">Menu</li>
 
                         <li>
-                            <a href="<?= route_to('dashboard-admin') ?>" class="waves-effect">
+                            <a href="<?= route_to('dashboard-member') ?>" class="waves-effect">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <span
                                     class="badge badge-pill badge-success float-right"></span>
@@ -121,47 +121,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-google-pages"></i>
-                                <span>Data Pesanan</span>
+                            <a href="<?= route_to('dashboard-member') ?>" class="waves-effect">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <span
+                                    class="badge badge-pill badge-success float-right"></span>
+                                <span>Data Pemesanan</span>
                             </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="<?= base_url('admin/tambah_pesanan') ?>">Tambah Pesanan</a></li>
-                                    <li><a href="<?= base_url('admin/pesanan') ?>">List Pesanan</a></li>
-                                </ul>
-                            </li>
-                        <li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-google-pages"></i>
-                                <span>Data Pelanggan</span>
-                            </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="<?= base_url('admin/pelanggan') ?>">List Pelanggan</a></li>
-                                </ul>
-                            </li>
-                        <li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-google-pages"></i>
-                                <span>Data Produk</span>
-                            </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="<?= base_url('admin/produk') ?>">List Produk</a></li>
-                                </ul>
-                            </li>
-                        <li>
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-google-pages"></i>
-                                <span>Data Supplier</span>
-                            </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="<?= base_url('admin/supplier') ?>">List Supplier</a></li>
-                                </ul>
-                            </li>
-                        <li>
-                        <li class="menu-title">Tools</li>
+                        </li>
 
                         <li>
                             <a href="javascript: void(0);" class="waves-effect">

@@ -31,29 +31,30 @@
 
                 <h4 class="header-title">Tambahkan Pesanan</h4>
                 <p class="card-title-desc">Menambahkan data Pesanan ke Toko.</p>
-                <form action="<?= base_url('admin/tambah_produk') ?>" method="POST" enctype="multipart/form-data">
+                <form action="<?= base_url('admin/tambah_pesanan') ?>" method="POST">
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Harga Total</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="number" name="harga" readonly>
+                        <input class="form-control" value="Rp <?= number_format($cart_total_bayar, 0, ',', '.') ?>" type="text" name="" readonly>
+                        <input class="form-control" value="<?= $cart_total_bayar ?>" type="number" required hidden name="harga">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Alamat Pesanan</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" type="text" name="alamat" > </textarea>
+                        <textarea class="form-control" type="text" required name="alamat" > </textarea>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Nomer Telefon</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" name="phone">
+                        <input class="form-control" type="text" required name="phone">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2 col-form-label">Metode Pembayaran</label>
                     <div class="col-md-10">
-                        <select class="form-control" name="bayar" readonly>
+                        <select class="form-control" required name="bayar" readonly>
                             <option value="CASH" selected>Bayar Cash</option>
                         </select>
                     </div>
@@ -102,15 +103,26 @@
                                 <th>Jumlah</th>
                                 <th>Harga Satuan</th>
                                 <th>Sub Total</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                        
+                        <?php if($cart != null): foreach($cart as $c): ?>
                             <tr>
-                                <td>Payung Pantai</td>
-                                <td>3</td>
-                                <td>Rp. 90.000</td>
-                                <td>Rp. 270.000</td>
+                                <td><?= $c['name'] ?></td>
+                                <td><?= $c['qty'] ?></td>
+                                <td>Rp <?= number_format((int) $c['price'], 0, ',', '.') ?></td>
+                                <td>Rp <?= number_format((int) $c['price'] * $c['qty'], 0, ',', '.') ?></td>
+                                <td class="text-center">
+                                    <div class="button-items">
+                                        <a class="btn btn-danger" href="<?= base_url('home/hapus_item/'.$c['rowid']) ?>" 
+                                            onclick="return confirm('Yakin ingin menghapus pesanan ini ?');"
+                                            role="button">Hapus</a>
+                                    </div>
+                                </td>
                             </tr>
+                        <?php endforeach; endif; ?>
                         </tbody>
                     </table>
                 </div>

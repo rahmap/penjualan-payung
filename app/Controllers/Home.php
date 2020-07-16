@@ -1,15 +1,21 @@
 <?php namespace App\Controllers;
 
 use App\Models\Produk_Model;
+use App\Models\Pemesanan_Model;
+use App\Models\Product_Pemesanan_Model;
 
 class Home extends BaseController
 {
 
 	protected $PRODUK_MODEL;
+	protected $PEMESANAN_MODEL;
+	protected $PRODUCT_ORDER;
 
 	public function __construct()
 	{
 		$this->PRODUK_MODEL = new Produk_Model();
+		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
 	}
 
 	public function index()
@@ -83,7 +89,7 @@ class Home extends BaseController
 		];
 		if($this->request->getPost()){
 			helper('text');
-			$data = [
+			$dataBeli = [
 				'waktu_pesanan' => time(),
 				'bukti_pembayaran' => NULL,
 				'alamat' => $this->request->getVar('alamat'),
@@ -97,13 +103,31 @@ class Home extends BaseController
 				'fk_user' => session()->user_id,
 				'fk_admin' => NULL
 			];
-			dd($data);
+			$this->PEMESANAN_MODEL->save($dataBeli);
+			$insertID = $this->PEMESANAN_MODEL->getIDInsert();
+			foreach($cart->contents() as $item) {
+				$data = [
+					'fk_product' => $item['id'],
+					'fk_pemesanan' => $insertID,
+					'jumlah_pesan_produk' => $item['qty'],
+					'harga_produk_pemesanan' => $item['price'],
+					'nama_produk_pemesanan' => $item['name']
+				];
+				$this->PRODUCT_ORDER->save($data);
+			}
+			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil melakukan pemesanan produk.', 'success'));
+			$cart->destroy();
+			return redirect()->route('home');
 		} else {
 			return view('home/v_pembayaran', $data);
 		}
 	}
 
-
-
-
+	public function hapus_item($rowid)
+	{
+		$cart = new \App\Libraries\Cart();
+		$cart->remove($rowid);
+		session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menghapus item dari keranjang.', 'success'));
+		return redirect()->route('payment');
+	}
 }
