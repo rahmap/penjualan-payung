@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/main_dashboard') ?>
+<?= $this->extend('layouts/main_dashboard_member') ?>
 
 <?= $this->section('title') ?>
 <?= $title ?>
@@ -108,27 +108,17 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="header-title">Update Pesanan</h4>
-                <p class="card-title-desc">Mengupdate data Pesanan.</p>
-                <form action="<?= base_url('admin/edit_pesanan/'.$produk['order_unique_id']) ?>" method="POST">
-                <div class="form-group row">
-                  <label class="col-md-2 col-form-label">Status Pemesanan</label>
-                  <div class="col-md-10">
-                      <select class="form-control" name="status">
-                          <option value="pending" <?= ($produk['status_pemesanan'] == 'pending')? 'selected' : '' ?>>Pending</option>
-                          <option value="success" <?= ($produk['status_pemesanan'] == 'success')? 'selected' : '' ?>>Success</option>
-                          <option value="cancel" <?= ($produk['status_pemesanan'] == 'cancel')? 'selected' : '' ?>>Cancel</option>
-                      </select>
-                  </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Keterangan Pesanan</label>
+                <h4 class="header-title">Upload Bukti Pembayaran Pesanan</h4>
+                <p class="card-title-desc">Mengupdate Bukti Pembayaran Pesanan.</p>
+                <form action="<?= base_url('dashboard/edit_pesanan/'.$produk['order_unique_id']) ?>" method="POST" enctype="multipart/form-data">
+                 <div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Bukti Pembayaran</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" name="informasi" value="<?= $produk['informasi_pesanan'] ?>">
+                        <input class="form-control" type="file" name="gambar" value="<?= $produk['bukti_pembayaran'] ?>">
                     </div>
                 </div>
                 <div class="form-group d-flex justify-content-center">
-                  <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Ubah</button>
+                  <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Upload</button>
                 </div>
                 </form>
             </div>

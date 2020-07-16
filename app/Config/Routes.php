@@ -46,7 +46,7 @@ $routes->get('/detail/(:any)', 'Home::detail/$1', ['as' => 'detail_produk']);
  */
 $routes->group('dashboard', ['filter' => 'middleware_member'], function($routes)
 {
-	$routes->get('/', 'Member::index', ['as' => 'dashboard-member']);
+	$routes->get('/', 'Dashboard::index', ['as' => 'dashboard-member']);
 });
 //----------------------------------------------------------------------
 

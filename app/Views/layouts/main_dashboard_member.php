@@ -121,7 +121,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<?= route_to('dashboard-member') ?>" class="waves-effect">
+                            <a href="<?= base_url('dashboard/pesanan') ?>" class="waves-effect">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <span
                                     class="badge badge-pill badge-success float-right"></span>

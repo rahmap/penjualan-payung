@@ -16,6 +16,19 @@ class Admin extends BaseController
 	protected $PEMESANAN_MODEL;
 	protected $PRODUCT_ORDER;
 
+	public function __construct()
+	{
+		if (!session()->has('user_id')) {
+			header('location:/home');
+			exit();
+    } else {
+      if(session()->role != 'ADMIN'):
+				header('location:/home');
+				exit();
+      endif;
+    }
+	}
+
 	public function index()
 	{
 		$data = [
@@ -284,7 +297,11 @@ class Admin extends BaseController
 	public function edit_pesanan($id)
 	{
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
-		$orderID = $this->PEMESANAN_MODEL->where('order_unique_id', $id)->first();
+		$orderID = $this->PEMESANAN_MODEL
+		->join('admins','admins.admin_id=pemesanan.fk_admin', 'LEFT')
+		->join('users','users.user_id=pemesanan.fk_user', 'LEFT')
+		->where('pemesanan.order_unique_id', $id)->first();
+		// dd($orderID);
 		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
 		$order = $this->PRODUCT_ORDER
 				->where('fk_pemesanan', $orderID['order_id'])->find();

@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/main_dashboard') ?>
+<?= $this->extend('layouts/main_dashboard_member') ?>
 
 <?= $this->section('title') ?>
 <?= $title ?>
@@ -35,7 +35,7 @@
               </p>
 
               <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                  <thead>
+              <thead>
                   <tr>
                       <th>ID</th>
                       <th  class="text-center">Jenis Pesanan</th>
@@ -66,10 +66,10 @@
                       <td><?= $pes['informasi_pesanan'] ?></td>
                       <td class="text-center">
                         <div class="button-items">
-                          <a class="btn btn-danger" href="<?= base_url('admin/hapus_pesanan/'.$pes['order_unique_id']) ?>" 
+                          <a class="btn btn-danger" href="<?= base_url('dashboard/hapus_pesanan/'.$pes['order_unique_id']) ?>" 
                             onclick="return confirm('Yakin ingin menghapus pesanan ini ?');"
                             role="button">Hapus</a>
-                          <a class="btn btn-primary" href="<?= base_url('admin/edit_pesanan/'.$pes['order_unique_id']) ?>"
+                          <a class="btn btn-primary" href="<?= base_url('dashboard/edit_pesanan/'.$pes['order_unique_id']) ?>"
                             role="button">Edit</a>
                         </div>
                       </td>
@@ -86,7 +86,7 @@
 
 <?= $this->section('outJS') ?>
   <!-- Required datatable js -->
-  <script src="<?= base_url('apaxy/libs/datatables.net/js/jquery.dataTables.min.js') ?>""></script>
+  <script src="<?= base_url('apaxy/libs/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
   <script src="<?= base_url('apaxy/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
   <!-- Responsive examples -->
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>

@@ -223,3 +223,52 @@ CRITICAL - 2020-07-17 02:03:03 --> Column 'ongkir' cannot be null
 #10 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
 #11 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
 #12 {main}
+CRITICAL - 2020-07-17 02:22:35 --> Undefined index: status_pemesanan
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\pesanan\edit_pesanan.php(82): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 82, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(307): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_pesanan('TRX-3B7mvjty')
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-17 02:26:27 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\payung\app\Controllers\Admin.php(293): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 293, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_pesanan('TRX-mA7LWT29')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2020-07-17 02:26:46 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\payung\app\Controllers\Admin.php(293): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 293, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_pesanan('TRX-mA7LWT29')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2020-07-17 02:27:39 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'OUTER JOIN `users` ON `users`.`user_id`=`pemesanan`.`fk_user`
+WHERE `pemesanan`.' at line 4
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(330): mysqli->query('SELECT *\nFROM `...')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1819): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Model.php(482): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\payung\app\Controllers\Admin.php(290): CodeIgniter\Model->first()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->edit_pesanan('TRX-EgH7Jaqb')
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2020-07-17 02:59:37 --> Undefined variable: id
+#0 C:\xampp\htdocs\payung\app\Controllers\Dashboard.php(72): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 72, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Dashboard->edit_pesanan('TRX-3B7mvjty')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#6 {main}
