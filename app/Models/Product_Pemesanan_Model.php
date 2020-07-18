@@ -6,8 +6,9 @@ class Product_Pemesanan_Model extends Model
 {
   protected $table = 'orders_products';
   protected $returnType = 'array';
-  protected $allowedFields = ['fk_pemesanan','fk_product', 'harga_produk_pemesanan', 'jumlah_pesan_produk', 'nama_produk_pemesanan'];
-  // protected $primaryKey = 'order_id';
+  protected $allowedFields = ['fk_pemesanan','fk_product', 'harga_produk_pemesanan', 
+  'jumlah_pesan_produk', 'nama_produk_pemesanan', 'stok_sisa', 'stok_awal','nama_supplier_order'];
+  protected $primaryKey = 'orders_products_id';
 
   protected $db;
 

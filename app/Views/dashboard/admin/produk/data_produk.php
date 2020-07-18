@@ -78,9 +78,12 @@
                   <label class="col-md-2 col-form-label">Pilih</label>
                   <div class="col-md-10">
                       <select class="form-control" name="supplier">
+                      
+                      <?php if(count($suppliers) > 0): ?>
                         <?php foreach($suppliers as $sup): ?>
                           <option value="<?= $sup['supplier_id'] ?>" <?= ($selected[0]['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?>>Stok : <?= $sup['stok'].' - '.$sup['nama_supplier'] ?></option>
                         <?php endforeach; ?>
+                    <?php endif; ?>
                       </select>
                   </div>
                 
@@ -116,6 +119,7 @@
                   </tr>
                   </thead>
                   <tbody>
+                  <?php if($products != null): ?>
                   <?php foreach($products as $produk): ?>
                   <tr>
                       <td><?= $produk['product_id'] ?></td>
@@ -135,6 +139,7 @@
                       </td>
                   </tr>
                   <?php endforeach; ?>
+                  <?php endif; ?>
                   </tbody>
               </table>
 

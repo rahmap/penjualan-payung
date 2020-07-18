@@ -34,7 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index', ['as' => 'root']);
 $routes->get('/home', 'Home::index', ['as' => 'home']);
 $routes->get('about', 'Home::about', ['as' => 'about']);
-$routes->get('contact', 'Home::contact', ['as' => 'contact']);
+// $routes->get('contact', 'Home::contact', ['as' => 'contact']);
 $routes->get('/pembayaran', 'Home::pembayaran', ['as' => 'payment']);
 $routes->post('/pembayaran', 'Home::pembayaran', ['as' => 'payment_action']);
 $routes->get('/detail/(:any)', 'Home::detail/$1', ['as' => 'detail_produk']);

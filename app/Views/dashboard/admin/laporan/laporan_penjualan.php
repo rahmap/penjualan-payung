@@ -19,60 +19,34 @@
 
 <?= $this->section('breadcrumb') ?>
 <li class="breadcrumb-item"><a href="#"><?= APP_NAME ?></a></li>
-<li class="breadcrumb-item"><a href="javascript: void(0);">Pesanan</a></li>
-<li class="breadcrumb-item active">Data Pesanan</li>
+<li class="breadcrumb-item"><a href="javascript: void(0);">Penjualan</a></li>
+<li class="breadcrumb-item active">Data Penjualan</li>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-
 <div class="row">
   <div class="col-12">
       <div class="card">
           <div class="card-body">
 
               <h4 class="header-title"><?= $title ?></h4>
-              <p class="card-title-desc">Menampilkan data Pesanan pada toko.
+              <p class="card-title-desc">Menampilkan data laporan penjualan.
               </p>
 
-              <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+              <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
                   <tr>
-                      <th>ID</th>
-                      <th  class="text-center">Jenis Pesanan</th>
-                      <th>Waktu</th>
-                      <th>Alamat</th>
-                      <th>Total Bayar</th>
-                      <th class="text-center">Ongkir</th>
-                      <th>Nomer HP</th>
-                      <th class="text-center">Bukti Pembayaran</th>
-                      <th>Status</th>
-                      <th>Keterangan</th>
-                      <th class="text-center">Aksi</th>
+                      <th class="text-center">Tanggal</th>
+                      <th class="text-center">Barang Terjual</th>
+                      <th class="text-center">Pendapatan</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($pesanan as $pes): ?>
+                  <?php foreach($laporan as $lap): ?>
                   <tr>
-                      <td><?= $pes['order_unique_id'] ?></td>
-                      <td  class="text-center"><?= ($pes['fk_user'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
-                      <td><?= date('d/m/Y H:i', (int) $pes['waktu_pesanan']) ?></td>
-                      <td><?= $pes['alamat'] ?></td>
-                      <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
-                      <td><?= $pes['ongkir'] ?></td>
-                      <td><?= $pes['no_hp'] ?></td>
-                      <td class="text-center"><?= ($pes['bukti_pembayaran'] != NULL)? '<span class="badge badge-primary">Sudah Ada</span>' : '<span class="badge badge-dark">Belum Ada</span>' ; ?></td>
-                      <?php $warna; if($pes['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($pes['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
-                      <td><?= '<span class="badge badge-'.$warna.'">'.$pes['status_pemesanan'].'</span>' ?></td>
-                      <td><?= $pes['informasi_pesanan'] ?></td>
-                      <td class="text-center">
-                        <div class="button-items">
-                          <a class="btn btn-danger" href="<?= base_url('admin/hapus_pesanan/'.$pes['order_unique_id']) ?>" 
-                            onclick="return confirm('Yakin ingin menghapus pesanan ini ?');"
-                            role="button">Hapus</a>
-                          <a class="btn btn-primary" href="<?= base_url('admin/edit_pesanan/'.$pes['order_unique_id']) ?>"
-                            role="button">Edit</a>
-                        </div>
-                      </td>
+                      <td class="text-center"><?= date('d/m/Y',$lap['waktu_pesanan']) ?></td>
+                      <td class="text-center"><?= $lap['QTY'] ?></td>
+                      <td class="text-center"><?= number_format($lap['UANG'], 0, ',', '.') ?></td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>
@@ -100,7 +74,6 @@
   <!-- Responsive examples -->
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
-
   <!-- Datatable init js -->
   <script src="<?= base_url('apaxy/js/pages/datatables.init.js') ?>"></script>
 <?= $this->endsection() ?>

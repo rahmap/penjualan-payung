@@ -24,7 +24,8 @@
         </div>
         <div class="col-md-4">
           <form class="" action="<?= route_to('payment_action') ?>" method="POST">
-            <div class="form-group"> <label>Alamat Pengiriman</label> <textarea name="alamat" type="text" class="form-control" > </textarea></div>
+            <input type="number" class="form-check-input" value="" hidden name="supplier">
+            <div class="form-group"> <label>Alamat Pengiriman</label> <textarea name="alamat" type="text" class="form-control" ></textarea></div>
             <div class="form-group mb-0"> <label>Pengiriman</label> </div>
             <div class="row">
               <div class="col-md-6">
@@ -65,7 +66,8 @@
       <div class="row">
         <div class="col-md-12">
           <h4 class=""><b>Informasi</b>&nbsp;<span class="badge badge-pill badge-warning">!</span></h4>
-          <p class="">Nomer Rekening BRI : <b>0943-2787-6456-3454 </b><br>Jika Metode Pembayaran Uang Cash, maka pembayaran dilakukan langsung ke Toko.<br>Pengiriman Luar Kota Yogyakarta mendapatkan biaya Flat sebesar Rp. 100.000, jika dalam Kota Yogyakarta akan gratis.</p>
+          <p class="">Nomer Rekening BRI : <b>0943-2787-6456-3454 </b><br>
+          Jika Metode Pembayaran Uang Cash, maka pembayaran dilakukan langsung ke Toko.<br>
         </div>
       </div>
     </div>

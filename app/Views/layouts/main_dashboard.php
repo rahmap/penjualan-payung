@@ -82,12 +82,12 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle header-profile-user"
                                 src="<?= base_url('apaxy/images/users/avatar-1.jpg') ?>" alt="Header Avatar">
-                            <span class="d-none d-sm-inline-block ml-1"><?= session()->user_nama ?></span>
+                            <span class="d-none d-sm-inline-block ml-1"><?= session()->user_name ?></span>
                             <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
-                            <a class="dropdown-item" href="#"><i
+                            <a class="dropdown-item" href="<?= base_url('admin/update_profile') ?>"><i
                                     class="mdi mdi mdi-settings-outline font-size-16 align-middle mr-1"></i> Pengaturan</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?= route_to('logout') ?>"><i
@@ -164,7 +164,20 @@
                         <li class="menu-title">Tools</li>
 
                         <li>
-                            <a href="javascript: void(0);" class="waves-effect">
+                            <a href="<?= base_url('admin/laporan_penjualan') ?>" class="waves-effect">
+                                <i class="mdi mdi mdi-settings-outline"></i>
+                                <span>Laporan Penjualan</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= base_url('admin/laporan_stok') ?>" class="waves-effect">
+                                <i class="mdi mdi mdi-settings-outline"></i>
+                                <span>Laporan Stok</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?= base_url('admin/update_profile') ?>" class="waves-effect">
                                 <i class="mdi mdi mdi-settings-outline"></i>
                                 <span>Pengaturan</span>
                             </a>

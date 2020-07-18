@@ -84,7 +84,9 @@ class Dashboard extends BaseController
 			$gambar =  $this->request->getFile('gambar');
 			$data = [];
 			try {
-				unlink('bukti_pembayaran/'.$orderID['bukti_pembayaran']);
+				if($orderID['bukti_pembayaran']){
+					unlink('bukti_pembayaran/'.$orderID['bukti_pembayaran']);
+				}
 				helper('text');
 				$file = $gambar->getRandomName();
 				$image = \Config\Services::image()
@@ -108,4 +110,26 @@ class Dashboard extends BaseController
 		}
 	}
 
+	public function update_profile()
+	{
+		$data = [
+			'title' => 'Update Profil'
+		];
+		$this->USER_MODEL = new User_Model();
+		if($this->request->getPost()){
+			$pass = $this->request->getVar('password');
+			$pass1 = $this->request->getVar('password1');
+			if($pass == $pass1){
+				$this->USER_MODEL->update(session()->user_id, ['user_password' => password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10])]);
+				session()->remove(['user_id','user_email', 'user_name', 'role', 'cart']); //session destroy
+				session()->setFlashdata('message', sweetAlert('Horayy!','Password berhasil dirubah, silahkan login kembali.', 'success'));
+				return redirect()->route('login');
+			} else {
+				session()->setFlashdata('message', sweetAlert('Upss!','Password konfirmasi tidak sama', 'error'));
+				return redirect()->to(\base_url('dashboard/update_profile'));
+			}
+		} else {
+			return view('dashboard/member/profile/edit_profile', $data);
+		}
+	}
 }

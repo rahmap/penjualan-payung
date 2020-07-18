@@ -116,7 +116,7 @@
                                 <td>Rp <?= number_format((int) $c['price'] * $c['qty'], 0, ',', '.') ?></td>
                                 <td class="text-center">
                                     <div class="button-items">
-                                        <a class="btn btn-danger" href="<?= base_url('home/hapus_item/'.$c['rowid']) ?>" 
+                                        <a class="btn btn-danger" href="<?= base_url('admin/hapus_item/'.$c['rowid']) ?>" 
                                             onclick="return confirm('Yakin ingin menghapus pesanan ini ?');"
                                             role="button">Hapus</a>
                                     </div>

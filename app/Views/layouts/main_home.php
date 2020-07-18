@@ -52,9 +52,7 @@
         <b> <?= APP_NAME ?></b>
       </a>
       <ul class="navbar-nav mx-auto">
-        <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li>
-        <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="<?= route_to('about') ?>">Tentang</a> </li>
       </ul>
       <ul class="navbar-nav">
       <?php if(session()->has('user_id')){ ?>

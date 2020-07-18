@@ -1,0 +1,113 @@
+CRITICAL - 2020-07-19 00:07:32 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `products`
+JOIN `orders_products` ON `orders_products`.`fk_product`=`produc' at line 4
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(330): mysqli->query('SELECT SUM(orde...')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT SUM(orde...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT SUM(orde...')
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1819): CodeIgniter\Database\BaseConnection->query('SELECT SUM(orde...', Array, false)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Model.php(387): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\payung\app\Controllers\Admin.php(401): CodeIgniter\Model->find()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2020-07-19 00:10:25 --> sort() expects parameter 1 to be array, null given
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'sort() expects ...', 'C:\\xampp\\htdocs...', 52, Array)
+#1 C:\xampp\htdocs\payung\app\Views\dashboard\admin\laporan\laporan_stok.php(52): sort(NULL)
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#4 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-19 00:10:51 --> sort() expects parameter 1 to be array, string given
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'sort() expects ...', 'C:\\xampp\\htdocs...', 52, Array)
+#1 C:\xampp\htdocs\payung\app\Views\dashboard\admin\laporan\laporan_stok.php(52): sort('94')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#4 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#7 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#10 {main}
+CRITICAL - 2020-07-19 00:12:11 --> Trying to access array offset on value of type bool
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\laporan\laporan_stok.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 52, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-19 00:14:42 --> Trying to access array offset on value of type bool
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\laporan\laporan_stok.php(54): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 54, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-19 00:14:59 --> Trying to access array offset on value of type bool
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\laporan\laporan_stok.php(54): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'C:\\xampp\\htdocs...', 54, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-19 00:18:05 --> Undefined variable: resultSisa
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\laporan\laporan_stok.php(56): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 56, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-19 00:18:16 --> syntax error, unexpected 'endif' (T_ENDIF), expecting ';' or ','
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#1 C:\xampp\htdocs\payung\app\Controllers\Admin.php(407): view('dashboard/admin...', Array)
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->laporan_stok()
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+CRITICAL - 2020-07-19 00:45:12 --> Call to a member function join() on null
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->tambah_pesanan()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-07-19 00:46:13 --> Undefined property: App\Controllers\Admin::$SUPPLIER
+#0 C:\xampp\htdocs\payung\app\Controllers\Admin.php(289): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 289, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->tambah_pesanan()
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#3 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+CRITICAL - 2020-07-19 00:54:05 --> Call to undefined method App\Libraries\Cart::get_item()
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->hapus_item('552de90231e9f84...')
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
