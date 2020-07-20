@@ -38,9 +38,9 @@
                   <thead>
                   <tr>
                       <th>ID</th>
+                      <th>Nama Pembeli</th>
                       <th  class="text-center">Jenis Pesanan</th>
                       <th>Waktu</th>
-                      <th>Alamat</th>
                       <th>Total Bayar</th>
                       <th class="text-center">Ongkir</th>
                       <th>Nomer HP</th>
@@ -54,9 +54,9 @@
                   <?php foreach($pesanan as $pes): ?>
                   <tr>
                       <td><?= $pes['order_unique_id'] ?></td>
+                      <td><?= $pes['user_name'] ?></td>
                       <td  class="text-center"><?= ($pes['fk_user'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
                       <td><?= date('d/m/Y H:i', (int) $pes['waktu_pesanan']) ?></td>
-                      <td><?= $pes['alamat'] ?></td>
                       <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
                       <td><?= $pes['ongkir'] ?></td>
                       <td><?= $pes['no_hp'] ?></td>

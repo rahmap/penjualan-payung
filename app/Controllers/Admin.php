@@ -303,7 +303,7 @@ class Admin extends BaseController
 	{
 		
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
-		$order = $this->PEMESANAN_MODEL->findAll();
+		$order = $this->PEMESANAN_MODEL->join('users','users.user_id=pemesanan.fk_user')->findAll();
 		// $order = $this->PEMESANAN_MODEL
 		// 				->join('orders_products','orders_products.fk_pemesanan=pemesanan.order_id')->findAll();
 		$data = [

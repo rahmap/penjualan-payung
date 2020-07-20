@@ -1,0 +1,22 @@
+CRITICAL - 2020-07-21 00:09:09 --> Undefined index: no_hp
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\pelanggan\data_pelanggan.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 52, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(51): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->pelanggan()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+CRITICAL - 2020-07-21 00:11:30 --> Undefined index: user_name
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\admin\pesanan\data_pesanan.php(57): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 57, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/admin...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Admin.php(313): view('dashboard/admin...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Admin->pesanan()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}

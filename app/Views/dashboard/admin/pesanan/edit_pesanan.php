@@ -69,6 +69,7 @@
               <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
                   <tr>
+                      <th>Alamat</th>
                       <th>Total Bayar</th>
                       <th>Metode Pembayaran</th>
                       <th>Status</th>
@@ -77,6 +78,7 @@
                   </thead>
                   <tbody>
                   <tr>
+                      <td><?= $produk['alamat'] ?></td>
                       <td>Rp <?= number_format((int) $produk['harga_total'], 0, ',', '.') ?></td>
                       <td><?= $produk['metode_pembayaran'] ?></td>
                       <?php $warna; if($produk['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($produk['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
