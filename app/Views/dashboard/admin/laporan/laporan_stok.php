@@ -37,6 +37,7 @@
                   <thead>
                   <tr>
                       <th class="text-center">Tanggal</th>
+                      <th class="text-center">Nama Barang</th>
                       <th class="text-center">Stok Awal</th>
                       <th class="text-center">Barang Terjual</th>
                       <th class="text-center">Sisa Barang</th>
@@ -46,8 +47,18 @@
                   <tbody>
                   <?php foreach($stok as $lap): ?>
                   <tr>
-                      <td class="text-center"><?= date('d/m/Y',$lap['waktu_pesanan']) ?></td>
-                      <td class="text-center"><?= $lap['stok_awal'] ?></td>
+                      <td class="text-center"><?= $lap['tanggal_selesai'] ?></td>
+
+                      <td><?= $lap['nama_produk_pemesanan'] ?></td>
+                      <td class="text-center">
+                      <?php  
+                        if(strpos($lap['AWAL'], ',') == true):
+                          $resultSisa = explode(',',$lap['AWAL']); rsort($resultSisa); echo $resultSisa[0]; 
+                        else:
+                          echo $lap['AWAL'];
+                        endif;
+                      ?>
+                      </td>
                       <td class="text-center"><?= $lap['QTY'] ?></td>
                       <td class="text-center">
                       <?php  
@@ -56,7 +67,8 @@
                         else:
                           echo $lap['SISA'];
                         endif;
-                      ?></td>
+                      ?>
+                      </td>
                       <td class="text-center"><?= ucwords($lap['nama_supplier_order']) ?></td>
                   </tr>
                   <?php endforeach; ?>

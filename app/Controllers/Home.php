@@ -63,22 +63,17 @@ class Home extends BaseController
 				session()->setFlashdata('message', sweetAlert('Upss!','Jumlah pembelian tidak bisa melebihi stok barang dan kurang dari 1.', 'info'));
 				return redirect()->to(base_url('detail/'.strtolower(str_replace(' ','-',$this->request->getVar('slug_payung')))));
 			} else {
-				if(!session()->has('sisa_stok')){
-					session()->set(['sisa_stok' => $this->request->getVar('stok_awal')]);
-				}
 				$dataCart = [
 					'id'        => $this->request->getVar('id_payung'),
 					'name'      => $this->request->getVar('nama_payung'),
 					'price'     => $this->request->getVar('harga_payung'),
 					'qty'  			=> $qty,
 					'options'		=> [
-						'stok_sisa'	 					=> session()->sisa_stok - $qty,
+						'stok_sisa'	 					=> $this->request->getVar('stok_awal') - $qty,
 						'stok_awal' 					=> $this->request->getVar('stok_awal'),
 						'nama_supplier_order' => ucwords($this->request->getVar('nama_supplier_order'))
 					]
 				];
-				session()->sisa_stok = session()->sisa_stok - $qty;
-				// dd($dataCart);
 				$cart->insert($dataCart);
 				session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menambahkan produk ke keranjang.', 'success'));
 				return redirect()->to(base_url('detail/'.strtolower(str_replace(' ','-',$this->request->getVar('slug_payung')))));
@@ -143,16 +138,11 @@ class Home extends BaseController
 				];
 				// dd($data);
 				$this->PRODUCT_ORDER->save($data);
+				$stok = $this->PRODUK_MODEL->where('product_id', $item['id'])->first();
+				$this->PRODUK_MODEL->update($item['id'], ['stok' => $stok['stok'] - $item['qty']]);
 			}
-			$produk = $this->PRODUK_MODEL
-								->join('suppliers','suppliers.supplier_id=products.fk_supplier')
-								->where('product_id', $fk_produk)
-								->first();
 
-			$stok_baru = $produk['stok'] - $cart->totalItems();
-			$this->SUPPLIER->update($produk['supplier_id'], ['stok' => $stok_baru]);
 			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil melakukan pemesanan produk.', 'success'));
-			session()->remove('sisa_stok');
 			$cart->destroy();
 			return redirect()->route('home');
 		} else {
@@ -163,8 +153,6 @@ class Home extends BaseController
 	public function hapus_item($rowid)
 	{
 		$cart = new \App\Libraries\Cart();
-		$dataCart = $cart->getItem($rowid);
-		session()->sisa_stok = session()->sisa_stok + $dataCart['qty'];
 		$cart->remove($rowid);
 		session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menghapus item dari keranjang.', 'success'));
 		return redirect()->route('payment');

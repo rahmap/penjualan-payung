@@ -35,9 +35,6 @@
                     <label class="sr-only" for="inlineFormInputName2">Name Supplier</label>
                     <input type="text" name="nama" class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $supplier['nama_supplier'] ?>" placeholder="Nama Supplier">
 
-                    <label class="sr-only" for="inlineFormInputName2">Stok Supplier</label>
-                    <input type="number" name="stok" class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $supplier['stok'] ?>" placeholder="Stok. Ex : 90">
-
                     <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </form>
             </div>

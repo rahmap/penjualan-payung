@@ -44,9 +44,9 @@
                   <tbody>
                   <?php foreach($laporan as $lap): ?>
                   <tr>
-                      <td class="text-center"><?= date('d/m/Y',$lap['waktu_pesanan']) ?></td>
+                      <td class="text-center"><?= $lap['tanggal_selesai'] ?></td>
                       <td class="text-center"><?= $lap['QTY'] ?></td>
-                      <td class="text-center"><?= number_format($lap['UANG'], 0, ',', '.') ?></td>
+                      <td class="text-center">Rp <?= number_format($lap['UANG'], 0, ',', '.') ?></td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>

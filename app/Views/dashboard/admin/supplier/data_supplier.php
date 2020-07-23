@@ -24,7 +24,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<!-- <div class="row">
+<div class="row">
     <div class="col-lg-12 d-flex justify-content-center">
         <div class="card">
             <div class="card-body">
@@ -35,15 +35,12 @@
                     <label class="sr-only" for="inlineFormInputName2">Name Supplier</label>
                     <input type="text" name="nama" class="form-control mt-3 mt-sm-0 mr-sm-3" id="inlineFormInputName2" placeholder="Nama Supplier">
 
-                    <label class="sr-only" for="inlineFormInputName2">Stok Supplier</label>
-                    <input type="number" name="stok" class="form-control mt-3 mt-sm-0 mr-sm-3" id="inlineFormInputName2" placeholder="Stok. Ex : 90">
-
                     <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-</div> -->
+</div>
 <div class="row">
   <div class="col-12">
       <div class="card">
@@ -58,7 +55,6 @@
                   <tr>
                       <th>ID</th>
                       <th>Nama</th>
-                      <th>Stok Bahan</th>
                       <th class="text-center">Aksi</th>
                   </tr>
                   </thead>
@@ -67,7 +63,6 @@
                   <tr>
                       <td><?= $supplier['supplier_id'] ?></td>
                       <td><?= $supplier['nama_supplier'] ?></td>
-                      <td><?= $supplier['stok'] ?></td>
                       <td class="text-center">
                         <div class="button-items">
                           <a class="btn btn-danger" href="<?= base_url('admin/hapus_supplier/'.$supplier['supplier_id']) ?>" 

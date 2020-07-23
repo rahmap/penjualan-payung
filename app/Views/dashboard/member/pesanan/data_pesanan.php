@@ -40,13 +40,13 @@
                       <th>ID</th>
                       <th  class="text-center">Jenis Pesanan</th>
                       <th>Waktu</th>
-                      <th>Alamat</th>
+                      <th>Status</th>
                       <th>Total Bayar</th>
-                      <th class="text-center">Ongkir</th>
+                      <th>Keterangan</th>
                       <th>Nomer HP</th>
                       <th class="text-center">Bukti Pembayaran</th>
-                      <th>Status</th>
-                      <th>Keterangan</th>
+                      <th class="text-center">Ongkir</th>
+                      <th>Alamat</th>
                       <th class="text-center">Aksi</th>
                   </tr>
                   </thead>
@@ -56,21 +56,21 @@
                       <td><?= $pes['order_unique_id'] ?></td>
                       <td  class="text-center"><?= ($pes['fk_user'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
                       <td><?= date('d/m/y H:i', (int) $pes['waktu_pesanan']) ?></td>
-                      <td><?= $pes['alamat'] ?></td>
-                      <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
-                      <td><?= $pes['ongkir'] ?></td>
-                      <td><?= $pes['no_hp'] ?></td>
-                      <td class="text-center"><?= ($pes['bukti_pembayaran'] != NULL)? '<span class="badge badge-primary">Sudah Ada</span>' : '<span class="badge badge-dark">Belum Ada</span>' ; ?></td>
                       <?php $warna; if($pes['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($pes['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
                       <td><?= '<span class="badge badge-'.$warna.'">'.$pes['status_pemesanan'].'</span>' ?></td>
+                      <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
                       <td><?= $pes['informasi_pesanan'] ?></td>
+                      <td><?= $pes['no_hp'] ?></td>
+                      <td class="text-center"><?= ($pes['bukti_pembayaran'] != NULL)? '<span class="badge badge-primary">Sudah Ada</span>' : '<span class="badge badge-dark">Belum Ada</span>' ; ?></td>
+                      <td><?= $pes['ongkir'] ?></td>
+                      <td><?= $pes['alamat'] ?></td>
                       <td class="text-center">
                         <div class="button-items">
                           <a class="btn btn-danger" href="<?= base_url('dashboard/hapus_pesanan/'.$pes['order_unique_id']) ?>" 
                             onclick="return confirm('Yakin ingin menghapus pesanan ini ?');"
                             role="button">Hapus</a>
                           <a class="btn btn-primary" href="<?= base_url('dashboard/edit_pesanan/'.$pes['order_unique_id']) ?>"
-                            role="button">Edit</a>
+                            role="button">Detail</a>
                         </div>
                       </td>
                   </tr>

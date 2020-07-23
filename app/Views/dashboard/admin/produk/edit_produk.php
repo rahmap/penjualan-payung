@@ -45,6 +45,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Stok Payung</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" name="stok" value="<?= $produk['stok'] ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Gambar Payung</label>
                     <div class="col-md-10">
                         <input class="form-control" type="file" name="gambar" value="<?= $produk['gambar_produk'] ?>">

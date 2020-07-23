@@ -117,9 +117,12 @@
                   <label class="col-md-2 col-form-label">Status Pemesanan</label>
                   <div class="col-md-10">
                       <select class="form-control" name="status">
-                          <option value="pending" <?= ($produk['status_pemesanan'] == 'pending')? 'selected' : '' ?>>Pending</option>
+                      <?php if($produk['status_pemesanan'] == 'pending'): ?>
                           <option value="success" <?= ($produk['status_pemesanan'] == 'success')? 'selected' : '' ?>>Success</option>
                           <option value="cancel" <?= ($produk['status_pemesanan'] == 'cancel')? 'selected' : '' ?>>Cancel</option>
+                      <?php else: ?>
+                          <option value=""> - </option>
+                      <?php endif; ?>
                       </select>
                   </div>
                 </div>

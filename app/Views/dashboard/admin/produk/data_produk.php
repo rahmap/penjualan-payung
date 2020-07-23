@@ -56,6 +56,12 @@
                         <textarea class="form-control" type="text" name="keterangan" > </textarea>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Stok</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" name="stok" >
+                    </div>
+                </div>
                 <div class="form-group d-flex justify-content-center">
                   <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </div>
@@ -81,7 +87,7 @@
                       
                       <?php if(count($suppliers) > 0): ?>
                         <?php foreach($suppliers as $sup): ?>
-                          <option value="<?= $sup['supplier_id'] ?>" <?= ($selected[0]['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?>>Stok : <?= $sup['stok'].' - '.$sup['nama_supplier'] ?></option>
+                          <option value="<?= $sup['supplier_id'] ?>" <?= ($selected[0]['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?>><?= $sup['nama_supplier'] ?></option>
                         <?php endforeach; ?>
                     <?php endif; ?>
                       </select>
