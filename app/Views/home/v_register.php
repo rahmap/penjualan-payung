@@ -21,6 +21,16 @@
                 <?= \Config\Services::validation()->getError('email'); ?>
 							</div>
 						</div>
+						<div class="form-group"> <label>Kabupaten</label> <input type="text" name="kabupaten" class="form-control <?= (\Config\Services::validation()->getError('kabupaten'))? 'is-invalid' : '' ; ?>" placeholder="Masukkan kabupaten">
+							<div class="invalid-feedback">
+                <?= \Config\Services::validation()->getError('kabupaten'); ?>
+							</div>
+						</div>
+						<div class="form-group"> <label>Alamat Lengkap</label> <textarea type="text" name="alamat" class="form-control <?= (\Config\Services::validation()->getError('alamat'))? 'is-invalid' : '' ; ?>"> </textarea>
+							<div class="invalid-feedback">
+                <?= \Config\Services::validation()->getError('alamat'); ?>
+							</div>
+						</div>
 						<div class="form-group"> <label>Password</label> <input type="password" name="password" class="form-control <?= (\Config\Services::validation()->getError('password'))? 'is-invalid' : '' ; ?>" placeholder="Masukkan password">
 							<div class="invalid-feedback">
                 <?= \Config\Services::validation()->getError('password'); ?>

@@ -164,6 +164,12 @@
                         <li class="menu-title">Tools</li>
 
                         <li>
+                            <a href="<?= base_url('admin/laporan_pendapatan') ?>" class="waves-effect">
+                                <i class="mdi mdi mdi-settings-outline"></i>
+                                <span>Laporan Pendapatan</span>
+                            </a>
+                        </li>
+                        <li>
                             <a href="<?= base_url('admin/laporan_penjualan') ?>" class="waves-effect">
                                 <i class="mdi mdi mdi-settings-outline"></i>
                                 <span>Laporan Penjualan</span>

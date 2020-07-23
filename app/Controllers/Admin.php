@@ -251,7 +251,7 @@ class Admin extends BaseController
 			$dataBeli = [
 				'waktu_pesanan' => time(),
 				'bukti_pembayaran' => NULL,
-				'alamat' => $this->request->getVar('alamat'),
+				'alamat' => ucwords('Kab. '.$this->request->getVar('kabupaten').' - '.$this->request->getVar('alamat')),
 				'harga_total' => $cart->total(),
 				'ongkir' => $this->request->getVar('ongkir'),
 				'metode_pembayaran' => $this->request->getVar('bayar'),
@@ -277,7 +277,8 @@ class Admin extends BaseController
 					'stok_sisa' => $item['options']['stok_sisa'],
 					'stok_awal' => $item['options']['stok_awal'],
 					'nama_supplier_order' => $item['options']['nama_supplier_order'],
-					'tanggal_selesai' => date('d/m/Y')
+					'tanggal_selesai' => date('d/m/Y'),
+					'kabupaten_pemesanan' => $this->request->getVar('kabupaten')
 				];
 				$this->PRODUCT_ORDER->save($data);
 				$stok = $this->PRODUK_MODEL->where('product_id', $item['id'])->first();
@@ -389,7 +390,7 @@ class Admin extends BaseController
 		}
 	}
 
-	public function laporan_penjualan()
+	public function laporan_pendapatan()
 	{
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
 
@@ -398,6 +399,25 @@ class Admin extends BaseController
 													->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
 													->where(['status_pemesanan' => 'success'])
 													->groupBy('orders_products.tanggal_selesai')->find();
+
+		// dd($laporan);
+		$data = [
+			'title' => 'Laporan Pendapatan',
+			'laporan' => $laporan,
+		];
+		return view('dashboard/admin/laporan/laporan_pendapatan', $data);
+	}
+
+	public function laporan_penjualan()
+	{
+		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+
+		$laporan = $this->PEMESANAN_MODEL
+													->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+													orders_products.tanggal_selesai, kabupaten_pemesanan, nama_produk_pemesanan'])
+													->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+													->where(['status_pemesanan' => 'success'])
+													->groupBy('orders_products.tanggal_selesai, nama_produk_pemesanan, kabupaten_pemesanan')->find();
 
 		// dd($laporan);
 		$data = [

@@ -20,7 +20,7 @@
 <?= $this->section('breadcrumb') ?>
 <li class="breadcrumb-item"><a href="#"><?= APP_NAME ?></a></li>
 <li class="breadcrumb-item"><a href="javascript: void(0);">Laporan</a></li>
-<li class="breadcrumb-item active">Laporan Penjualan</li>
+<li class="breadcrumb-item active">Laporan Pendapatan</li>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -30,25 +30,23 @@
           <div class="card-body">
 
               <h4 class="header-title"><?= $title ?></h4>
-              <p class="card-title-desc">Menampilkan data laporan penjualan.
+              <p class="card-title-desc">Menampilkan data laporan Pendapatan.
               </p>
 
               <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
                   <tr>
                       <th class="text-center">Tanggal</th>
-                      <th class="text-center">Nama Barang</th>
                       <th class="text-center">Barang Terjual</th>
-                      <th class="text-center">Kabupaten</th>
+                      <th class="text-center">Pendapatan</th>
                   </tr>
                   </thead>
                   <tbody>
                   <?php foreach($laporan as $lap): ?>
                   <tr>
                       <td class="text-center"><?= $lap['tanggal_selesai'] ?></td>
-                      <td class="text-center"><?= $lap['nama_produk_pemesanan'] ?></td>
                       <td class="text-center"><?= $lap['QTY'] ?></td>
-                      <td class="text-center"><?= $lap['kabupaten_pemesanan'] ?></td>
+                      <td class="text-center">Rp <?= number_format($lap['UANG'], 0, ',', '.') ?></td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>

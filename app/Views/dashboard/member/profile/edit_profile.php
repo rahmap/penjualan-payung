@@ -35,6 +35,12 @@
                     <label class="sr-only" for="inlineFormInputName2">Nama</label>
                     <input type="text" name="" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_name ?>">
 
+                    <label class="sr-only" for="inlineFormInputName2">Kabupaten</label>
+                    <input type="text" name="kabupaten" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_kabupaten'] ?>">
+                    
+                    <label class="sr-only" for="inlineFormInputName2">Alamat Lengkap</label>
+                    <input type="text" name="alamat" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_alamat'] ?>">
+
                     <label class="sr-only" for="inlineFormInputName2">Email</label>
                     <input type="email" name="" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_email ?>">
 
@@ -43,6 +49,28 @@
 
                     <label class="sr-only" for="inlineFormInputName2">Password Konfirmasi</label>
                     <input type="password" minlength="8"  placeholder="Konfirmasi Password" required name="password1" class="form-control mt-3 mt-sm-0 mr-sm-3">
+
+                    <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 d-flex justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Update Profile</h4>
+                <p class="card-title-desc">Mengupdate Data Profile.</p>
+
+                <form class="form-inline" action="<?= base_url('dashboard/updateAlamatKabupaten') ?>" method="POST">
+                    
+                    <label class="sr-only" for="inlineFormInputName2">Kabupaten</label>
+                    <input type="text" name="kabupaten" class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_kabupaten'] ?>">
+                    
+                    <label class="sr-only" for="inlineFormInputName2">Alamat Lengkap</label>
+                    <textarea type="text" name="alamat" class="form-control mt-3 mt-sm-0 mr-sm-3"><?= $data_pribadi['user_alamat'] ?></textarea>
 
                     <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Update</button>
                 </form>

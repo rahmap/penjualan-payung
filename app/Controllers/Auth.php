@@ -31,9 +31,11 @@ class Auth extends BaseController
 				$request = [
 					'user_name' => ucwords($this->request->getVar('nama')),
 					'user_email' => $this->request->getVar('email'),
+					'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
+					'user_alamat' => ucwords($this->request->getVar('alamat')),
 					'user_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT, ['cost' => 10])
 				];
-
+				// dd($request);
 				if($this->AM->save($request)){
           session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mendaftar, silahkan login.', 'success'));
         } else {

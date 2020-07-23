@@ -112,10 +112,11 @@ class Dashboard extends BaseController
 
 	public function update_profile()
 	{
-		$data = [
-			'title' => 'Update Profil'
-		];
 		$this->USER_MODEL = new User_Model();
+		$data = [
+			'title' => 'Update Profil',
+			'data_pribadi' => $this->USER_MODEL->where(['user_id' => session()->user_id])->first()
+		];
 		if($this->request->getPost()){
 			$pass = $this->request->getVar('password');
 			$pass1 = $this->request->getVar('password1');
@@ -130,6 +131,21 @@ class Dashboard extends BaseController
 			}
 		} else {
 			return view('dashboard/member/profile/edit_profile', $data);
+		}
+	}
+
+	public function updateAlamatKabupaten()
+	{
+		if($this->request->getPost())
+		{
+			$data = [
+				'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
+				'user_alamat' => ucwords($this->request->getVar('alamat'))
+			];
+			$this->USER_MODEL = new User_Model();
+			$this->USER_MODEL->where('user_id', session()->user_id)->set($data)->update();
+			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil merubah data.', 'success'));
+			return redirect()->to(base_url('dashboard/update_profile'));
 		}
 	}
 }

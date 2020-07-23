@@ -40,6 +40,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Kabupaten</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" required name="kabupaten" >
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Alamat Pesanan</label>
                     <div class="col-md-10">
                         <textarea class="form-control" type="text" required name="alamat" > </textarea>

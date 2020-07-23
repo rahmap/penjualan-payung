@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\Produk_Model;
+use App\Models\User_Model;
 use App\Models\Supplier_Model;
 use App\Models\Pemesanan_Model;
 use App\Models\Product_Pemesanan_Model;
@@ -12,10 +13,12 @@ class Home extends BaseController
 	protected $PEMESANAN_MODEL;
 	protected $PRODUCT_ORDER;
 	protected $SUPPLIER;
+	protected $USER_MODEL;
 
 	public function __construct()
 	{
 		$this->PRODUK_MODEL = new Produk_Model();
+		$this->USER_MODEL = new User_Model();
 		$this->SUPPLIER = new Supplier_Model();
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
 		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
@@ -99,10 +102,12 @@ class Home extends BaseController
 			session()->setFlashdata('message', sweetAlert('Upss!','Keranjang Kosong, silahkan tambahkan produk dulu.', 'info'));
 			return redirect()->route('home');
 		}
+		$data_pribadi = $this->USER_MODEL->where(['user_id' => session()->user_id])->first();
 	  $data = [
 			'title' => 'Pembayaran',
 			'cart' => $cart->contents(),
-			'total' => $cart->total()
+			'total' => $cart->total(),
+			'data_pribadi' => $data_pribadi
 		];
 		if($this->request->getPost()){
 			helper('text');
@@ -134,7 +139,8 @@ class Home extends BaseController
 					'nama_produk_pemesanan' => $item['name'],
 					'stok_sisa' => $item['options']['stok_sisa'],
 					'stok_awal' => $item['options']['stok_awal'],
-					'nama_supplier_order' => $item['options']['nama_supplier_order']
+					'nama_supplier_order' => $item['options']['nama_supplier_order'],
+					'kabupaten_pemesanan' => $data_pribadi['user_kabupaten']
 				];
 				// dd($data);
 				$this->PRODUCT_ORDER->save($data);

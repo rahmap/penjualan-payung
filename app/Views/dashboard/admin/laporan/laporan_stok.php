@@ -19,8 +19,8 @@
 
 <?= $this->section('breadcrumb') ?>
 <li class="breadcrumb-item"><a href="#"><?= APP_NAME ?></a></li>
-<li class="breadcrumb-item"><a href="javascript: void(0);">Penjualan</a></li>
-<li class="breadcrumb-item active">Data Penjualan</li>
+<li class="breadcrumb-item"><a href="javascript: void(0);">Laporan</a></li>
+<li class="breadcrumb-item active">Laporan Stok</li>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>

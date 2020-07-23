@@ -37,6 +37,8 @@ class Validation
   public $register = [
     'nama' => 'required|min_length[6]',
     'password' => 'required|min_length[8]',
+    'kabupaten' => 'required|min_length[3]|alpha_space',
+    'alamat' => 'required|min_length[8]',
     'password1' => 'required|matches[password]',
     'email'        => 'required|valid_email|is_unique[users.user_email]'
 	];
