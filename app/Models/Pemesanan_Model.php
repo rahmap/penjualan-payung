@@ -19,7 +19,7 @@ class Pemesanan_Model extends Model
 
   public function getIDInsert()
   {
-    $this->db = \Config\Database::connect();
+    $this->getInstance();
     return $this->db->insertID();
   }
 }

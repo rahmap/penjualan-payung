@@ -55,7 +55,7 @@
                   <tr>
                       <td><?= $pes['order_unique_id'] ?></td>
                       <td><?= $pes['user_name'] ?></td>
-                      <td  class="text-center"><?= ($pes['fk_user'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
+                      <td  class="text-center"><?= ($pes['user_password'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
                       <td><?= date('d/m/Y H:i', (int) $pes['waktu_pesanan']) ?></td>
                       <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
                       <td><?= $pes['ongkir'] ?></td>

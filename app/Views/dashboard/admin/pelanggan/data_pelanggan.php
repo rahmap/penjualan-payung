@@ -39,6 +39,8 @@
                       <th>ID</th>
                       <th>Nama</th>
                       <th>Email</th>
+                      <th>Kabupaten</th>
+                      <th>Alamat</th>
                       <th class="text-center">Aksi</th>
                   </tr>
                   </thead>
@@ -48,6 +50,8 @@
                       <td><?= $user['user_id'] ?></td>
                       <td><?= $user['user_name'] ?></td>
                       <td><?= $user['user_email'] ?></td>
+                      <td><?= $user['user_kabupaten'] ?></td>
+                      <td><?= $user['user_alamat'] ?></td>
                       <td class="text-center">
                         <div class="button-items">
                           <a class="btn btn-danger" href="<?= base_url('admin/hapus_pelanggan/'.$user['user_id']) ?>" 

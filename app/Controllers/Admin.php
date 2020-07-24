@@ -247,6 +247,15 @@ class Admin extends BaseController
 			$this->PRODUK_MODEL = new Produk_Model();
 			$this->SUPPLIER_MODEL = new Supplier_Model();
 			$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
+			$this->USER_MODEL = new User_Model();
+			$dataUser = [
+				'user_name' => $this->request->getVar('nama'),
+				'user_email' => $this->request->getVar('email'),
+				'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
+				'user_alamat' => $this->request->getVar('alamat')
+			];
+			$this->USER_MODEL->save($dataUser);
+			$fk_user = $this->USER_MODEL->getIDInsert();
 			helper('text');
 			$dataBeli = [
 				'waktu_pesanan' => time(),
@@ -259,7 +268,7 @@ class Admin extends BaseController
 				'informasi_pesanan' => 'Sedang Dikirim',
 				'status_pemesanan' => 'success',
 				'order_unique_id' => 'TRX-'.random_string('alnum'),
-				'fk_user' => null,
+				'fk_user' => $fk_user,
 				'fk_admin' => session()->user_id
 			];
 			$this->PEMESANAN_MODEL->save($dataBeli);
