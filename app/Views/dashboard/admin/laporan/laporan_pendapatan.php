@@ -24,6 +24,35 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+<div class="row justify-content-center">
+  <div class="col-8">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="header-title">Cari Berdasarkan Tanggal</h4>
+              <form action="<?= base_url('admin/laporan_pendapatan') ?>" method="GET">
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-md-2 col-form-label">Mulai</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="date" required name="mulai" value="<?= (session()->has('mulai'))? session()->mulai : date('Y-m-d'); ?>" id="example-date-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-md-2 col-form-label">Sampai</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="date" required name="selesai" value="<?= (session()->has('selesai'))? session()->selesai : date('Y-m-d'); ?>" id="example-date-input1">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                  <button type="submit" class="btn btn-primary mt-3 mt-sm-0">Cari Data</button>
+                </div>
+              </form>
+              <a href="<?= base_url('admin/laporan_pendapatan') ?>"><button class="btn btn-success mt-3 mt-sm-0 mr-3">Tampilkan Semua Data</button></a>
+          </div>
+      </div>
+  </div>
+  <!-- end col -->
+</div>
 <div class="row">
   <div class="col-12">
       <div class="card">

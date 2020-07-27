@@ -402,12 +402,29 @@ class Admin extends BaseController
 	public function laporan_pendapatan()
 	{
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+		if(!is_null($this->request->getGet('mulai')) AND !is_null($this->request->getGet('selesai'))){
+			$mulai = strtotime($this->request->getGet('mulai'));
+			$selesai = strtotime($this->request->getGet('selesai'));
+			$selesai = (int) $selesai + 24 * 3600;
 
-		$laporan = $this->PEMESANAN_MODEL
-													->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY, SUM(orders_products.harga_produk_pemesanan * orders_products.jumlah_pesan_produk) AS UANG, orders_products.tanggal_selesai'])
-													->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
-													->where(['status_pemesanan' => 'success'])
-													->groupBy('orders_products.tanggal_selesai')->find();
+			session()->set('mulai', $this->request->getGet('mulai'));
+			session()->set('selesai', $this->request->getGet('selesai'));
+
+			$laporan = $this->PEMESANAN_MODEL
+			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY, SUM(orders_products.harga_produk_pemesanan * orders_products.jumlah_pesan_produk) AS UANG, orders_products.tanggal_selesai'])
+			->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+			->where(['status_pemesanan' => 'success'])
+			->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
+			->groupBy('orders_products.tanggal_selesai')->find();
+			// dd([$mulai, $selesai, $laporan]);
+		} else {
+			$laporan = $this->PEMESANAN_MODEL
+			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY, SUM(orders_products.harga_produk_pemesanan * orders_products.jumlah_pesan_produk) AS UANG, orders_products.tanggal_selesai'])
+			->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+			->where(['status_pemesanan' => 'success'])
+			->groupBy('orders_products.tanggal_selesai')->find();
+		}
+
 
 		// dd($laporan);
 		$data = [
@@ -420,13 +437,31 @@ class Admin extends BaseController
 	public function laporan_penjualan()
 	{
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
+		if(!is_null($this->request->getGet('mulai')) AND !is_null($this->request->getGet('selesai'))){
+			$mulai = strtotime($this->request->getGet('mulai'));
+			$selesai = strtotime($this->request->getGet('selesai'));
+			$selesai = (int) $selesai + 24 * 3600;
 
-		$laporan = $this->PEMESANAN_MODEL
-													->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
-													orders_products.tanggal_selesai, kabupaten_pemesanan, nama_produk_pemesanan'])
-													->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
-													->where(['status_pemesanan' => 'success'])
-													->groupBy('orders_products.tanggal_selesai, nama_produk_pemesanan, kabupaten_pemesanan')->find();
+			session()->set('mulai', $this->request->getGet('mulai'));
+			session()->set('selesai', $this->request->getGet('selesai'));
+
+			$laporan = $this->PEMESANAN_MODEL
+			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+			orders_products.tanggal_selesai, kabupaten_pemesanan, nama_produk_pemesanan'])
+			->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+			->where(['status_pemesanan' => 'success'])
+			->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
+			->groupBy('orders_products.tanggal_selesai, nama_produk_pemesanan, kabupaten_pemesanan')->find();
+
+		} else {
+			$laporan = $this->PEMESANAN_MODEL
+			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+			orders_products.tanggal_selesai, kabupaten_pemesanan, nama_produk_pemesanan'])
+			->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+			->where(['status_pemesanan' => 'success'])
+			->groupBy('orders_products.tanggal_selesai, nama_produk_pemesanan, kabupaten_pemesanan')->find();
+		}
+
 
 		// dd($laporan);
 		$data = [
@@ -442,16 +477,36 @@ class Admin extends BaseController
 		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
 		$this->PRODUK_MODEL = new Produk_Model();
 
+		if(!is_null($this->request->getGet('mulai')) AND !is_null($this->request->getGet('selesai'))){
+			$mulai = strtotime($this->request->getGet('mulai'));
+			$selesai = strtotime($this->request->getGet('selesai'));
+			$selesai = (int) $selesai + 24 * 3600;
 
-		$stok = $this->PRODUK_MODEL
-													->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
-													tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL, 
-													 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
-													->join('orders_products', 'orders_products.fk_product=products.product_id')
-													->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
-													->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
-													->where(['status_pemesanan' => 'success'])
-													->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+			session()->set('mulai', $this->request->getGet('mulai'));
+			session()->set('selesai', $this->request->getGet('selesai'));
+
+			$stok = $this->PRODUK_MODEL
+			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+			tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL, 
+			 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
+			->join('orders_products', 'orders_products.fk_product=products.product_id')
+			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
+			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
+			->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
+			->where(['status_pemesanan' => 'success'])
+			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+
+		} else {
+			$stok = $this->PRODUK_MODEL
+			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+			tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL, 
+			 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
+			->join('orders_products', 'orders_products.fk_product=products.product_id')
+			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
+			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
+			->where(['status_pemesanan' => 'success'])
+			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+		}
 		// dd($stok);
 		$data = [
 			'title' => 'Laporan Stok',

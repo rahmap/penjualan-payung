@@ -139,7 +139,7 @@ class Auth extends BaseController
       return redirect()->route('login');
     } else {
 			$cart->destroy();
-      session()->remove(['user_id','user_email', 'user_name', 'role', 'cart', 'sisa_stok']); //session destroy
+      session()->remove(['user_id','user_email', 'user_name', 'role', 'cart', 'sisa_stok', 'mulai', 'selesai']); //session destroy
       session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil keluar, Terimakasih.', 'info'));
       return redirect()->route('login');
     }
