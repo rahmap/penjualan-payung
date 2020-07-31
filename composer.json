@@ -8,8 +8,10 @@
 		"php": ">=7.2",
 		"codeigniter4/framework": "^4",
 		"fzaninotto/faker": "^1.9",
-		"jason-napolitano/codeigniter4-cart-module": "^1.0"
-	},
+		"jason-napolitano/codeigniter4-cart-module": "^1.0",
+      "ext-curl": "*",
+      "ext-json": "*"
+    },
 	"require-dev": {
 		"mikey179/vfsstream": "1.6.*",
 		"phpunit/phpunit": "8.5.*"

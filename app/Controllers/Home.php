@@ -74,7 +74,8 @@ class Home extends BaseController
 					'options'		=> [
 						'stok_sisa'	 					=> $this->request->getVar('stok_awal') - $qty,
 						'stok_awal' 					=> $this->request->getVar('stok_awal'),
-						'nama_supplier_order' => ucwords($this->request->getVar('nama_supplier_order'))
+						'nama_supplier_order' => ucwords($this->request->getVar('nama_supplier_order')),
+            'berat'               => $this->request->getVar('berat')
 					]
 				];
 				$cart->insert($dataCart);
@@ -88,6 +89,9 @@ class Home extends BaseController
 
 	public function pembayaran()
 	{
+	  $RO = new \App\Libraries\RajaOngkir();
+//	  dd($RO->city());
+//	  dd($RO->cost(419, 114, 1800, 'tiki'));
 		if(!session()->has('user_id')){
 			session()->setFlashdata('message', sweetAlert('Info!','Silahkan Login Dahulu.', 'info'));
 			return redirect()->route('login');
@@ -103,28 +107,44 @@ class Home extends BaseController
 			return redirect()->route('home');
 		}
 		$data_pribadi = $this->USER_MODEL->where(['user_id' => session()->user_id])->first();
+    $berat = '';
+    foreach($cart->contents() as $item) {
+      $berat = (int)  $berat + (int)  $item['options']['berat'] * (int)  $item['qty'];
+    }
+    $RO = new \App\Libraries\RajaOngkir();
 	  $data = [
 			'title' => 'Pembayaran',
 			'cart' => $cart->contents(),
 			'total' => $cart->total(),
-			'data_pribadi' => $data_pribadi
+			'data_pribadi' => $data_pribadi,
+      'totalBerat' => $berat,
+      'kabupaten' => json_decode($RO->city()),
+      'provinsi' => json_decode($RO->province())
 		];
 		if($this->request->getPost()){
 			helper('text');
+			$alamat = $this->request->getVar('alamat');
+			$provinsi = $this->request->getVar('provinsi');
+			$kabupaten = $this->request->getVar('kabupaten');
+			$kecamatan= $this->request->getVar('kecamatan');
 			$dataBeli = [
 				'waktu_pesanan' => time(),
 				'bukti_pembayaran' => NULL,
-				'alamat' => $this->request->getVar('alamat'),
+				'alamat' => $provinsi.', '.$kabupaten.', '.$kecamatan.', '.$alamat,
 				'harga_total' => $cart->total(),
-				'ongkir' => $this->request->getVar('pengiriman'),
+				'ongkir' => (int) $this->request->getVar('ongkir'),
 				'metode_pembayaran' => $this->request->getVar('bayar'),
 				'no_hp' => $this->request->getVar('phone'),
+				'estimasi' => $this->request->getVar('estimasi'),
+				'service' => $this->request->getVar('service'),
+				'kurir' => strtoupper($this->request->getVar('kurir')),
 				'informasi_pesanan' => 'Menunggu Pembayaran',
 				'status_pemesanan' => 'pending',
 				'order_unique_id' => 'TRX-'.random_string('alnum'),
 				'fk_user' => session()->user_id,
 				'fk_admin' => NULL
 			];
+			dd($dataBeli);
 			$this->PEMESANAN_MODEL->save($dataBeli);
 
 			$insertID = $this->PEMESANAN_MODEL->getIDInsert();
@@ -155,6 +175,13 @@ class Home extends BaseController
 			return view('home/v_pembayaran', $data);
 		}
 	}
+
+	public function getCostRajaOngkir($tujuan_id, $berat, $kurir)
+  {
+    $RO = new \App\Libraries\RajaOngkir();
+    $result = $RO->cost(419, $tujuan_id, $berat, $kurir);
+    return ($result);
+  }
 
 	public function hapus_item($rowid)
 	{

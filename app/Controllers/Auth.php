@@ -19,9 +19,12 @@ class Auth extends BaseController
 		if(session()->has('user_id')){
 			return redirect()->route('root');
 		}
+    $RO = new \App\Libraries\RajaOngkir();
 
 		$data = [
-			'title' => 'Register'
+			'title' => 'Register',
+      'kabupaten' => json_decode($RO->city()),
+      'provinsi' => json_decode($RO->province())
 		];
 
 		if ($this->request->getPost()) {
@@ -31,11 +34,14 @@ class Auth extends BaseController
 				$request = [
 					'user_name' => ucwords($this->request->getVar('nama')),
 					'user_email' => $this->request->getVar('email'),
+					'user_nomer_hp' => $this->request->getVar('no_hp'),
+					'user_provinsi' => ucwords($this->request->getVar('provinsi')),
+					'user_kecamatan' => ucwords($this->request->getVar('kecamatan')),
 					'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
 					'user_alamat' => ucwords($this->request->getVar('alamat')),
 					'user_password' => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT, ['cost' => 10])
 				];
-				// dd($request);
+//				 dd($request);
 				if($this->AM->save($request)){
           session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mendaftar, silahkan login.', 'success'));
         } else {
@@ -139,7 +145,7 @@ class Auth extends BaseController
       return redirect()->route('login');
     } else {
 			$cart->destroy();
-      session()->remove(['user_id','user_email', 'user_name', 'role', 'cart', 'sisa_stok', 'mulai', 'selesai']); //session destroy
+      session()->remove(['user_id','user_email', 'user_name', 'role', 'cart', 'sisa_stok', 'mulai', 'selesai', 'berat']); //session destroy
       session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil keluar, Terimakasih.', 'info'));
       return redirect()->route('login');
     }

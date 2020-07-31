@@ -29,7 +29,8 @@
               <input type="number" required value="<?= $produk['harga_produk'] ?>"  class="form-control mr-3" hidden name="harga_payung"> 
               <input type="text" required value="<?= $produk['nama_produk'] ?>" class="form-control mr-3" hidden name="nama_payung"> 
               <input type="number" required value="<?= $produk['stok'] ?>" class="form-control mr-3" hidden name="stok_awal"> 
-              <input type="text" required value="<?= $produk['nama_supplier'] ?>" class="form-control mr-3" hidden name="nama_supplier_order"> 
+              <input type="number" required value="<?= $produk['berat'] ?>" class="form-control mr-3" hidden name="berat">
+              <input type="text" required value="<?= $produk['nama_supplier'] ?>" class="form-control mr-3" hidden name="nama_supplier_order">
               <input type="text" required value="<?= ucwords(str_replace('-',' ',$produk['nama_produk'])) ?>" class="form-control mr-3" hidden name="slug_payung"> 
             </div>
               <button type="submit" name="submit" class="btn btn-primary ">Tambah Ke Keranjang</button>

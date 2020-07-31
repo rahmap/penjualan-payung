@@ -39,7 +39,10 @@
                       <th>ID</th>
                       <th>Nama</th>
                       <th>Email</th>
+                      <th>Nomer HP</th>
+                      <th>Provinsi</th>
                       <th>Kabupaten</th>
+                      <th>Kecamatan</th>
                       <th>Alamat</th>
                       <th class="text-center">Aksi</th>
                   </tr>
@@ -50,7 +53,10 @@
                       <td><?= $user['user_id'] ?></td>
                       <td><?= $user['user_name'] ?></td>
                       <td><?= $user['user_email'] ?></td>
+                      <td><?= $user['user_nomer_hp'] ?></td>
+                      <td><?= $user['user_provinsi'] ?></td>
                       <td><?= $user['user_kabupaten'] ?></td>
+                      <td><?= $user['user_kecamatan'] ?></td>
                       <td><?= $user['user_alamat'] ?></td>
                       <td class="text-center">
                         <div class="button-items">

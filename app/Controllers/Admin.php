@@ -117,18 +117,8 @@ class Admin extends BaseController
 			'suppliers' => $this->SUPPLIER_MODEL->findAll(),
 			'selected' => $this->PRODUK_MODEL->whereNotIn('fk_supplier', [0])->findAll()
 		];
-		
-		if($this->request->getPost()){
-			$data = [
-				'nama_supplier' => $this->request->getVar('nama'),
-				'stok' => $this->request->getVar('stok')
-			];
-			$this->PRODUK_MODEL->save($data);
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menambahkan data produk.', 'success'));
-			return redirect()->to(base_url('admin/produk'));
-		} else {
-			return view('dashboard/admin/produk/data_produk', $data);
-		}
+
+    return view('dashboard/admin/produk/data_produk', $data);
 	}
 	
 	public function tambah_produk()
@@ -149,12 +139,20 @@ class Admin extends BaseController
 			session()->setFlashdata('message', sweetAlert('Upss! Gambar gagal diupload!',$e->getMessage(), 'error'));
 			return redirect()->to(\base_url('admin/produk'));
 		}
+		$fk_sup = '';
+		if($produkFK = $this->PRODUK_MODEL->findAll(1,1)){
+      $fk_sup = $produkFK[0]['fk_supplier'];
+    } else {
+      $fk_sup = NULL;
+    }
 		$data = [
 			'nama_produk' => $this->request->getVar('nama'),
 			'harga_produk' => $this->request->getVar('harga'),
 			'gambar_produk' => $file,
 			'keterangan_produk' => $this->request->getVar('keterangan'),
-			'stok' => $this->request->getVar('stok')
+			'stok' => $this->request->getVar('stok'),
+			'berat' => $this->request->getVar('berat'),
+			'fk_supplier' => $fk_sup
 		];
 		if($this->PRODUK_MODEL->save($data)){
 			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menambahkan data produk!', 'success'));
@@ -216,7 +214,8 @@ class Admin extends BaseController
 				'harga_produk' => $this->request->getVar('harga'),
 				'gambar_produk' => $file,
 				'keterangan_produk' => $this->request->getVar('keterangan'),
-				'stok' => $this->request->getVar('stok')
+				'stok' => $this->request->getVar('stok'),
+				'berat' => $this->request->getVar('berat')
 			];
 			$this->PRODUK_MODEL->update($id, $update);
 			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data produk.', 'success'));

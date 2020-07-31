@@ -38,6 +38,9 @@ class Validation
     'nama' => 'required|min_length[6]',
     'password' => 'required|min_length[8]',
     'kabupaten' => 'required|min_length[3]|alpha_space',
+    'provinsi' => 'required|min_length[3]|alpha_space',
+    'kecamatan' => 'required|min_length[3]|alpha_space',
+    'no_hp' => 'required|min_length[3]|numeric',
     'alamat' => 'required|min_length[8]',
     'password1' => 'required|matches[password]',
     'email'        => 'required|valid_email|is_unique[users.user_email]'

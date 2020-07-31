@@ -62,6 +62,12 @@
                         <input class="form-control" type="number" name="stok" >
                     </div>
                 </div>
+									<div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Berat</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="number" name="berat" >
+                    </div>
+                </div>
                 <div class="form-group d-flex justify-content-center">
                   <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </div>
@@ -120,6 +126,7 @@
                       <th>Harga</th>
                       <th>Foto</th>
                       <th class="text-center">Stok</th>
+                      <th class="text-center">Berat</th>
                       <th>Keterangan</th>
                       <th class="text-center">Aksi</th>
                   </tr>
@@ -133,6 +140,7 @@
                       <td><?= $produk['harga_produk'] ?></td>
                       <td><a target="_blank" href="<?= base_url('produk/'.$produk['gambar_produk']) ?>"><?= $produk['gambar_produk'] ?></a></td>
                       <td class="text-center"><?= $produk['stok'] ?></td>
+                      <td class="text-center"><?= $produk['berat'] ?> Gram</td>
                       <td><?= $produk['keterangan_produk'] ?></td>
                       <td class="text-center">
                         <div class="button-items">
