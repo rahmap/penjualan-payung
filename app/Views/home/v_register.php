@@ -33,7 +33,7 @@
 						<div class="form-group"> <label>Provinsi</label>
 							<select required name="provinsi" class="form-control <?= (\Config\Services::validation()->getError('provinsi'))? 'is-invalid' : '' ; ?>" id="provinsi">
 								<?php foreach ($provinsi->rajaongkir->results as $prov): ?>
-									<option value="<?= $prov->province ?>"><?= $prov->province ?></option>
+									<option data-id_prov="<?= $prov->province_id ?>" value="<?= $prov->province ?>"><?= $prov->province ?></option>
 								<?php endforeach; ?>
 							</select>
 							<div class="invalid-feedback">
@@ -42,9 +42,7 @@
 						</div>
 						<div class="form-group"> <label>Kabupaten</label>
 							<select required name="kabupaten" class="form-control <?= (\Config\Services::validation()->getError('kabupaten'))? 'is-invalid' : '' ; ?>" id="kabupaten">
-                <?php foreach ($kabupaten->rajaongkir->results as $kab): ?>
-									<option value="<?= $kab->city_name ?>"><?= $kab->city_name ?></option>
-                <?php endforeach; ?>
+
 							</select>
 							<div class="invalid-feedback">
                 <?= \Config\Services::validation()->getError('kabupaten'); ?>
@@ -84,7 +82,32 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#kabupaten').select2();
+      const kabupaten = $('#kabupaten');
+      const provinsi = $('#provinsi');
+      const BASE_URL = "<?php echo base_url() ?>";
+
+			$(kabupaten).select2();
+      getKabupatenByIDProv()
+
+      $(provinsi).on('change', function () {
+          getKabupatenByIDProv()
+      })
+
+			function getKabupatenByIDProv() {
+          $.ajax({
+              url: BASE_URL + '/auth/getKabupatenRO/'+ provinsi.find(':selected').data('id_prov'),
+              dataType: "json",
+              success: function(result) {
+                  $(kabupaten).children('option').remove();
+
+                  $(kabupaten).append(result.rajaongkir.results.map(function (sObj) {
+                      return '<option value="' +
+                          sObj.city_name + '">' +
+                          sObj.city_name + '</option>'
+                  }));
+              }
+          });
+      }
 	});
 </script>
 <?= $this->endSection() ?>

@@ -144,7 +144,7 @@ class Home extends BaseController
 				'fk_user' => session()->user_id,
 				'fk_admin' => NULL
 			];
-			dd($dataBeli);
+//			dd($dataBeli);
 			$this->PEMESANAN_MODEL->save($dataBeli);
 
 			$insertID = $this->PEMESANAN_MODEL->getIDInsert();

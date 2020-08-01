@@ -1,0 +1,25 @@
+CRITICAL - 2020-08-02 00:38:35 --> Too few arguments to function App\Controllers\Auth::getKabupatenRO(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Auth->getKabupatenRO()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-08-02 00:38:44 --> Too few arguments to function App\Controllers\Auth::getKabupatenRO(), 0 passed in C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php on line 910 and exactly 1 expected
+#0 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Auth->getKabupatenRO()
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+CRITICAL - 2020-08-02 01:35:38 --> Undefined variable: kab
+#0 C:\xampp\htdocs\payung\app\Views\dashboard\member\profile\edit_profile.php(74): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 74, Array)
+#1 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\View\View.php(236): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Common.php(1071): CodeIgniter\View\View->render('dashboard/membe...', Array, true)
+#3 C:\xampp\htdocs\payung\app\Controllers\Dashboard.php(136): view('dashboard/membe...', Array)
+#4 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(910): App\Controllers\Dashboard->update_profile()
+#5 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(398): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#6 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\CodeIgniter.php(306): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\payung\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 C:\xampp\htdocs\payung\vendor\codeigniter4\framework\system\Commands\Server\rewrite.php(34): require_once('C:\\xampp\\htdocs...')
+#9 {main}

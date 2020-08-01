@@ -23,7 +23,6 @@ class Auth extends BaseController
 
 		$data = [
 			'title' => 'Register',
-      'kabupaten' => json_decode($RO->city()),
       'provinsi' => json_decode($RO->province())
 		];
 
@@ -53,6 +52,13 @@ class Auth extends BaseController
 			return view('home/v_register', $data);
 		}
 	}
+
+	public function getKabupatenRO($prov_id = null)
+  {
+    $RO = new \App\Libraries\RajaOngkir();
+//    dd($RO->city());
+    return $RO->city($prov_id);
+  }
 	
 	public function login()
 	{

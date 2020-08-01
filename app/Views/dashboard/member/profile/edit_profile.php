@@ -5,12 +5,9 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('outCSS') ?>
-  <!-- DataTables -->
-  <link href="<?= base_url('apaxy/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" type="text/css" />
-  <link href="<?= base_url('apaxy/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') ?>" rel="stylesheet" type="text/css" />
 
-  <!-- Responsive datatable examples -->
-  <link href="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') ?>" rel="stylesheet" type="text/css" />     
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 <?= $this->endSection() ?>
 
 <?= $this->section('pageName') ?>
@@ -25,7 +22,7 @@
 
 <?= $this->section('content') ?>
 <div class="row">
-    <div class="col-lg-12 d-flex justify-content-center">
+<div class="col-lg-12 "> <!--    d-flex justify-content-center-->
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Update Profile</h4>
@@ -36,10 +33,10 @@
                     <input type="text" name="" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_name ?>">
 
                     <label class="sr-only" for="inlineFormInputName2">Kabupaten</label>
-                    <input type="text" name="kabupaten" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_kabupaten'] ?>">
+                    <input type="text" name="kabupaten" hidden class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_kabupaten'] ?>">
                     
                     <label class="sr-only" for="inlineFormInputName2">Alamat Lengkap</label>
-                    <input type="text" name="alamat" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_alamat'] ?>">
+                    <input type="text" name="alamat" hidden class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_alamat'] ?>">
 
                     <label class="sr-only" for="inlineFormInputName2">Email</label>
                     <input type="email" name="" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_email ?>">
@@ -58,7 +55,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12 d-flex justify-content-center">
+    <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Update Profile</h4>
@@ -66,13 +63,29 @@
 
                 <form class="form-inline" action="<?= base_url('dashboard/updateAlamatKabupaten') ?>" method="POST">
                     
-                    <label class="sr-only" for="inlineFormInputName2">Kabupaten</label>
-                    <input type="text" name="kabupaten" class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_kabupaten'] ?>">
-                    
-                    <label class="sr-only" for="inlineFormInputName2">Alamat Lengkap</label>
+
+
+
+										<select class="form-control m-3" name="provinsi">
+                      <?php foreach ($provinsi->rajaongkir->results as $prov): ?>
+												<option <?= ( $prov->province == $data_pribadi['user_provinsi'])? 'selected' : '' ; ?> value="<?= $prov->province ?>"><?= $prov->province ?></option>
+                      <?php endforeach; ?>
+										</select>
+
+									<select class="form-control m-3" name="kabupaten" id="kabupaten">
+                    <?php foreach ($kabupaten->rajaongkir->results as $kab): ?>
+											<option <?= ($kab->city_name == $data_pribadi['user_kabupaten'])? 'selected' : '' ; ?> value="<?= $kab->city_name ?>"><?= $kab->city_name ?></option>
+                    <?php endforeach; ?>
+										</select>
+
+									<label class="sr-only" for="inlineFormInputName2">Kecamatan</label>
+									<input type="text" name="kecamatan" class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_kecamatan'] ?>">
+                    <label class="sr-only" for="inlineFormInputName2">Alamat Lengkap (Kelurahan, Desa/Dusun, RT/RW atau Nomer Rumah, Kode Pos)</label>
                     <textarea type="text" name="alamat" class="form-control mt-3 mt-sm-0 mr-sm-3"><?= $data_pribadi['user_alamat'] ?></textarea>
 
-                    <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Update</button>
+									<input type="text" name="no_hp" class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= $data_pribadi['user_nomer_hp'] ?>">
+
+                    <button type="submit" name="submit" class="btn btn-primary mt-3 m-2 mt-sm-0">Update</button>
                 </form>
             </div>
         </div>
@@ -81,13 +94,12 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('outJS') ?>
-  <!-- Required datatable js -->
-  <script src="<?= base_url('apaxy/libs/datatables.net/js/jquery.dataTables.min.js') ?>""></script>
-  <script src="<?= base_url('apaxy/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-  <!-- Responsive examples -->
-  <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
-  <script src="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script>
+      $(document).ready(function() {
+          const kabupaten = $('#kabupaten')
+      		$(kabupaten).select2();
 
-  <!-- Datatable init js -->
-  <script src="<?= base_url('apaxy/js/pages/datatables.init.js') ?>"></script>
+      })
+	</script>
 <?= $this->endsection() ?>

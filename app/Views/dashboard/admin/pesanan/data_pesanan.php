@@ -41,9 +41,8 @@
                       <th>Nama Pembeli</th>
                       <th  class="text-center">Jenis Pesanan</th>
                       <th>Waktu</th>
-                      <th>Total Bayar</th>
+                      <th>Total Harga Barang</th>
                       <th class="text-center">Ongkir</th>
-                      <th>Nomer HP</th>
                       <th class="text-center">Bukti Pembayaran</th>
                       <th>Status</th>
                       <th>Keterangan</th>
@@ -58,8 +57,7 @@
                       <td  class="text-center"><?= ($pes['user_password'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
                       <td><?= date('d/m/Y H:i', (int) $pes['waktu_pesanan']) ?></td>
                       <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
-                      <td><?= $pes['ongkir'] ?></td>
-                      <td><?= $pes['no_hp'] ?></td>
+                      <td>Rp <?= number_format((int)$pes['ongkir'], 0, ',', '.') ?></td>
                       <td class="text-center"><?= ($pes['bukti_pembayaran'] != NULL)? '<span class="badge badge-primary">Sudah Ada</span>' : '<span class="badge badge-dark">Belum Ada</span>' ; ?></td>
                       <?php $warna; if($pes['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($pes['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
                       <td><?= '<span class="badge badge-'.$warna.'">'.$pes['status_pemesanan'].'</span>' ?></td>

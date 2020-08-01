@@ -29,8 +29,8 @@
           <form class="" action="<?= route_to('payment_action') ?>" method="POST">
 						<input type="number" name="ongkir" id="ongkir" value="" hidden>
             <input type="number" class="form-check-input" value="" hidden name="supplier">
-            <div class="form-group"> 
-            <label>Alamat Pengiriman</label> 
+            <div class="form-group">
+            <label>Alamat Pengiriman (Kelurahan, Desa/Dusun, RT/RW atau Nomer Rumah, Kode Pos)</label>
               <textarea name="alamat" type="text" required class="form-control"><?= $data_pribadi['user_alamat'] ?></textarea>
             </div>
             <div class="row">
@@ -67,7 +67,7 @@
               <label for="sel1">Provinsi Pengiriman :</label>
 							<select required name="provinsi" class="form-control" id="provinsi">
                 <?php foreach ($provinsi->rajaongkir->results as $prov): ?>
-									<option value="<?= $prov->province ?>" <?= ($prov->province == $data_pribadi['user_provinsi'])? 'selected' : '' ; ?>><?= $prov->province ?></option>
+									<option data-id_prov="<?= $prov->province_id ?>" value="<?= $prov->province ?>" <?= ($prov->province == $data_pribadi['user_provinsi'])? 'selected' : '' ; ?>><?= $prov->province ?></option>
                 <?php endforeach; ?>
 							</select>
             </div>
@@ -120,6 +120,7 @@
 <script>
     $(document).ready(function() {
         const kabupaten = $('#kabupaten');
+        const provinsi = $('#provinsi');
         const services = $('#service');
         const ongkir = $('#ongkir');
         const estimasi = $('#estimasi');
@@ -131,6 +132,10 @@
         let city_id = kabupaten;
         let kurir = $('#kurir');
 
+        getKabupatenByIDProv();
+        setTimeout(function(){  onLoadGetRajaOngkir();  }, 3000);
+
+
         $('#btn_cek_ongkir').click(function () {
             console.log('Btn clicked')
             console.log(BASE_URL)
@@ -140,7 +145,6 @@
               dataType: "json",
 							success: function(result) {
 									console.log(result);
-									console.log(kurir.val())
                   $(services).children('option').remove();
 
                   $(services).append(result.rajaongkir.results[0].costs.map(function (sObj) {
@@ -159,6 +163,34 @@
 					});
         })
 
+				$(kurir).on('change', function () {
+            console.log('kurir changed')
+            onLoadGetRajaOngkir()
+            console.log(kurir.val())
+        })
+
+				$(services).on('change', function () {
+            console.log('services changed')
+            $(ongkir).val(parseInt($(services).find(':selected').data('harga')))
+            $(estimasi).val($(services).find(':selected').data('est') + ' Hari')
+            $(ongkir_display).attr("placeholder", 'Rp ' + formatMoney($(services).find(':selected').data('harga')))
+            console.log(services.val())
+        })
+
+        $(kabupaten).on('change', function () {
+            console.log('kabupaten changed')
+            onLoadGetRajaOngkir()
+            console.log(kabupaten.val())
+        })
+
+				$(provinsi).on('change', function () {
+            console.log('provinsi changed')
+            $(kabupaten).children('option').remove();
+            getKabupatenByIDProv();
+            setTimeout(function(){  onLoadGetRajaOngkir();  }, 3000);
+            console.log(provinsi.val())
+        })
+
         function formatMoney(amount, decimalCount = 0, decimal = ".", thousands = ".") {
             try {
                 decimalCount = Math.abs(decimalCount);
@@ -173,7 +205,52 @@
             } catch (e) {
                 console.log(e)
             }
-        };
+        }
+
+        function onLoadGetRajaOngkir()
+				{
+            $('#kabupaten :nth-child(1)').prop('selected', true);
+            $.ajax({
+                url: BASE_URL + '/home/getCostRajaOngkir/'+ city_id.find(':selected').data('city_id') +'/'+berat.val()+'/'+kurir.val(),
+                dataType: "json",
+                success: function(result) {
+                    console.log(result);
+                    console.log(kurir.val())
+                    $(services).children('option').remove();
+
+                    $(services).append(result.rajaongkir.results[0].costs.map(function (sObj) {
+                        return '<option data-harga="' +
+                            sObj.cost.map(a => a.value) + '" data-est="' +
+                            sObj.cost.map(a => a.etd) + '" value="' +
+                            sObj.service + '">' +
+                            sObj.service + '</option>'
+                    }));
+                    $('#service :nth-child(1)').prop('selected', true);
+                    $('#kabupaten :nth-child(1)').prop('selected', true);
+                    // $('#ROest').text('Estimasi ' + $(services).find(':selected').data('est') + ' Hari')
+                    $(ongkir).val(parseInt($(services).find(':selected').data('harga')))
+                    $(estimasi).val($(services).find(':selected').data('est') + ' Hari')
+                    $(ongkir_display).attr("placeholder", 'Rp ' + formatMoney($(services).find(':selected').data('harga')))
+                }
+            });
+				}
+
+        function getKabupatenByIDProv() {
+            $('#kabupaten :nth-child(1)').prop('selected', true);
+            $.ajax({
+                url: BASE_URL + '/auth/getKabupatenRO/'+ provinsi.find(':selected').data('id_prov'),
+                dataType: "json",
+                success: function(result) {
+                    $(kabupaten).children('option').remove();
+                    $('#kabupaten :nth-child(1)').prop('selected', true);
+                    $(kabupaten).append(result.rajaongkir.results.map(function (sObj) {
+                        return '<option data-city_id="'+ sObj.city_id +'" value="' +
+                            sObj.city_name + '">' +
+                            sObj.city_name + '</option>'
+                    }));
+                }
+            });
+        }
     });
 </script>
 <?= $this->endSection() ?>

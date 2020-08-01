@@ -26,7 +26,7 @@
 <?= $this->section('content') ?>
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-4">
       <div class="card">
           <div class="card-body">
 
@@ -58,7 +58,7 @@
           </div>
       </div>
   </div> <!-- end col -->
-  <div class="col-6">
+  <div class="col-8">
       <div class="card">
           <div class="card-body">
 
@@ -68,21 +68,23 @@
 
               <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
-                  <tr>
-                      <th>Total Bayar</th>
-                      <th>Metode Pembayaran</th>
-                      <th>Status</th>
-                      <th>Keterangan</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                      <td>Rp <?= number_format((int) $produk['harga_total'], 0, ',', '.') ?></td>
-                      <td><?= $produk['metode_pembayaran'] ?></td>
-                      <?php $warna; if($produk['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($produk['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
-                      <td><?= '<span class="badge badge-'.$warna.'">'.$produk['status_pemesanan'].'</span>' ?></td>
-                      <td><?= $produk['informasi_pesanan'] ?></td>
-                  </tr>
+									<tr>
+										<th>Total Harga Barang</th>
+										<th>Total Bayar (Total harga barang + Ongkir)</th>
+										<th>Metode Pembayaran</th>
+										<th>Status</th>
+										<th>Keterangan</th>
+									</tr>
+									</thead>
+								<tbody>
+								<tr>
+									<td>Rp <?= number_format((int) $produk['harga_total'], 0, ',', '.') ?></td>
+									<td>Rp <?= number_format((int) $produk['harga_total'] + (int) $produk['ongkir'], 0, ',', '.') ?></td>
+									<td><?= $produk['metode_pembayaran'] ?></td>
+                  <?php $warna; if($produk['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($produk['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
+									<td><?= '<span class="badge badge-'.$warna.'">'.$produk['status_pemesanan'].'</span>' ?></td>
+									<td><?= $produk['informasi_pesanan'] ?></td>
+								</tr>
                   </tbody>
               </table>
 
@@ -90,6 +92,42 @@
       </div>
   </div> <!-- end col -->
 </div> <!-- end row -->
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-body">
+
+					<h4 class="header-title">Data Pengiriman</h4>
+					<p class="card-title-desc">Menampilkan data pembeli.
+					</p>
+
+					<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+						<thead>
+						<tr>
+							<th>Alamat Pengiriman</th>
+							<th>Kurir</th>
+							<th>Service</th>
+							<th>Estimasi</th>
+							<th>Biaya Kirim</th>
+							<th>Nomer Yang Bisa Dihubungi</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td><?= $produk['alamat'] ?></td>
+							<td><?= $produk['kurir'] ?></td>
+							<td><?= $produk['service'] ?></td>
+							<td><?= $produk['estimasi'] ?></td>
+							<td>Rp <?= number_format((int) $produk['ongkir'], 0, ',', '.') ?></td>
+							<td><?= $produk['no_hp'] ?></td>
+						</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+	</div>
 <div class="row">
 
   <div class="col-lg-6">
@@ -140,12 +178,14 @@
                   <tr>
                       <th>Nama Pembeli</th>
                       <th>Email Pembeli</th>
+                      <th>Nomer HP Pembeli</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr>
                       <td><?= $produk['user_name'] ?></td>
                       <td><?= $produk['user_email'] ?></td>
+                      <td><?= $produk['user_nomer_hp'] ?></td>
                   </tr>
                   </tbody>
               </table>

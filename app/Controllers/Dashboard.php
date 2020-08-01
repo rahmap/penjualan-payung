@@ -113,9 +113,12 @@ class Dashboard extends BaseController
 	public function update_profile()
 	{
 		$this->USER_MODEL = new User_Model();
+		$RO = new \App\Libraries\RajaOngkir();
 		$data = [
 			'title' => 'Update Profil',
-			'data_pribadi' => $this->USER_MODEL->where(['user_id' => session()->user_id])->first()
+			'data_pribadi' => $this->USER_MODEL->where(['user_id' => session()->user_id])->first(),
+      'kabupaten' => json_decode($RO->city()),
+      'provinsi' => json_decode($RO->province())
 		];
 		if($this->request->getPost()){
 			$pass = $this->request->getVar('password');
@@ -140,8 +143,12 @@ class Dashboard extends BaseController
 		{
 			$data = [
 				'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
+				'user_provinsi' => ucwords($this->request->getVar('provinsi')),
+				'user_kecamatan' => ucwords($this->request->getVar('kecamatan')),
+				'user_nomer_hp' => $this->request->getVar('no_hp'),
 				'user_alamat' => ucwords($this->request->getVar('alamat'))
 			];
+//			dd($data);
 			$this->USER_MODEL = new User_Model();
 			$this->USER_MODEL->where('user_id', session()->user_id)->set($data)->update();
 			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil merubah data.', 'success'));
