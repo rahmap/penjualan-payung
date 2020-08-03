@@ -5,12 +5,9 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('outCSS') ?>
-  <!-- DataTables -->
-  <link href="<?= base_url('apaxy/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css') ?>" rel="stylesheet" type="text/css" />
-  <link href="<?= base_url('apaxy/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') ?>" rel="stylesheet" type="text/css" />
 
-  <!-- Responsive datatable examples -->
-  <link href="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') ?>" rel="stylesheet" type="text/css" />     
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 <?= $this->endSection() ?>
 
 <?= $this->section('pageName') ?>
@@ -33,32 +30,43 @@
                 <p class="card-title-desc">Menambahkan data Pesanan ke Toko.</p>
                 <form action="<?= base_url('admin/tambah_pesanan') ?>" method="POST">
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Harga Total</label>
-                    <div class="col-md-10">
-                        <input class="form-control" value="Rp <?= number_format($cart_total_bayar, 0, ',', '.') ?>" type="text" name="" readonly>
-                        <input class="form-control" value="<?= $cart_total_bayar ?>" type="number" required hidden name="harga">
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Nama Pembeli</label>
                     <div class="col-md-10">
                         <input class="form-control" type="text" required name="nama" >
                     </div>
                 </div>
+<!--                <div class="form-group row">-->
+<!--                    <label for="example-text-input" class="col-md-2 col-form-label">Email Pembeli</label>-->
+<!--                    <div class="col-md-10">-->
+<!--                        <input class="form-control" type="text" required name="email" >-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Email Pembeli</label>
+									<label class="col-md-2 col-form-label">Provinsi</label>
+									<div class="col-md-10">
+										<select class="form-control" id="provinsi" required name="provinsi">
+                      <?php foreach ($provinsi->rajaongkir->results as $prov): ?>
+												<option data-id_prov="<?= $prov->province_id ?>" value="<?= $prov->province ?>"><?= $prov->province ?></option>
+                      <?php endforeach; ?>
+										</select>
+									</div>
+                </div>
+									<div class="form-group row">
+										<label class="col-md-2 col-form-label">Kabupaten</label>
+										<div class="col-md-10">
+											<select class="form-control" id="kabupaten" required name="kabupaten">
+
+											</select>
+										</div>
+									</div>
+								<div class="form-group row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Kecamatan</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" required name="email" >
+                        <input class="form-control" type="text" required name="kecamatan" >
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Kabupaten</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="text" required name="kabupaten" >
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Alamat Pesanan</label>
+                    <label for="example-text-input" class="col-md-2 col-form-label">Alamat (Kelurahan, Desa/Dusun, RT/RW/Nomer Rumah, Kode Pos)</label>
                     <div class="col-md-10">
                         <textarea class="form-control" type="text" required name="alamat" > </textarea>
                     </div>
@@ -77,25 +85,56 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label class="col-md-2 col-form-label">Pengiriman</label>
-                    <div class="col-md-10">
-                        <div class="mt-4 mt-lg-0">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ongkir" id="inlineRadios1" value="Dalam Kota" checked="">
-                                <label class="form-check-label" for="inlineRadios1">
-                                    Dalam Kota (Yogyakarta)
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ongkir" id="inlineRadios2" value="Luar Kota">
-                                <label class="form-check-label" for="inlineRadios2">
-                                    Luar Kota
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+								<div class="form-group row">
+									<label class="col-md-2 col-form-label">Kurir</label>
+									<div class="col-md-10">
+										<select class="form-control" required name="kurir" id="kurir">
+											<option value="jne" selected>JNE</option>
+											<option value="tiki">TIKI</option>
+											<option value="pos">POS Indonesia</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-md-2 col-form-label">Service</label>
+									<div class="col-md-10">
+										<select class="form-control" required name="service" id="service" required>
+
+										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">Total Berat (Gram)</label>
+									<div class="col-md-10">
+										<input class="form-control" type="text" required readonly value="<?= $berat ?>" id="berat">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">Estimasi</label>
+									<div class="col-md-10">
+										<input class="form-control" type="text" required name="estimasi" id="estimasi" readonly>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">Biaya Kirim</label>
+									<div class="col-md-10">
+										<input class="form-control" type="text" required id="ongkir_display" readonly>
+										<input class="form-control" type="text" id="ongkir" required name="ongkir" hidden>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">Total Harga Barang</label>
+									<div class="col-md-10">
+										<input id="harga_display" class="form-control" value="Rp <?= number_format($cart_total_bayar, 0, ',', '.') ?>" type="text" name="" readonly>
+										<input class="form-control" value="<?= $cart_total_bayar ?>" type="number" id="harga" required hidden name="harga">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="example-text-input" class="col-md-2 col-form-label">Total Bayar</label>
+									<div class="col-md-10">
+										<input id="total_bayar_display" class="form-control" value="" type="text" name="" readonly>
+									</div>
+								</div>
                 <div class="form-group d-flex justify-content-center">
                   <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </div>
@@ -152,13 +191,122 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('outJS') ?>
-  <!-- Required datatable js -->
-  <script src="<?= base_url('apaxy/libs/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
-  <script src="<?= base_url('apaxy/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js') ?>"></script>
-  <!-- Responsive examples -->
-  <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
-  <script src="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          const kabupaten = $('#kabupaten');
+          const provinsi = $('#provinsi');
+          const services = $('#service');
+          const ongkir = $('#ongkir');
+          const estimasi = $('#estimasi');
+          const ongkir_display = $('#ongkir_display');
+          $(kabupaten).select2();
 
-  <!-- Datatable init js -->
-  <script src="<?= base_url('apaxy/js/pages/datatables.init.js') ?>"></script>
+          const BASE_URL = "<?php echo base_url() ?>";
+          let berat = $('#berat');
+          let city_id = kabupaten;
+          let kurir = $('#kurir');
+
+          $(kabupaten).select2();
+          getKabupatenByIDProv()
+          setTimeout(function(){  onLoadGetRajaOngkir();  }, 3000);
+
+          $(kurir).on('change', function () {
+              console.log('kurir changed')
+              onLoadGetRajaOngkir()
+              console.log(kurir.val())
+          })
+
+          $(services).on('change', function () {
+              console.log('services changed')
+              $(ongkir).val(parseInt($(services).find(':selected').data('harga')))
+              $(estimasi).val($(services).find(':selected').data('est') + ' Hari')
+              $(ongkir_display).attr("placeholder", 'Rp ' + formatMoney($(services).find(':selected').data('harga')))
+              $('#total_bayar_display').attr("placeholder", 'Rp ' + formatMoney(parseInt($(services).find(':selected').data('harga')) + parseInt($('#harga').val())))
+              console.log(services.val())
+          })
+
+          $(kabupaten).on('change', function () {
+              console.log('kabupaten changed')
+              onLoadGetRajaOngkir()
+              console.log(kabupaten.val())
+          })
+
+          $(provinsi).on('change', function () {
+              console.log('provinsi changed')
+              $(kabupaten).children('option').remove();
+              getKabupatenByIDProv();
+              setTimeout(function(){  onLoadGetRajaOngkir();  }, 3000);
+              console.log(provinsi.val())
+          })
+
+          $(provinsi).on('change', function () {
+              getKabupatenByIDProv()
+          })
+
+          function getKabupatenByIDProv() {
+              $('#kabupaten :nth-child(1)').prop('selected', true);
+              $.ajax({
+                  url: BASE_URL + '/auth/getKabupatenRO/'+ provinsi.find(':selected').data('id_prov'),
+                  dataType: "json",
+                  success: function(result) {
+                      $(kabupaten).children('option').remove();
+                      $('#kabupaten :nth-child(1)').prop('selected', true);
+                      $(kabupaten).append(result.rajaongkir.results.map(function (sObj) {
+                          return '<option data-city_id="'+ sObj.city_id +'" value="' +
+                              sObj.city_name + '">' +
+                              sObj.city_name + '</option>'
+                      }));
+                  }
+              });
+          }
+
+          function onLoadGetRajaOngkir()
+          {
+              $('#kabupaten :nth-child(1)').prop('selected', true);
+              console.log($('#kabupaten').val())
+              $.ajax({
+                  url: BASE_URL + '/home/getCostRajaOngkir/'+ city_id.find(':selected').data('city_id') +'/'+berat.val()+'/'+kurir.val(),
+                  dataType: "json",
+                  success: function(result) {
+                      console.log(result);
+                      console.log(kurir.val())
+                      $(services).children('option').remove();
+
+                      $(services).append(result.rajaongkir.results[0].costs.map(function (sObj) {
+                          return '<option data-harga="' +
+                              sObj.cost.map(a => a.value) + '" data-est="' +
+                              sObj.cost.map(a => a.etd) + '" value="' +
+                              sObj.service + '">' +
+                              sObj.service + '</option>'
+                      }));
+                      $('#service :nth-child(1)').prop('selected', true);
+                      $('#kabupaten :nth-child(1)').prop('selected', true);
+                      // $('#ROest').text('Estimasi ' + $(services).find(':selected').data('est') + ' Hari')
+                      $(ongkir).val(parseInt($(services).find(':selected').data('harga')))
+                      $(estimasi).val($(services).find(':selected').data('est') + ' Hari')
+                      $(ongkir_display).attr("placeholder", 'Rp ' + formatMoney($(services).find(':selected').data('harga')))
+                      $('#total_bayar_display').attr("placeholder", 'Rp ' + formatMoney(parseInt($(services).find(':selected').data('harga')) + parseInt($('#harga').val())))
+                  }
+              });
+          }
+
+          function formatMoney(amount, decimalCount = 0, decimal = ".", thousands = ".") {
+              try {
+                  decimalCount = Math.abs(decimalCount);
+                  decimalCount = isNaN(decimalCount) ? 0 : decimalCount;
+
+                  const negativeSign = amount < 0 ? "-" : "";
+
+                  let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+                  let j = (i.length > 3) ? i.length % 3 : 0;
+
+                  return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+              } catch (e) {
+                  console.log(e)
+              }
+          }
+      });
+	</script>
+
 <?= $this->endsection() ?>

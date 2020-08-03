@@ -33,7 +33,7 @@
 
                 <form class="form-inline" action="<?= base_url('admin/update_profile') ?>" method="POST">
                     <label class="sr-only" for="inlineFormInputName2">Nama</label>
-                    <input type="text" name="" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_name ?>">
+                    <input type="text" name="nama" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_name ?>">
 
                     <label class="sr-only" for="inlineFormInputName2">Email</label>
                     <input type="email" name="" readonly class="form-control mt-3 mt-sm-0 mr-sm-3" value="<?= session()->user_email ?>">

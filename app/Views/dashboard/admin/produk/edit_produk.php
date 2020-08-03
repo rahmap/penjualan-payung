@@ -68,6 +68,21 @@
                         <textarea class="form-control" type="text" name="keterangan"> <?= $produk['keterangan_produk'] ?></textarea>
                     </div>
                 </div>
+								<div class="form-group row">
+
+									<label class="col-md-2 col-form-label">Supplier</label>
+									<div class="col-md-10">
+										<select class="form-control" name="supplier">
+
+											<?php if(count($suppliers) > 0): ?>
+												<?php foreach($suppliers as $sup): ?>
+													<option value="<?= $sup['supplier_id'] ?>" <?= ($produk['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?>><?= $sup['nama_supplier'] ?></option>
+												<?php endforeach; ?>
+											<?php endif; ?>
+										</select>
+									</div>
+
+								</div>
                 <div class="form-group d-flex justify-content-center">
                   <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </div>

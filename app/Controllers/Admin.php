@@ -55,7 +55,7 @@ class Admin extends BaseController
 	{
 		$this->USER_MODEL = new User_Model();
 		$this->USER_MODEL->where('user_id', $id)->delete();
-		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data pelanggan.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data pelanggan.', 'success'));
 		return redirect()->to(base_url('admin/pelanggan'));
 	}
 	
@@ -72,7 +72,7 @@ class Admin extends BaseController
 				'stok' => $this->request->getVar('stok')
 			];
 			$this->SUPPLIER_MODEL->save($data);
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menambahkan data supplier.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menambahkan data supplier.', 'success'));
 			return redirect()->to(base_url('admin/supplier'));
 		} else {
 			return view('dashboard/admin/supplier/data_supplier', $data);
@@ -83,7 +83,7 @@ class Admin extends BaseController
 	{
 		$this->SUPPLIER_MODEL = new Supplier_Model();
 		$this->SUPPLIER_MODEL->where('supplier_id', $id)->delete();
-		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data supplier.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data supplier.', 'success'));
 		return redirect()->to(base_url('admin/supplier'));
 	}
 
@@ -100,7 +100,7 @@ class Admin extends BaseController
 				'nama_supplier' => $this->request->getVar('nama')
 			];
 			$this->SUPPLIER_MODEL->update($id, $data);
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data supplier.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate data supplier.', 'success'));
 			return redirect()->to(base_url('admin/supplier'));
 		} else {
 			return view('dashboard/admin/supplier/edit_supplier', $data);
@@ -114,8 +114,7 @@ class Admin extends BaseController
 		$data = [
 			'title' => 'Data Produk',
 			'products' => $this->PRODUK_MODEL->join('suppliers','suppliers.supplier_id=products.fk_supplier','LEFT')->findAll(),
-			'suppliers' => $this->SUPPLIER_MODEL->findAll(),
-			'selected' => $this->PRODUK_MODEL->whereNotIn('fk_supplier', [0])->findAll()
+			'suppliers' => $this->SUPPLIER_MODEL->findAll()
 		];
 
     return view('dashboard/admin/produk/data_produk', $data);
@@ -139,12 +138,12 @@ class Admin extends BaseController
 			session()->setFlashdata('message', sweetAlert('Upss! Gambar gagal diupload!',$e->getMessage(), 'error'));
 			return redirect()->to(\base_url('admin/produk'));
 		}
-		$fk_sup = '';
-		if($produkFK = $this->PRODUK_MODEL->findAll(1,1)){
-      $fk_sup = $produkFK[0]['fk_supplier'];
-    } else {
-      $fk_sup = NULL;
-    }
+//		$fk_sup = '';
+//		if($produkFK = $this->PRODUK_MODEL->findAll(1,1)){
+//      $fk_sup = $produkFK[0]['fk_supplier'];
+//    } else {
+//      $fk_sup = NULL;
+//    }
 		$data = [
 			'nama_produk' => $this->request->getVar('nama'),
 			'harga_produk' => $this->request->getVar('harga'),
@@ -152,10 +151,10 @@ class Admin extends BaseController
 			'keterangan_produk' => $this->request->getVar('keterangan'),
 			'stok' => $this->request->getVar('stok'),
 			'berat' => $this->request->getVar('berat'),
-			'fk_supplier' => $fk_sup
+			'fk_supplier' => $this->request->getVar('supplier')
 		];
 		if($this->PRODUK_MODEL->save($data)){
-			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menambahkan data produk!', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menambahkan data produk!', 'success'));
 		} else {
 			session()->setFlashdata('message', sweetAlert('Upss!','Gagal menambahkan data produk!', 'error'));
 		}
@@ -167,7 +166,7 @@ class Admin extends BaseController
 	{
 		$this->PRODUK_MODEL = new Produk_Model();
 		$this->PRODUK_MODEL->set(['fk_supplier' => $this->request->getVar('supplier')])->update();
-		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate supplier produk.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate supplier produk.', 'success'));
 		return redirect()->to(base_url('admin/produk'));
 	}
 
@@ -175,15 +174,17 @@ class Admin extends BaseController
 	{
 		$this->PRODUK_MODEL = new Produk_Model();
 		$this->PRODUK_MODEL->where('product_id', $id)->delete();
-		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data produk.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data produk.', 'success'));
 		return redirect()->to(base_url('admin/produk'));
 	}
 
 	public function edit_produk($id)
 	{
+    $this->SUPPLIER_MODEL = new Supplier_Model();
 		$this->PRODUK_MODEL = new Produk_Model();
 		$data = [
 			'title' => 'Update Produk',
+      'suppliers' => $this->SUPPLIER_MODEL->findAll(),
 			'produk' => $this->PRODUK_MODEL->find($id)
 		];
 		if($this->request->getPost()){
@@ -215,10 +216,11 @@ class Admin extends BaseController
 				'gambar_produk' => $file,
 				'keterangan_produk' => $this->request->getVar('keterangan'),
 				'stok' => $this->request->getVar('stok'),
-				'berat' => $this->request->getVar('berat')
+				'berat' => $this->request->getVar('berat'),
+				'fk_supplier' => $this->request->getVar('supplier')
 			];
 			$this->PRODUK_MODEL->update($id, $update);
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data produk.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate data produk.', 'success'));
 			return redirect()->to(base_url('admin/edit_produk/'.$id));
 		} else {
 			return view('dashboard/admin/produk/edit_produk', $data);
@@ -229,17 +231,24 @@ class Admin extends BaseController
 	{
 		$cart = new \App\Libraries\Cart();
 		$cart->remove($rowid);
-		session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menghapus item dari keranjang.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus item dari keranjang.', 'success'));
 		return redirect()->to(base_url('admin/tambah_pesanan'));
 	}
 
 	public function tambah_pesanan()
 	{
 		$cart = new \App\Libraries\Cart();
+		$RO = new \App\Libraries\RajaOngkir();
+    $berat = '';
+    foreach($cart->contents() as $item) {
+      $berat = (int)  $berat + (int)  $item['options']['berat'] * (int)  $item['qty'];
+    }
 		$data = [
 			'title' => 'Tambah Pesanan',
 			'cart' => $cart->contents(),
-			'cart_total_bayar' => $cart->total()
+      'berat' => $berat,
+			'cart_total_bayar' => $cart->total(),
+      'provinsi' => json_decode($RO->province())
 		];
 		if($this->request->getPost()){
 			$this->PEMESANAN_MODEL = new Pemesanan_Model();
@@ -249,21 +258,32 @@ class Admin extends BaseController
 			$this->USER_MODEL = new User_Model();
 			$dataUser = [
 				'user_name' => $this->request->getVar('nama'),
-				'user_email' => $this->request->getVar('email'),
+//				'user_email' => $this->request->getVar('email'),
+        'user_email' => NULL,
 				'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
+				'user_provinsi' => ucwords($this->request->getVar('provinsi')),
+				'user_kecamatan' => ucwords($this->request->getVar('kecamatan')),
+				'user_nomer_hp' => ucwords($this->request->getVar('phone')),
 				'user_alamat' => $this->request->getVar('alamat')
 			];
 			$this->USER_MODEL->save($dataUser);
 			$fk_user = $this->USER_MODEL->getIDInsert();
 			helper('text');
+      $alamat = $this->request->getVar('alamat');
+      $provinsi = $this->request->getVar('provinsi');
+      $kabupaten = $this->request->getVar('kabupaten');
+      $kecamatan= $this->request->getVar('kecamatan');
 			$dataBeli = [
 				'waktu_pesanan' => time(),
 				'bukti_pembayaran' => NULL,
-				'alamat' => ucwords('Kab. '.$this->request->getVar('kabupaten').' - '.$this->request->getVar('alamat')),
+        'alamat' => $provinsi.', '.$kabupaten.', '.$kecamatan.', '.$alamat,
 				'harga_total' => $cart->total(),
-				'ongkir' => $this->request->getVar('ongkir'),
+				'ongkir' => (int)$this->request->getVar('ongkir'),
 				'metode_pembayaran' => $this->request->getVar('bayar'),
 				'no_hp' => $this->request->getVar('phone'),
+        'estimasi' => $this->request->getVar('estimasi'),
+        'service' => $this->request->getVar('service'),
+        'kurir' => strtoupper($this->request->getVar('kurir')),
 				'informasi_pesanan' => 'Sedang Dikirim',
 				'status_pemesanan' => 'success',
 				'order_unique_id' => 'TRX-'.random_string('alnum'),
@@ -293,7 +313,7 @@ class Admin extends BaseController
 				$this->PRODUK_MODEL->update($item['id'], ['stok' => $stok['stok'] - $item['qty']]);
 			}
 
-			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil melakukan pemesanan produk.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil melakukan pemesanan produk.', 'success'));
 			$cart->destroy();
 			return redirect()->to(base_url('admin/tambah_pesanan'));
 		} else {
@@ -322,7 +342,7 @@ class Admin extends BaseController
 		$order = $this->PEMESANAN_MODEL->where('order_unique_id', $id)->delete();
 		// $order = $this->PEMESANAN_MODEL
 		// 				->join('orders_products','orders_products.fk_pemesanan=pemesanan.order_id')->findAll();
-		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data pesanan.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data pesanan.', 'success'));
 		return redirect()->to(base_url('admin/pesanan'));
 	}
 
@@ -368,7 +388,7 @@ class Admin extends BaseController
 				$this->PRODUCT_ORDER->where('fk_pemesanan', $orderID['order_id'])->set(['tanggal_selesai' => date('d/m/Y')])->update();
 			}
 			$this->PEMESANAN_MODEL->where('order_unique_id', $id)->set($data)->update();
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data pesanan.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate data pesanan.', 'success'));
 			return redirect()->to(base_url('admin/edit_pesanan/'.$id));
 		} else {
 			return view('dashboard/admin/pesanan/edit_pesanan', $data);
@@ -387,7 +407,7 @@ class Admin extends BaseController
 			if($pass == $pass1){
 				$this->ADMIN_MODEL->update(session()->user_id, ['password_admin' => password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10])]);
 				session()->remove(['user_id','user_email', 'user_name', 'role', 'cart']); //session destroy
-				session()->setFlashdata('message', sweetAlert('Horayy!','Password berhasil dirubah, silahkan login kembali.', 'success'));
+				session()->setFlashdata('message', sweetAlert('Berhasil!','Password berhasil dirubah, silahkan login kembali.', 'success'));
 				return redirect()->route('admin_login');
 			} else {
 				session()->setFlashdata('message', sweetAlert('Upss!','Password konfirmasi tidak sama', 'error'));
@@ -461,7 +481,6 @@ class Admin extends BaseController
 			->groupBy('orders_products.tanggal_selesai, nama_produk_pemesanan, kabupaten_pemesanan')->find();
 		}
 
-
 		// dd($laporan);
 		$data = [
 			'title' => 'Laporan Penjualan',
@@ -470,19 +489,53 @@ class Admin extends BaseController
 		return view('dashboard/admin/laporan/laporan_penjualan', $data);
 	}
 
+	public function laporan_penjualan_paling_laku()
+  {
+    $this->PEMESANAN_MODEL = new Pemesanan_Model();
+    if(!is_null($this->request->getGet('mulai')) AND !is_null($this->request->getGet('selesai'))){
+      $mulai = strtotime($this->request->getGet('mulai'));
+      $selesai = strtotime($this->request->getGet('selesai'));
+      $selesai = (int) $selesai + 24 * 3600;
+
+      session()->set('mulai', $this->request->getGet('mulai'));
+      session()->set('selesai', $this->request->getGet('selesai'));
+
+      $laporan = $this->PEMESANAN_MODEL
+        ->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+			orders_products.tanggal_selesai, kabupaten_pemesanan, nama_produk_pemesanan'])
+        ->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+        ->where(['status_pemesanan' => 'success'])
+        ->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
+        ->groupBy('nama_produk_pemesanan')->find();
+
+    } else {
+      $laporan = $this->PEMESANAN_MODEL
+        ->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+			orders_products.tanggal_selesai, kabupaten_pemesanan, nama_produk_pemesanan'])
+        ->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+        ->where(['status_pemesanan' => 'success'])
+        ->groupBy('nama_produk_pemesanan')->find();
+    }
+
+    $data = [
+      'title' => 'Laporan Penjualan',
+      'laporan' => $laporan,
+    ];
+    return view('dashboard/admin/laporan/laporan_penjualan_paling_laku', $data);
+  }
+
 	public function laporan_stok()
 	{
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
 		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
 		$this->PRODUK_MODEL = new Produk_Model();
 
-		if(!is_null($this->request->getGet('mulai')) AND !is_null($this->request->getGet('selesai'))){
-			$mulai = strtotime($this->request->getGet('mulai'));
-			$selesai = strtotime($this->request->getGet('selesai'));
-			$selesai = (int) $selesai + 24 * 3600;
+		if(!is_null($this->request->getGet('tanggal'))){
+			$mulai = strtotime($this->request->getGet('tanggal'));
+			$selesai = (int) ($mulai) + 24 * 3600;
 
-			session()->set('mulai', $this->request->getGet('mulai'));
-			session()->set('selesai', $this->request->getGet('selesai'));
+//      dd([$mulai, $selesai]);
+			session()->set('tanggal', $this->request->getGet('tanggal'));
 
 			$stok = $this->PRODUK_MODEL
 			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
@@ -491,7 +544,7 @@ class Admin extends BaseController
 			->join('orders_products', 'orders_products.fk_product=products.product_id')
 			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
 			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
-			->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
+        ->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
 			->where(['status_pemesanan' => 'success'])
 			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
 

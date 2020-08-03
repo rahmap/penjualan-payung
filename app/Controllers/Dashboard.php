@@ -59,7 +59,7 @@ class Dashboard extends BaseController
 		$order = $this->PEMESANAN_MODEL->where('order_unique_id', $id)->delete();
 		// $order = $this->PEMESANAN_MODEL
 		// 				->join('orders_products','orders_products.fk_pemesanan=pemesanan.order_id')->findAll();
-		session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil menghapus data pesanan.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data pesanan.', 'success'));
 		return redirect()->to(base_url('dashboard/pesanan'));
 	}
 
@@ -103,7 +103,7 @@ class Dashboard extends BaseController
 				return redirect()->to(\base_url('dashboard/edit_pesanan/'.$id));
 			}
 			$this->PEMESANAN_MODEL->where('order_unique_id', $id)->set($data)->update();
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mengupdate data pesanan.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate data pesanan.', 'success'));
 			return redirect()->to(base_url('dashboard/edit_pesanan/'.$id));
 		} else {
 			return view('dashboard/member/pesanan/edit_pesanan', $data);
@@ -126,7 +126,7 @@ class Dashboard extends BaseController
 			if($pass == $pass1){
 				$this->USER_MODEL->update(session()->user_id, ['user_password' => password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10])]);
 				session()->remove(['user_id','user_email', 'user_name', 'role', 'cart']); //session destroy
-				session()->setFlashdata('message', sweetAlert('Horayy!','Password berhasil dirubah, silahkan login kembali.', 'success'));
+				session()->setFlashdata('message', sweetAlert('Berhasil!','Password berhasil dirubah, silahkan login kembali.', 'success'));
 				return redirect()->route('login');
 			} else {
 				session()->setFlashdata('message', sweetAlert('Upss!','Password konfirmasi tidak sama', 'error'));
@@ -151,7 +151,7 @@ class Dashboard extends BaseController
 //			dd($data);
 			$this->USER_MODEL = new User_Model();
 			$this->USER_MODEL->where('user_id', session()->user_id)->set($data)->update();
-			session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil merubah data.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil merubah data.', 'success'));
 			return redirect()->to(base_url('dashboard/update_profile'));
 		}
 	}

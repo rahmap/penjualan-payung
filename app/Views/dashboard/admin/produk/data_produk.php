@@ -63,11 +63,26 @@
                     </div>
                 </div>
 									<div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Berat</label>
+                    <label for="example-text-input" class="col-md-2 col-form-label">Berat (Gram)</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="number" name="berat" >
+                        <input class="form-control" type="number" name="berat" placeholder="Contoh : 330">
                     </div>
                 </div>
+									<div class="form-group row">
+
+										<label class="col-md-2 col-form-label">Supplier</label>
+										<div class="col-md-10">
+											<select class="form-control" name="supplier">
+
+                        <?php if(count($suppliers) > 0): ?>
+                          <?php foreach($suppliers as $sup): ?>
+														<option value="<?= $sup['supplier_id'] ?>"><?= $sup['nama_supplier'] ?></option>
+                          <?php endforeach; ?>
+                        <?php endif; ?>
+											</select>
+										</div>
+
+									</div>
                 <div class="form-group d-flex justify-content-center">
                   <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
                 </div>
@@ -77,37 +92,37 @@
     </div>
     <!-- end col -->
 </div>
-<div class="row">
-  <div class="col-12">
-      <div class="card">
-          <div class="card-body">
-
-              <h4 class="header-title">Pilih Supplier Toko</h4>
-              <p class="card-title-desc">Mengatur supplier pada Poko.</p>
-              <form action="<?= base_url('admin/update_supplier_produk') ?>" method="POST">
-              <div class="form-group row">
-
-                  <label class="col-md-2 col-form-label">Pilih</label>
-                  <div class="col-md-10">
-                      <select class="form-control" name="supplier">
-                      
-                      <?php if(count($suppliers) > 0): ?>
-                        <?php foreach($suppliers as $sup): ?>
-                          <option value="<?= $sup['supplier_id'] ?>" <?= ($selected[0]['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?>><?= $sup['nama_supplier'] ?></option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                      </select>
-                  </div>
-                
-              </div>
-              <div class="form-group d-flex justify-content-center">
-                  <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>
-                </div>
-              </form>
-              </div>
-      </div>
-  </div>
-</div>
+<!--<div class="row">-->
+<!--  <div class="col-12">-->
+<!--      <div class="card">-->
+<!--          <div class="card-body">-->
+<!---->
+<!--              <h4 class="header-title">Pilih Supplier Toko</h4>-->
+<!--              <p class="card-title-desc">Mengatur supplier pada Poko.</p>-->
+<!--              <form action="--><?//= base_url('admin/update_supplier_produk') ?><!--" method="POST">-->
+<!--              <div class="form-group row">-->
+<!---->
+<!--                  <label class="col-md-2 col-form-label">Pilih</label>-->
+<!--                  <div class="col-md-10">-->
+<!--                      <select class="form-control" name="supplier">-->
+<!--                      -->
+<!--                      --><?php //if(count($suppliers) > 0): ?>
+<!--                        --><?php //foreach($suppliers as $sup): ?>
+<!--                          <option value="--><?//= $sup['supplier_id'] ?><!--" --><?//= ($selected[0]['fk_supplier'] == $sup['supplier_id'])? 'selected' : '' ?><!--<?//= $sup['nama_supplier'] ?></option>-->
+<!--                        --><?php //endforeach; ?>
+<!--                    --><?php //endif; ?>
+<!--                      </select>-->
+<!--                  </div>-->
+<!--                -->
+<!--              </div>-->
+<!--              <div class="form-group d-flex justify-content-center">-->
+<!--                  <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Submit</button>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--              </div>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="row">
   <div class="col-12">

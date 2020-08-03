@@ -37,6 +37,7 @@
               <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
               <thead>
                   <tr>
+											<th>Nomer</th>
                       <th>ID</th>
                       <th>Waktu</th>
                       <th>Status</th>
@@ -50,8 +51,9 @@
                   <tbody>
                   <?php foreach($pesanan as $pes): ?>
                   <tr>
+                      <td><?= $pes['order_id'] ?></td>
                       <td><?= $pes['order_unique_id'] ?></td>
-                      <td><?= date('d/m/y H:i', (int) $pes['waktu_pesanan']) ?></td>
+                      <td><?= date('Y/m/d H:i', (int) $pes['waktu_pesanan']) ?></td>
                       <?php $warna; if($pes['status_pemesanan'] == 'pending'){ $warna = 'warning'; } else if($pes['status_pemesanan'] == 'success'){ $warna='success'; } else { $warna='danger'; } ?>
                       <td><?= '<span class="badge badge-'.$warna.'">'.$pes['status_pemesanan'].'</span>' ?></td>
                       <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>

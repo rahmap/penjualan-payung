@@ -37,6 +37,7 @@
               <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
                   <tr>
+                      <th>Nomer</th>
                       <th>ID</th>
                       <th>Nama Pembeli</th>
                       <th  class="text-center">Jenis Pesanan</th>
@@ -52,10 +53,11 @@
                   <tbody>
                   <?php foreach($pesanan as $pes): ?>
                   <tr>
+                      <td ><?= $pes['order_id'] ?></td>
                       <td><?= $pes['order_unique_id'] ?></td>
                       <td><?= $pes['user_name'] ?></td>
                       <td  class="text-center"><?= ($pes['user_password'] == null)? '<span class="badge badge-light">Offline</span>' : '<span class="badge badge-info">Online</span>' ; ?></td>
-                      <td><?= date('d/m/Y H:i', (int) $pes['waktu_pesanan']) ?></td>
+                      <td><?= date('Y/m/d H:i', (int) $pes['waktu_pesanan']) ?></td>
                       <td>Rp <?= number_format($pes['harga_total'], 0, ',', '.') ?></td>
                       <td>Rp <?= number_format((int)$pes['ongkir'], 0, ',', '.') ?></td>
                       <td class="text-center"><?= ($pes['bukti_pembayaran'] != NULL)? '<span class="badge badge-primary">Sudah Ada</span>' : '<span class="badge badge-dark">Belum Ada</span>' ; ?></td>

@@ -20,28 +20,60 @@
 <?= $this->section('breadcrumb') ?>
 <li class="breadcrumb-item"><a href="#"><?= APP_NAME ?></a></li>
 <li class="breadcrumb-item"><a href="javascript: void(0);">Laporan</a></li>
-<li class="breadcrumb-item active">Laporan Stok</li>
+<li class="breadcrumb-item active">Laporan Penjualan</li>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="row justify-content-center">
-  <div class="col-8">
+<div class="row">
+  <div class="col-6">
       <div class="card">
           <div class="card-body">
 
               <h4 class="header-title">Cari Berdasarkan Tanggal</h4>
-              <form action="<?= base_url('admin/laporan_stok') ?>" method="GET">
+              <form action="<?= base_url('admin/laporan_penjualan') ?>" method="GET">
                 <div class="form-group row">
-                    <label for="example-date-input" class="col-md-2 col-form-label">Tanggal</label>
+                    <label for="example-date-input" class="col-md-2 col-form-label">Mulai</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="date" required name="tanggal" value="<?= (session()->has('mulai'))? session()->mulai : date('Y-m-d'); ?>" id="example-date-input">
+                        <input class="form-control" type="date" required name="mulai" value="<?= (session()->has('mulai'))? session()->mulai : date('Y-m-d'); ?>" id="example-date-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-md-2 col-form-label">Sampai</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="date" required name="selesai" value="<?= (session()->has('selesai'))? session()->selesai : date('Y-m-d'); ?>" id="example-date-input1">
                     </div>
                 </div>
                 <div class="form-group row justify-content-center">
-                  <button type="submit" class="btn btn-primary mt-3 mt-sm-0">Cari Data</button>
+                  <button type="submit" class="btn btn-primary mt-3 mt-sm-0 mr-2">Cari Data</button>
                 </div>
               </form>
-              <a href="<?= base_url('admin/laporan_stok') ?>"><button class="btn btn-success mt-3 mt-sm-0 mr-3">Tampilkan Semua Data</button></a>
+              <a href="<?= base_url('admin/laporan_penjualan') ?>"><button class="btn btn-success mt-3 mt-sm-0 mr-3">Tampilkan Semua Data</button></a>
+          </div>
+      </div>
+  </div>
+	<div class="col-6">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="header-title">Cari Berdasarkan Tanggal (Paling Laku)</h4>
+              <form action="<?= base_url('admin/laporan_penjualan_paling_laku') ?>" method="GET">
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-md-2 col-form-label">Mulai</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="date" required name="mulai" value="<?= (session()->has('mulai'))? session()->mulai : date('Y-m-d'); ?>" id="example-date-input">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-md-2 col-form-label">Sampai</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="date" required name="selesai" value="<?= (session()->has('selesai'))? session()->selesai : date('Y-m-d'); ?>" id="example-date-input1">
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                  <button type="submit" class="btn btn-primary mt-3 mt-sm-0 mr-2">Cari Barang Paling Laku</button>
+                </div>
+              </form>
+              <a href="<?= base_url('admin/laporan_penjualan_paling_laku') ?>"><button class="btn btn-success mt-3 mt-sm-0 mr-3">Tampilkan Semua Data (Paling Laku)</button></a>
           </div>
       </div>
   </div>
@@ -53,47 +85,21 @@
           <div class="card-body">
 
               <h4 class="header-title"><?= $title ?></h4>
-              <p class="card-title-desc">Menampilkan data laporan stok barang.
+              <p class="card-title-desc">Menampilkan data laporan penjualan.
               </p>
 
               <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
                   <tr>
-                      <th class="text-center">Tanggal</th>
                       <th class="text-center">Nama Barang</th>
-                      <th class="text-center">Stok Awal</th>
-<!--                      <th class="text-center">Barang Terjual</th>-->
-                      <th class="text-center">Stok Barang</th>
-<!--                      <th class="text-center">Nama Supplier</th>-->
+                      <th class="text-center">Barang Terjual</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <?php foreach($stok as $lap): ?>
+                  <?php foreach($laporan as $lap): ?>
                   <tr>
-                    <?php $tgl = explode('/',$lap['tanggal_selesai']) ?>
-										<td class="text-center"><?= $tgl[2].'/'.$tgl[1].'/'.$tgl[0] ?></td>
-
-                      <td><?= $lap['nama_produk_pemesanan'] ?></td>
-                      <td class="text-center">
-                      <?php
-                        if(strpos($lap['AWAL'], ',') == true):
-                          $resultSisa = explode(',',$lap['AWAL']); rsort($resultSisa); echo $resultSisa[0];
-                        else:
-                          echo $lap['AWAL'];
-                        endif;
-                      ?>
-                      </td>
-<!--                      <td class="text-center">--><?//= $lap['QTY'] ?><!--</td>-->
-                      <td class="text-center">
-                      <?php  
-                        if(strpos($lap['SISA'], ',') == true):
-                          $resultSisa = explode(',',$lap['SISA']); sort($resultSisa); echo $resultSisa[0]; 
-                        else:
-                          echo $lap['SISA'];
-                        endif;
-                      ?>
-                      </td>
-<!--                      <td class="text-center">--><?//= ucwords($lap['nama_supplier_order']) ?><!--</td>-->
+                      <td class="text-center"><?= $lap['nama_produk_pemesanan'] ?></td>
+                      <td class="text-center"><?= $lap['QTY'] ?></td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>

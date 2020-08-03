@@ -149,6 +149,7 @@
                 <h4 class="header-title">Upload Bukti Pembayaran Pesanan</h4>
                 <p class="card-title-desc">Mengupdate Bukti Pembayaran Pesanan.</p>
                 <form action="<?= base_url('dashboard/edit_pesanan/'.$produk['order_unique_id']) ?>" method="POST" enctype="multipart/form-data">
+									<?php if($produk['status_pemesanan'] == 'pending'): ?>
                  <div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Bukti Pembayaran</label>
                     <div class="col-md-10">
@@ -158,6 +159,7 @@
                 <div class="form-group d-flex justify-content-center">
                   <button type="submit" name="submit" class="btn btn-primary mt-3 mt-sm-0">Upload</button>
                 </div>
+									<?php endif; ?>
                 </form>
             </div>
         </div>

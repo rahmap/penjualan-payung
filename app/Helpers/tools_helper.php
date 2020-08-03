@@ -15,8 +15,10 @@ function sweetAlert($title = '', $text = '', $type = '')
   return "<script>
         var title = '$title';
         var text = '$text'; 
-        var type = '$type';
-        Swal.fire(title,text,type);
+        var icon = '$type';
+//        var timer = '1500';
+        var showConfirmButton = false;
+        Swal.fire({title, text, icon, showConfirmButton, timer : 3000})
         </script>";
 }
 

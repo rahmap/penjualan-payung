@@ -42,7 +42,7 @@ class Auth extends BaseController
 				];
 //				 dd($request);
 				if($this->AM->save($request)){
-          session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil mendaftar, silahkan login.', 'success'));
+          session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mendaftar, silahkan login.', 'success'));
         } else {
           session()->setFlashdata('message', sweetAlert('Upss!','Gagal mendaftar, silahkan ulangi.', 'error'));
         }
@@ -86,7 +86,7 @@ class Auth extends BaseController
 							'role' => 'MEMBER'
 						];
 						session()->set($dataSession);
-						session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil login, silahkan gunakan aplikasi ini dengan bijak.', 'success'));
+						session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil login, silahkan gunakan aplikasi ini dengan bijak.', 'success'));
 						return redirect()->route('home');
 					} else {
 						session()->setFlashdata('message', sweetAlert('Upss!', 'Password salah!', 'error'));
@@ -128,7 +128,7 @@ class Auth extends BaseController
 							'role' => 'ADMIN'
 						];
 						session()->set($dataSession);
-						session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil login, silahkan gunakan aplikasi ini dengan bijak.', 'success'));
+						session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil login, silahkan gunakan aplikasi ini dengan bijak.', 'success'));
 						return redirect()->route('home');
 					} else {
 						session()->setFlashdata('message', sweetAlert('Upss!', 'Password salah!', 'error'));
@@ -152,7 +152,7 @@ class Auth extends BaseController
     } else {
 			$cart->destroy();
       session()->remove(['user_id','user_email', 'user_name', 'role', 'cart', 'sisa_stok', 'mulai', 'selesai', 'berat']); //session destroy
-      session()->setFlashdata('message', sweetAlert('Horayy!','Berhasil keluar, Terimakasih.', 'info'));
+      session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil keluar, Terimakasih.', 'info'));
       return redirect()->route('login');
     }
 	}

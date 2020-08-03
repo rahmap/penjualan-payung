@@ -79,7 +79,7 @@ class Home extends BaseController
 					]
 				];
 				$cart->insert($dataCart);
-				session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menambahkan produk ke keranjang.', 'success'));
+				session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menambahkan produk ke keranjang.', 'success'));
 				return redirect()->to(base_url('detail/'.strtolower(str_replace(' ','-',$this->request->getVar('slug_payung')))));
 			}
 		} else {
@@ -168,7 +168,7 @@ class Home extends BaseController
 				$this->PRODUK_MODEL->update($item['id'], ['stok' => $stok['stok'] - $item['qty']]);
 			}
 
-			session()->setFlashdata('message', sweetAlert('Horay!','Berhasil melakukan pemesanan produk.', 'success'));
+			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil melakukan pemesanan produk.', 'success'));
 			$cart->destroy();
 			return redirect()->route('home');
 		} else {
@@ -187,7 +187,7 @@ class Home extends BaseController
 	{
 		$cart = new \App\Libraries\Cart();
 		$cart->remove($rowid);
-		session()->setFlashdata('message', sweetAlert('Horay!','Berhasil menghapus item dari keranjang.', 'success'));
+		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus item dari keranjang.', 'success'));
 		return redirect()->route('payment');
 	}
 

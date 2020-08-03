@@ -73,9 +73,10 @@
                   <tbody>
                   <?php foreach($laporan as $lap): ?>
                   <tr>
-                      <td class="text-center"><?= $lap['tanggal_selesai'] ?></td>
+										<?php $tgl = explode('/',$lap['tanggal_selesai']) ?>
+                      <td class="text-center"><?= $tgl[2].'/'.$tgl[1].'/'.$tgl[0] ?></td>
                       <td class="text-center"><?= $lap['QTY'] ?></td>
-                      <td class="text-center">Rp <?= number_format($lap['UANG'], 0, ',', '.') ?></td>
+                      <td class="text-center"><?= number_format($lap['UANG'], 0, ',', ',') ?></td>
                   </tr>
                   <?php endforeach; ?>
                   </tbody>
@@ -103,6 +104,13 @@
   <!-- Responsive examples -->
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
+  <script src="https://cdn.datatables.net/plug-ins/1.10.21/sorting/natural.js"></script>
+
   <!-- Datatable init js -->
-  <script src="<?= base_url('apaxy/js/pages/datatables.init.js') ?>"></script>
+<!--  <script src="--><?//= base_url('apaxy/js/pages/datatables.init.js') ?><!--"></script>-->
+	<script>
+      $('#datatable-buttons').DataTable( {
+          columnDefs: [ { type: 'natural-nohtml', targets: 0 } ]
+      } );
+	</script>
 <?= $this->endsection() ?>
