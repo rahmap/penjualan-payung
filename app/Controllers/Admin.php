@@ -7,6 +7,8 @@ use App\Models\Supplier_Model;
 use App\Models\Produk_Model;
 use App\Models\Pemesanan_Model;
 use App\Models\Product_Pemesanan_Model;
+use App\Models\Barang_Masuk_Model;
+use App\Models\Log_Stok_Model;
 
 class Admin extends BaseController
 {
@@ -17,6 +19,7 @@ class Admin extends BaseController
 	protected $PRODUK_MODEL;
 	protected $PEMESANAN_MODEL;
 	protected $PRODUCT_ORDER;
+	protected $BARANG_MASUK_MODEL;
 
 	public function __construct()
 	{
@@ -149,7 +152,7 @@ class Admin extends BaseController
 			'harga_produk' => $this->request->getVar('harga'),
 			'gambar_produk' => $file,
 			'keterangan_produk' => $this->request->getVar('keterangan'),
-			'stok' => $this->request->getVar('stok'),
+			'stok' => 0,
 			'berat' => $this->request->getVar('berat'),
 			'fk_supplier' => $this->request->getVar('supplier')
 		];
@@ -177,6 +180,74 @@ class Admin extends BaseController
 		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data produk.', 'success'));
 		return redirect()->to(base_url('admin/produk'));
 	}
+
+	public function tambah_stok()
+  {
+    $this->PRODUK_MODEL = new Produk_Model();
+    $data = [
+      'title' => 'Tambah Stok',
+      'produks' => $this->PRODUK_MODEL->findAll()
+    ];
+    if($this->request->getPost()){
+      $this->BARANG_MASUK_MODEL = new Barang_Masuk_Model();
+//      $this->PRODUCTS_BARANG_MASUK = new Products_Barang_Masuk_Model();
+
+      $jumlahStokAdd = $this->request->getPost('jumlah');
+      $id_produk = $this->request->getPost('produk');
+
+      $request = [
+        'stok_barang_masuk' => $jumlahStokAdd,
+        'tanggal_barang_masuk' => '2020/08/07',
+        'fk_product' => (int)$id_produk
+      ];
+
+      $this->BARANG_MASUK_MODEL->save($request);
+
+//      $fk_barang_masuk = $this->BARANG_MASUK_MODEL->getIDInsert();
+
+      $dataProduk = $this->PRODUK_MODEL->where('product_id', $id_produk)->first();
+      $this->PRODUK_MODEL->where('product_id', $id_produk)
+        ->set(['stok' => $dataProduk['stok'] + $jumlahStokAdd])
+        ->update();
+
+//      $manyToMany = [
+//        'fk_products' => $id_produk,
+//        'fk_barang_masuk' => $fk_barang_masuk
+//      ];
+//      $this->PRODUCTS_BARANG_MASUK->save($manyToMany);
+
+      session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menambah stok '.$dataProduk['nama_produk'], 'success'));
+      return redirect()->to(base_url('admin/tambah_stok'));
+    } else {
+      return view('dashboard/admin/produk/tambah_stok', $data);
+    }
+  }
+
+  public function barang_masuk()
+  {
+    $this->PRODUK_MODEL = new Produk_Model();
+
+
+//    $barang_masuk = $this->PRODUK_MODEL
+//      ->select('SUM(stok_barang_masuk) as MASUK, products.nama_produk,
+//                    barang_masuk.tanggal_barang_masuk')
+//      ->join('barang_masuk', 'barang_masuk.fk_product=products.product_id')
+//      ->groupBy('barang_masuk.tanggal_barang_masuk, products.product_id')
+//      ->findAll();
+
+    $barang_masuk = $this->PRODUK_MODEL
+      ->select('stok_barang_masuk AS MASUK, products.nama_produk, 
+                    barang_masuk.tanggal_barang_masuk')
+      ->join('barang_masuk', 'barang_masuk.fk_product=products.product_id')
+      ->findAll();
+
+    $data = [
+      'title' => 'Data Barang Masuk',
+      'produks' => $barang_masuk
+    ];
+//    dd($data);
+    return view('dashboard/admin/produk/list_barang_masuk', $data);
+  }
 
 	public function edit_produk($id)
 	{
@@ -215,10 +286,11 @@ class Admin extends BaseController
 				'harga_produk' => $this->request->getVar('harga'),
 				'gambar_produk' => $file,
 				'keterangan_produk' => $this->request->getVar('keterangan'),
-				'stok' => $this->request->getVar('stok'),
 				'berat' => $this->request->getVar('berat'),
 				'fk_supplier' => $this->request->getVar('supplier')
 			];
+			//Remove Stok
+
 			$this->PRODUK_MODEL->update($id, $update);
 			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate data produk.', 'success'));
 			return redirect()->to(base_url('admin/edit_produk/'.$id));
@@ -529,35 +601,38 @@ class Admin extends BaseController
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
 		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
 		$this->PRODUK_MODEL = new Produk_Model();
+		$LOG = new Log_Stok_Model();
 
 		if(!is_null($this->request->getGet('tanggal'))){
-			$mulai = strtotime($this->request->getGet('tanggal'));
-			$selesai = (int) ($mulai) + 24 * 3600;
-
+			$mulai = ($this->request->getGet('tanggal'));
 //      dd([$mulai, $selesai]);
 			session()->set('tanggal', $this->request->getGet('tanggal'));
 
-			$stok = $this->PRODUK_MODEL
-			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
-			tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL, 
-			 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
-			->join('orders_products', 'orders_products.fk_product=products.product_id')
-			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
-			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
-        ->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
-			->where(['status_pemesanan' => 'success'])
-			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+//			$stok = $this->PRODUK_MODEL
+//			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+//			tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL,
+//			 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
+//			->join('orders_products', 'orders_products.fk_product=products.product_id')
+//			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
+//			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
+//        ->where('pemesanan.waktu_pesanan BETWEEN '.$mulai.' AND '.$selesai)
+//			->where(['status_pemesanan' => 'success'])
+//			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+      $stok = $LOG
+        ->where('tanggal_log', str_replace('-','/', $mulai))
+        ->find();
 
 		} else {
-			$stok = $this->PRODUK_MODEL
-			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
-			tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL, 
-			 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
-			->join('orders_products', 'orders_products.fk_product=products.product_id')
-			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
-			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
-			->where(['status_pemesanan' => 'success'])
-			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+//			$stok = $this->PRODUK_MODEL
+//			->select(['SUM(orders_products.jumlah_pesan_produk) AS QTY,
+//			tanggal_selesai, GROUP_CONCAT(orders_products.stok_sisa) as SISA, GROUP_CONCAT(orders_products.stok_awal) as AWAL,
+//			 orders_products.nama_supplier_order, orders_products.nama_produk_pemesanan'])
+//			->join('orders_products', 'orders_products.fk_product=products.product_id')
+//			->join('pemesanan', 'pemesanan.order_id=orders_products.fk_pemesanan')
+//			->join('suppliers', 'suppliers.supplier_id=products.fk_supplier')
+//			->where(['status_pemesanan' => 'success'])
+//			->groupBy('nama_produk_pemesanan, tanggal_selesai')->find();
+      $stok = $LOG->findAll();
 		}
 		// dd($stok);
 		$data = [

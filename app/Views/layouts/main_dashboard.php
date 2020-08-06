@@ -148,6 +148,8 @@
                             </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="<?= base_url('admin/produk') ?>">List Produk</a></li>
+                                    <li><a href="<?= base_url('admin/tambah_stok') ?>">Tambah Stok Produk</a></li>
+																	<li><a href="<?= base_url('admin/barang_masuk') ?>">List Barang Masuk</a></li>
                                 </ul>
                             </li>
                         <li>

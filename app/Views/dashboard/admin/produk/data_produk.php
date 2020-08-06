@@ -56,12 +56,12 @@
                         <textarea class="form-control" type="text" name="keterangan" > </textarea>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Stok</label>
-                    <div class="col-md-10">
-                        <input class="form-control" type="number" name="stok" >
-                    </div>
-                </div>
+<!--                <div class="form-group row">-->
+<!--                    <label for="example-text-input" class="col-md-2 col-form-label">Stok</label>-->
+<!--                    <div class="col-md-10">-->
+<!--                        <input class="form-control" type="number" name="stok" >-->
+<!--                    </div>-->
+<!--                </div>-->
 									<div class="form-group row">
                     <label for="example-text-input" class="col-md-2 col-form-label">Berat (Gram)</label>
                     <div class="col-md-10">
