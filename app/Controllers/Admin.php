@@ -36,9 +36,38 @@ class Admin extends BaseController
 
 	public function index()
 	{
+	  $this->PEMESANAN_MODEL = new Pemesanan_Model();
+	  $this->PRODUK_MODEL = new Produk_Model();
+
+	  $barang_terjual = $this->PEMESANAN_MODEL
+                  ->select('SUM(orders_products.jumlah_pesan_produk) AS BARANG_TERJUAL')
+                  ->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+                  ->where('pemesanan.status_pemesanan', 'success')
+                  ->first();
+
+	  $pesanan = $this->PEMESANAN_MODEL
+                  ->select('COUNT(pemesanan.order_id) AS PESANAN')
+                  ->where('pemesanan.status_pemesanan', 'success')
+                  ->first();
+
+	  $pendapatan = $this->PEMESANAN_MODEL
+      ->select(['SUM(orders_products.harga_produk_pemesanan * orders_products.jumlah_pesan_produk) AS UANG'])
+      ->join('orders_products', 'orders_products.fk_pemesanan=pemesanan.order_id')
+      ->where(['status_pemesanan' => 'success'])
+      ->first();
+
+	  $barang = $this->PRODUK_MODEL->select('COUNT(product_id) AS BARANG')->first();
+
 		$data = [
-			'title' => 'Welcome'
+			'title' => 'Welcome',
+      'pendapatan' => $pendapatan,
+      'pesanan' => $pesanan,
+      'barang_terjual' => $barang_terjual,
+      'barang' => $barang
 		];
+
+//		dd($data);
+
 
 		return view('dashboard/admin/welcome', $data);
 	}
@@ -157,6 +186,7 @@ class Admin extends BaseController
 			'fk_supplier' => $this->request->getVar('supplier')
 		];
 		if($this->PRODUK_MODEL->save($data)){
+      $this->update_log_stok();
 			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menambahkan data produk!', 'success'));
 		} else {
 			session()->setFlashdata('message', sweetAlert('Upss!','Gagal menambahkan data produk!', 'error'));
@@ -177,6 +207,7 @@ class Admin extends BaseController
 	{
 		$this->PRODUK_MODEL = new Produk_Model();
 		$this->PRODUK_MODEL->where('product_id', $id)->delete();
+    $this->update_log_stok();
 		session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menghapus data produk.', 'success'));
 		return redirect()->to(base_url('admin/produk'));
 	}
@@ -215,7 +246,7 @@ class Admin extends BaseController
 //        'fk_barang_masuk' => $fk_barang_masuk
 //      ];
 //      $this->PRODUCTS_BARANG_MASUK->save($manyToMany);
-
+      $this->update_log_stok();
       session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil menambah stok '.$dataProduk['nama_produk'], 'success'));
       return redirect()->to(base_url('admin/tambah_stok'));
     } else {
@@ -293,6 +324,7 @@ class Admin extends BaseController
 
 			$this->PRODUK_MODEL->update($id, $update);
 			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil mengupdate data produk.', 'success'));
+      $this->update_log_stok();
 			return redirect()->to(base_url('admin/edit_produk/'.$id));
 		} else {
 			return view('dashboard/admin/produk/edit_produk', $data);
@@ -384,7 +416,7 @@ class Admin extends BaseController
 				$stok = $this->PRODUK_MODEL->where('product_id', $item['id'])->first();
 				$this->PRODUK_MODEL->update($item['id'], ['stok' => $stok['stok'] - $item['qty']]);
 			}
-
+      $this->update_log_stok();
 			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil melakukan pemesanan produk.', 'success'));
 			$cart->destroy();
 			return redirect()->to(base_url('admin/tambah_pesanan'));
@@ -447,6 +479,8 @@ class Admin extends BaseController
 				'fk_admin' => session()->user_id
 			];
 			if($this->request->getVar('status') == 'cancel'){
+        $this->update_log_stok();
+
 				$this->SUPPLIER_MODEL = new Supplier_Model();
 				$this->PRODUK_MODEL = new Produk_Model();
 				$getFKProduk = $this->PRODUCT_ORDER->where('fk_pemesanan', $orderID['order_id'])->find();
@@ -456,6 +490,7 @@ class Admin extends BaseController
 				}
 
 			} else if($this->request->getVar('status') == 'success') {
+        $this->update_log_stok();
 				// dd($orderID['order_id']);
 				$this->PRODUCT_ORDER->where('fk_pemesanan', $orderID['order_id'])->set(['tanggal_selesai' => date('d/m/Y')])->update();
 			}
@@ -598,6 +633,7 @@ class Admin extends BaseController
 
 	public function laporan_stok()
 	{
+    $this->update_log_stok();
 		$this->PEMESANAN_MODEL = new Pemesanan_Model();
 		$this->PRODUCT_ORDER = new Product_Pemesanan_Model();
 		$this->PRODUK_MODEL = new Produk_Model();
@@ -641,5 +677,37 @@ class Admin extends BaseController
 		];
 		return view('dashboard/admin/laporan/laporan_stok', $data);
 	}
+
+  public function update_log_stok(){
+
+    $PRODUK = new  \App\Models\Produk_Model();
+    $LOG_STOK = new  \App\Models\Log_Stok_Model();
+
+    $dataProduk = $PRODUK->findAll();
+
+    //dd($dataProduk);
+    if($LOG_STOK->where('tanggal_log', date('Y/m/d'))->find()){
+      $LOG_STOK->where('tanggal_log', date('Y/m/d'))->delete();
+      foreach($dataProduk as $pro){
+        $dataSave = [
+          'nama_barang' => $pro['nama_produk'],
+          'stok_barang' => $pro['stok'],
+          'tanggal_log' => date('Y/m/d')
+        ];
+
+        $LOG_STOK->save($dataSave);
+      }
+    } else {
+      foreach($dataProduk as $pro){
+        $dataSave = [
+          'nama_barang' => $pro['nama_produk'],
+          'stok_barang' => $pro['stok'],
+          'tanggal_log' => date('Y/m/d')
+        ];
+
+        $LOG_STOK->save($dataSave);
+      }
+    }
+  }
 
 }

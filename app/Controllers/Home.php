@@ -127,6 +127,8 @@ class Home extends BaseController
 			$provinsi = $this->request->getVar('provinsi');
 			$kabupaten = $this->request->getVar('kabupaten');
 			$kecamatan= $this->request->getVar('kecamatan');
+
+			$kode_unik = 'TRX-'.random_string('alnum');
 			$dataBeli = [
 				'waktu_pesanan' => time(),
 				'bukti_pembayaran' => NULL,
@@ -140,7 +142,7 @@ class Home extends BaseController
 				'kurir' => strtoupper($this->request->getVar('kurir')),
 				'informasi_pesanan' => 'Menunggu Pembayaran',
 				'status_pemesanan' => 'pending',
-				'order_unique_id' => 'TRX-'.random_string('alnum'),
+				'order_unique_id' => $kode_unik,
 				'fk_user' => session()->user_id,
 				'fk_admin' => NULL
 			];
@@ -167,10 +169,11 @@ class Home extends BaseController
 				$stok = $this->PRODUK_MODEL->where('product_id', $item['id'])->first();
 				$this->PRODUK_MODEL->update($item['id'], ['stok' => $stok['stok'] - $item['qty']]);
 			}
+      $this->update_log_stok();
 
 			session()->setFlashdata('message', sweetAlert('Berhasil!','Berhasil melakukan pemesanan produk.', 'success'));
 			$cart->destroy();
-			return redirect()->route('home');
+			return redirect()->to(base_url('dashboard/edit_pesanan/'.$kode_unik));
 		} else {
 			return view('home/v_pembayaran', $data);
 		}
@@ -198,4 +201,36 @@ class Home extends BaseController
 		];
 		return view('home/v_about', $data);
 	}
+
+  public function update_log_stok(){
+
+    $PRODUK = new  \App\Models\Produk_Model();
+    $LOG_STOK = new  \App\Models\Log_Stok_Model();
+
+    $dataProduk = $PRODUK->findAll();
+
+    //dd($dataProduk);
+    if($LOG_STOK->where('tanggal_log', date('Y/m/d'))->find()){
+      $LOG_STOK->where('tanggal_log', date('Y/m/d'))->delete();
+      foreach($dataProduk as $pro){
+        $dataSave = [
+          'nama_barang' => $pro['nama_produk'],
+          'stok_barang' => $pro['stok'],
+          'tanggal_log' => date('Y/m/d')
+        ];
+
+        $LOG_STOK->save($dataSave);
+      }
+    } else {
+      foreach($dataProduk as $pro){
+        $dataSave = [
+          'nama_barang' => $pro['nama_produk'],
+          'stok_barang' => $pro['stok'],
+          'tanggal_log' => date('Y/m/d')
+        ];
+
+        $LOG_STOK->save($dataSave);
+      }
+    }
+  }
 }
