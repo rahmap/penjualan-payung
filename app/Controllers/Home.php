@@ -28,16 +28,13 @@ class Home extends BaseController
 	{
 	  $data = [
 			'title' => 'Home',
-			'products' => $this->PRODUK_MODEL->findAll(),
-			'pager' => $this->PRODUK_MODEL
+			'products' => $this->PRODUK_MODEL->findAll() //mengembil semua data produk
 		];
-		// dd($data['pager']);
 		return view('home/v_home', $data);
 	}
 
 	public function detail($slug_payung)
 	{
-		// session()->destroy();
 		$produk = $this->PRODUK_MODEL
 										->join('suppliers','suppliers.supplier_id=products.fk_supplier')
 										->where('nama_produk', ucwords(\str_replace('-',' ', $slug_payung)))
@@ -89,9 +86,8 @@ class Home extends BaseController
 
 	public function pembayaran()
 	{
-	  $RO = new \App\Libraries\RajaOngkir();
-//	  dd($RO->city());
-//	  dd($RO->cost(419, 114, 1800, 'tiki'));
+	  $RO = new \App\Libraries\RajaOngkir(); //load library rajaongkir
+
 		if(!session()->has('user_id')){
 			session()->setFlashdata('message', sweetAlert('Info!','Silahkan Login Dahulu.', 'info'));
 			return redirect()->route('login');
@@ -101,7 +97,6 @@ class Home extends BaseController
 			}
 		}
 		$cart = new \App\Libraries\Cart();
-		// dd($cart->totalItems());
 		if($cart->contents() == null){
 			session()->setFlashdata('message', sweetAlert('Upss!','Keranjang Kosong, silahkan tambahkan produk dulu.', 'info'));
 			return redirect()->route('home');
@@ -111,7 +106,7 @@ class Home extends BaseController
     foreach($cart->contents() as $item) {
       $berat = (int)  $berat + (int)  $item['options']['berat'] * (int)  $item['qty'];
     }
-    $RO = new \App\Libraries\RajaOngkir();
+
 	  $data = [
 			'title' => 'Pembayaran',
 			'cart' => $cart->contents(),
@@ -146,7 +141,7 @@ class Home extends BaseController
 				'fk_user' => session()->user_id,
 				'fk_admin' => NULL
 			];
-//			dd($dataBeli);
+
 			$this->PEMESANAN_MODEL->save($dataBeli);
 
 			$insertID = $this->PEMESANAN_MODEL->getIDInsert();
@@ -164,7 +159,7 @@ class Home extends BaseController
 					'nama_supplier_order' => $item['options']['nama_supplier_order'],
 					'kabupaten_pemesanan' => $data_pribadi['user_kabupaten']
 				];
-				// dd($data);
+
 				$this->PRODUCT_ORDER->save($data);
 				$stok = $this->PRODUK_MODEL->where('product_id', $item['id'])->first();
 				$this->PRODUK_MODEL->update($item['id'], ['stok' => $stok['stok'] - $item['qty']]);

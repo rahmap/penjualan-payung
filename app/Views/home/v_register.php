@@ -72,7 +72,7 @@
 					</form>
 				</div>
 			</div>
-			<div class="col-md-6"><img class="img-fluid d-block" src="https://static.pingendo.com/img-placeholder-1.svg"></div>
+			<div class="col-md-6"><img class="img-fluid d-block" src="https://media.wired.com/photos/5eb9d17e48074637267906e0/1:1/w_1799,h_1799,c_limit/Gear-Feature-Blunt-Coupe-SOURCE-Blunt.jpg"></div>
 		</div>
 	</div>
 </div>

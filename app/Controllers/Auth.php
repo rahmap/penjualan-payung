@@ -35,6 +35,7 @@ class Auth extends BaseController
 					'user_email' => $this->request->getVar('email'),
 					'user_nomer_hp' => $this->request->getVar('no_hp'),
 					'user_provinsi' => ucwords($this->request->getVar('provinsi')),
+
 					'user_kecamatan' => ucwords($this->request->getVar('kecamatan')),
 					'user_kabupaten' => ucwords($this->request->getVar('kabupaten')),
 					'user_alamat' => ucwords($this->request->getVar('alamat')),

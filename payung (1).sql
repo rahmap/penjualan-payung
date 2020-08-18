@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Agu 2020 pada 21.16
+-- Waktu pembuatan: 10 Agu 2020 pada 15.41
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -72,7 +72,8 @@ INSERT INTO `barang_masuk` (`id_barang_masuk`, `stok_barang_masuk`, `tanggal_bar
 (33, 13, '2020/08/07', 26),
 (34, 46, '2020/08/07', 27),
 (35, 27, '2020/08/07', 28),
-(36, 35, '2020/08/07', 29);
+(36, 35, '2020/08/07', 29),
+(37, 4, '2020/08/07', 15);
 
 -- --------------------------------------------------------
 
@@ -92,19 +93,19 @@ CREATE TABLE `log_stok` (
 --
 
 INSERT INTO `log_stok` (`log_stok_id`, `nama_barang`, `stok_barang`, `tanggal_log`) VALUES
-(503, 'Payung Anak', 38, '2020/08/10'),
-(504, 'Payung Golf', 50, '2020/08/10'),
-(505, 'Payung Lipat', 59, '2020/08/10'),
-(506, 'Payung Model 1 Warna', 35, '2020/08/10'),
-(507, 'Payung Pantai', 35, '2020/08/10'),
-(508, 'Payung Standar', 12, '2020/08/10'),
-(509, 'Payung Motif', 58, '2020/08/10'),
-(510, 'Payung Revisi', 40, '2020/08/10'),
-(511, 'Payung Super KW', 37, '2020/08/10'),
-(512, 'Payung Payungan', 13, '2020/08/10'),
-(513, 'Payung PUBG', 46, '2020/08/10'),
-(514, 'Payung Teduh', 25, '2020/08/10'),
-(515, 'Payung Umbrella', 35, '2020/08/10');
+(607, 'Payung Anak', 42, '2020/08/10'),
+(608, 'Payung Golf', 50, '2020/08/10'),
+(609, 'Payung Lipat', 59, '2020/08/10'),
+(610, 'Payung Model 1 Warna', 35, '2020/08/10'),
+(611, 'Payung Pantai', 35, '2020/08/10'),
+(612, 'Payung Standar', 12, '2020/08/10'),
+(613, 'Payung Motif', 58, '2020/08/10'),
+(614, 'Payung Revisi', 40, '2020/08/10'),
+(615, 'Payung Super KW', 37, '2020/08/10'),
+(616, 'Payung Payungan', 13, '2020/08/10'),
+(617, 'Payung PUBG', 46, '2020/08/10'),
+(618, 'Payung Teduh', 25, '2020/08/10'),
+(619, 'Payung Umbrella', 35, '2020/08/10');
 
 -- --------------------------------------------------------
 
@@ -136,8 +137,8 @@ INSERT INTO `orders_products` (`orders_products_id`, `fk_product`, `fk_pemesanan
 (104, 20, 74, 8, 70000, 'Payung Standar', 12, 20, 'Rahma Purnama', '10/08/2020', 'Sleman'),
 (105, 21, 74, 4, 80000, 'Payung Motif', 60, 64, 'Rahma Purnama', '10/08/2020', 'Sleman'),
 (106, 28, 74, 2, 60000, 'Payung Teduh', 25, 27, 'Joko Siswa', '10/08/2020', 'Sleman'),
-(107, 15, 75, 2, 70000, 'Payung Anak', 38, 40, 'Rahma Purnama', NULL, 'Sleman'),
-(108, 21, 75, 2, 80000, 'Payung Motif', 58, 60, 'Rahma Purnama', NULL, 'Sleman');
+(107, 15, 75, 2, 70000, 'Payung Anak', 38, 40, 'Rahma Purnama', '10/08/2020', 'Sleman'),
+(108, 21, 75, 2, 80000, 'Payung Motif', 58, 60, 'Rahma Purnama', '10/08/2020', 'Sleman');
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,7 @@ CREATE TABLE `pemesanan` (
 INSERT INTO `pemesanan` (`order_id`, `waktu_pesanan`, `bukti_pembayaran`, `alamat`, `harga_total`, `ongkir`, `metode_pembayaran`, `no_hp`, `informasi_pesanan`, `status_pemesanan`, `order_unique_id`, `estimasi`, `kurir`, `service`, `fk_user`, `fk_admin`) VALUES
 (73, '1596997851', '1596997865_fbd388e57b19e47244d0.jpg', 'DI Yogyakarta, Bantul, Bayat, Girikerto, Turi, 55551', 450000, '12000', 'BRI', '087675464', 'Sedang Dikirim. RESI : 023423523566', 'success', 'TRX-UvxVDmRT', '1-2 Hari', 'JNE', 'CTC', 58, 1),
 (74, '1596998076', '1596998088_c4c03a238fd848fed742.jpg', 'DI Yogyakarta, Bantul, Turi, Jineman, Girikerto, Turi', 1000000, '50000', 'BRI', '09678767457', 'Sedang Dikirim. RESI : 8087390904-JOG', 'success', 'TRX-tg0QCJ7U', '1 HARI Hari', 'POS', 'Express Next Day Bar', 1, 1),
-(75, '1597000351', NULL, 'Jawa Timur, Bangkalan, Turi, Jineman, Girikerto, Turi', 300000, '30000', 'BRI', '09678767457', 'Menunggu Pembayaran', 'pending', 'TRX-K7PQ9ij8', '5 Hari', 'TIKI', 'ECO', 1, NULL);
+(75, '1597000351', '1597000817_3e6d20eecaab6833656e.jpg', 'Jawa Timur, Bangkalan, Turi, Jineman, Girikerto, Turi', 300000, '30000', 'BRI', '09678767457', 'RESI : JAT-4238742533322', 'success', 'TRX-K7PQ9ij8', '5 Hari', 'TIKI', 'ECO', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `fk_supplier`, `harga_produk`, `nama_produk`, `gambar_produk`, `keterangan_produk`, `stok`, `berat`) VALUES
-(15, 44, 70000, 'Payung Anak', '1595067744_e22c69c12c06d9d654bc.jpeg', '   Payung untuk anak - anak', 38, 330),
+(15, 44, 70000, 'Payung Anak', '1595067744_e22c69c12c06d9d654bc.jpeg', '   Payung untuk anak - anak', 42, 330),
 (16, 44, 80000, 'Payung Golf', '1595067844_64f722f8c69be4590e85.jpg', '  Payung yang biasa digunakan ketika bermain golf', 50, 330),
 (17, 44, 50000, 'Payung Lipat', '1595068211_385aca6fda3314fd0ec6.jpg', '   Payung untuk berlindung dari air hujan', 59, 330),
 (18, 44, 70000, 'Payung Model 1 Warna', '1595068250_932c8d265fb3fe7308c7.jpg', 'Payung dengan model 1 warna', 35, 330),
@@ -332,13 +333,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT untuk tabel `barang_masuk`
 --
 ALTER TABLE `barang_masuk`
-  MODIFY `id_barang_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_barang_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `log_stok`
 --
 ALTER TABLE `log_stok`
-  MODIFY `log_stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=516;
+  MODIFY `log_stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=620;
 
 --
 -- AUTO_INCREMENT untuk tabel `orders_products`

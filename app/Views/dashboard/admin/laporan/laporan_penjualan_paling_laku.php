@@ -128,5 +128,13 @@
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive/js/dataTables.responsive.min.js') ?>"></script>
   <script src="<?= base_url('apaxy/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') ?>"></script>
   <!-- Datatable init js -->
-  <script src="<?= base_url('apaxy/js/pages/datatables.init.js') ?>"></script>
+  <script>
+      $(document).ready(function () {
+          $("#datatable").DataTable(), $("#datatable-buttons").DataTable({
+              "order": [[ 1, "desc" ]],
+              lengthChange: 1,
+              buttons: ["copy", "excel", "pdf"]
+          }).buttons().container().appendTo("#datatable-buttons_wrapper .col-md-6:eq(0)")
+      });
+	</script>
 <?= $this->endsection() ?>

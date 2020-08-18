@@ -5,16 +5,19 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
-<div class="text-center py-5">
-	<div class="container">
-		<div class="row my-5 justify-content-center">
-			<div class="col-md-9">
-				<h1><?= APP_NAME ?></h1>
-				<p class="lead text-muted">Menjual Payung berkualitas dan legendaris.</p>
-			</div>
-		</div>
-	</div>
-</div>
+<div class="py-5 text-center text-white h-100 align-items-center d-flex" 
+style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+url(&quot;https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-umbrellas-1563507664.png?crop=1.00xw:1.00xh;0,0&resize=1200:*&quot;); 
+background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;" >
+    <div class="container py-5">
+      <div class="row">
+        <div class="mx-auto col-lg-8 col-md-10">
+          <h1 class="display-3 mb-4"><?= APP_NAME ?></h1>
+          <p class="lead mb-5">Toko Payung Legendaris, menjual payung berkualitas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="py-4 bg-light">
 	<div class="container">
 		<div class="row">
@@ -41,7 +44,7 @@
 </div>
 <footer class="text-muted py-2">
 	<div class="container">
-		<p>Album template is based on Bootstrap © examples.&nbsp; <br>New to Bootstrap? <a href="#">Visit the homepage</a> or read our <a href="#">getting started guide</a>.</p>
+		<p><?= APP_NAME ?> © 2020.&nbsp; <br>Toko Payung Legendaris, menjual payung berkualitas. Made by <b><a href="#"><?= CREATOR ?></a></b></p>
 	</div>
 </footer>
 <?= $this->endSection() ?>
